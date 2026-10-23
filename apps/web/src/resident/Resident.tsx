@@ -12,6 +12,7 @@ import {
   type WireMessage,
 } from '../contract.ts';
 import { device, useDevice } from '../device/device.ts';
+import { QrTransfer } from '../transfer/Transfer.tsx';
 import { clock, TopBar, timeAgo, Toast, useNow, useToast } from '../ui/common.tsx';
 import { Icon, NEED_LABEL } from '../ui/icons.tsx';
 
@@ -442,18 +443,15 @@ function MyRequests() {
   );
 }
 
-// Where the offline transport (QR / nearby, built by Codex) plugs in.
+// Offline phone-to-phone transfer (src/transfer). The mock-only control below
+// lets the flow be shown on one laptop without a second phone.
 function NearbyTransfer() {
   const d = useDevice();
   const [toast, showToast] = useToast();
   const waiting = d.mine().filter((m) => d.delivery(m.id).state === 'saved');
   return (
-    <section className="card flat stack">
-      <h2>Share with a nearby phone</h2>
-      <p className="small muted">
-        Hold two phones together to pass alerts and requests along without signal. Transfer is handled by the RELAY transport
-        module.
-      </p>
+    <div className="stack">
+      <QrTransfer />
       {api.mode === 'mock' && (
         <div className="stack">
           <span className="badge sim" style={{ justifySelf: 'start' }}>
@@ -476,6 +474,6 @@ function NearbyTransfer() {
         </div>
       )}
       <Toast msg={toast} />
-    </section>
+    </div>
   );
 }
