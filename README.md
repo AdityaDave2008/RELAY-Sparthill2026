@@ -12,7 +12,10 @@ RELAY aims to keep essential information moving during disruptions and outages:
 
 ## Project status
 
-Repository setup only. Application implementation has not started.
+- [`packages/relay-core`](packages/relay-core): offline message model,
+  storage, and store-and-forward sync between devices, with tests.
+- The mobile app, the device-to-device transport, and the AWS uplink have
+  not started.
 
 The proposed demo targets iOS and Android with a shared React/TypeScript app
 and Amazon Bedrock. These are planning notes, not implemented capabilities.

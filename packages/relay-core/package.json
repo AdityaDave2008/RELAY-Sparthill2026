@@ -1,0 +1,14 @@
+{
+  "name": "@relay/core",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline message model, storage, and store-and-forward sync for RELAY",
+  "type": "module",
+  "exports": "./src/index.ts",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}
