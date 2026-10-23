@@ -1,89 +1,103 @@
-import { compareByImportance, isExpired, validateMessage, type RelayMessage } from './message.ts';
+import { compareByImportance, isExpired, sameMessage, validateMessage, type RelayMessage } from './message.ts';
 
-export type AddResult = 'added' | 'duplicate' | 'expired' | 'invalid' | 'rejected_full';
+export type AddResult = 'added' | 'duplicate' | 'conflict' | 'expired' | 'invalid' | 'rejected_full';
+export interface StoreSnapshot { messages: RelayMessage[]; uploaded: string[] }
+export interface SnapshotPersistence {
+  read(): string | null;
+  write(snapshot: string): void;
+}
 
-// Offline message storage on one device. In-memory for now; the app can
-// persist it with toJSON()/fromJSON() until a SQLite-backed store is added.
+// Persist before changing memory. A failed write must not be reported as saved.
 export class MessageStore {
   readonly capacity: number;
-  private readonly messages = new Map<string, RelayMessage>();
-  private readonly uploaded = new Set<string>();
+  private messages = new Map<string, RelayMessage>();
+  private uploaded = new Set<string>();
+  private persistence?: SnapshotPersistence;
 
   constructor(options: { capacity?: number } = {}) {
     this.capacity = options.capacity ?? 500;
+    if (!Number.isSafeInteger(this.capacity) || this.capacity < 1 || this.capacity > 10_000) {
+      throw new RangeError('capacity must be an integer from 1 to 10000');
+    }
   }
 
-  get size(): number {
-    return this.messages.size;
+  static open(persistence: SnapshotPersistence, options: { capacity?: number; now?: number } = {}): MessageStore {
+    const saved = persistence.read();
+    const store = saved === null ? new MessageStore(options) : MessageStore.fromJSON(JSON.parse(saved), options);
+    store.persistence = persistence;
+    return store;
   }
 
-  has(id: string): boolean {
-    return this.messages.has(id);
-  }
-
+  get size(): number { return this.messages.size; }
+  has(id: string): boolean { return this.messages.has(id); }
   get(id: string): RelayMessage | undefined {
-    return this.messages.get(id);
+    const message = this.messages.get(id);
+    return message && structuredClone(message);
   }
 
   add(message: RelayMessage, now: number = Date.now()): AddResult {
     if (validateMessage(message).length > 0) return 'invalid';
-    if (this.messages.has(message.id)) return 'duplicate';
     if (isExpired(message, now)) return 'expired';
-
-    this.prune(now);
-    if (this.messages.size >= this.capacity) {
-      const leastImportant = this.list().at(-1)!;
-      // Never push out something more important than the incoming message.
+    const existing = this.messages.get(message.id);
+    if (existing) return sameMessage(existing, message) ? 'duplicate' : 'conflict';
+    const messages = new Map([...this.messages].filter(([, m]) => !isExpired(m, now)));
+    if (messages.size >= this.capacity) {
+      const leastImportant = [...messages.values()].sort(compareByImportance).at(-1)!;
       if (compareByImportance(message, leastImportant) > 0) return 'rejected_full';
-      this.delete(leastImportant.id);
+      messages.delete(leastImportant.id);
     }
-    this.messages.set(message.id, structuredClone(message));
+    messages.set(message.id, structuredClone(message));
+    this.commit(messages);
     return 'added';
   }
 
-  // All live messages, most important first.
   list(): RelayMessage[] {
-    return [...this.messages.values()].sort(compareByImportance);
+    return [...this.messages.values()].sort(compareByImportance).map(m => structuredClone(m));
   }
 
   prune(now: number = Date.now()): number {
-    let removed = 0;
-    for (const message of this.messages.values()) {
-      if (isExpired(message, now)) {
-        this.delete(message.id);
-        removed++;
-      }
-    }
+    const messages = new Map([...this.messages].filter(([, m]) => !isExpired(m, now)));
+    const removed = this.messages.size - messages.size;
+    if (removed) this.commit(messages);
     return removed;
   }
 
-  // Messages not yet sent to AWS, for when a connection is available.
   pendingUpload(now: number = Date.now()): RelayMessage[] {
-    return this.list().filter((m) => !this.uploaded.has(m.id) && !isExpired(m, now));
+    return this.list().filter(m => !this.uploaded.has(m.id) && !isExpired(m, now));
   }
 
   markUploaded(ids: Iterable<string>): void {
-    for (const id of ids) {
-      if (this.messages.has(id)) this.uploaded.add(id);
+    const uploaded = new Set(this.uploaded);
+    for (const id of ids) if (this.messages.has(id)) uploaded.add(id);
+    if (uploaded.size !== this.uploaded.size) this.commit(new Map(this.messages), uploaded);
+  }
+
+  toJSON(): StoreSnapshot { return { messages: this.list(), uploaded: [...this.uploaded] }; }
+
+  static fromJSON(data: unknown, options: { capacity?: number; now?: number } = {}): MessageStore {
+    if (!data || typeof data !== 'object') throw new TypeError('Invalid store snapshot');
+    const snapshot = data as Partial<StoreSnapshot>;
+    if (!Array.isArray(snapshot.messages) || snapshot.messages.length > 10_000 ||
+        snapshot.messages.some(m => validateMessage(m).length > 0) ||
+        (snapshot.uploaded !== undefined && (!Array.isArray(snapshot.uploaded) || snapshot.uploaded.some(id => typeof id !== 'string')))) {
+      throw new TypeError('Invalid store snapshot');
     }
-  }
-
-  toJSON(): { messages: RelayMessage[]; uploaded: string[] } {
-    return { messages: this.list(), uploaded: [...this.uploaded] };
-  }
-
-  static fromJSON(
-    data: { messages: RelayMessage[]; uploaded?: string[] },
-    options: { capacity?: number; now?: number } = {},
-  ): MessageStore {
     const store = new MessageStore(options);
-    for (const message of data.messages) store.add(message, options.now);
-    store.markUploaded(data.uploaded ?? []);
+    for (const message of snapshot.messages) {
+      if (store.add(message, options.now) === 'conflict') throw new TypeError('Conflicting IDs in store snapshot');
+    }
+    store.markUploaded(snapshot.uploaded ?? []);
     return store;
   }
 
-  private delete(id: string): void {
-    this.messages.delete(id);
-    this.uploaded.delete(id);
+  private commit(messages: Map<string, RelayMessage>, uploaded = this.uploaded): void {
+    const nextUploaded = new Set([...uploaded].filter(id => messages.has(id)));
+    this.persistence?.write(JSON.stringify({ messages: [...messages.values()], uploaded: [...nextUploaded] }));
+    this.messages = messages;
+    this.uploaded = nextUploaded;
   }
+}
+
+export function localStoragePersistence(storage: Pick<Storage, 'getItem' | 'setItem'>, key = 'relay:messages'): SnapshotPersistence {
+  return { read: () => storage.getItem(key), write: snapshot => storage.setItem(key, snapshot) };
 }

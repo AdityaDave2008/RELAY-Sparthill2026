@@ -22,6 +22,9 @@ export interface GeoPoint {
   accuracyM?: number;
 }
 
+export interface WarningTranslation { title: string; body: string }
+export type WarningTranslations = Partial<Record<string, WarningTranslation>>;
+
 export interface RelayMessage {
   id: string;
   kind: MessageKind;
@@ -34,6 +37,10 @@ export interface RelayMessage {
   body: string;
   location?: GeoPoint;
   replyTo?: string; // id of the message an ack answers
+  recipientDeviceId?: string;
+  incidentId?: string;
+  title?: string;
+  translations?: WarningTranslations;
 }
 
 export const MAX_BODY_LENGTH = 1000;
@@ -58,6 +65,10 @@ export interface NewMessage {
   body: string;
   location?: GeoPoint;
   replyTo?: string;
+  recipientDeviceId?: string;
+  incidentId?: string;
+  title?: string;
+  translations?: WarningTranslations;
   priority?: Priority;
   ttlMs?: number;
   maxHops?: number;
@@ -77,8 +88,12 @@ export function createMessage(input: NewMessage): RelayMessage {
     hops: 0,
     maxHops: input.maxHops ?? 8,
     body: input.body,
-    ...(input.location && { location: input.location }),
-    ...(input.replyTo && { replyTo: input.replyTo }),
+    ...(input.location !== undefined && { location: input.location }),
+    ...(input.replyTo !== undefined && { replyTo: input.replyTo }),
+    ...(input.recipientDeviceId !== undefined && { recipientDeviceId: input.recipientDeviceId }),
+    ...(input.incidentId !== undefined && { incidentId: input.incidentId }),
+    ...(input.title !== undefined && { title: input.title }),
+    ...(input.translations !== undefined && { translations: input.translations }),
   };
   const errors = validateMessage(message);
   if (errors.length > 0) {
@@ -89,29 +104,50 @@ export function createMessage(input: NewMessage): RelayMessage {
 
 const KINDS: readonly MessageKind[] = ['help_request', 'warning', 'status', 'ack'];
 
+export function isIdentifier(value: unknown): value is string {
+  return typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,63}$/.test(value);
+}
+
 // Validates untrusted input, e.g. a message received from a nearby device.
 export function validateMessage(value: unknown): string[] {
   const errors: string[] = [];
   if (typeof value !== 'object' || value === null) return ['not an object'];
   const m = value as Record<string, unknown>;
 
-  if (typeof m.id !== 'string' || m.id.length === 0 || m.id.length > 64) errors.push('id');
+  if (!isIdentifier(m.id)) errors.push('id');
   if (!KINDS.includes(m.kind as MessageKind)) errors.push('kind');
   if (!Number.isInteger(m.priority) || (m.priority as number) < 0 || (m.priority as number) > 3) {
     errors.push('priority');
   }
-  if (typeof m.originDeviceId !== 'string' || m.originDeviceId.length === 0) errors.push('originDeviceId');
-  if (!Number.isFinite(m.createdAt)) errors.push('createdAt');
-  if (!Number.isFinite(m.expiresAt) || (m.expiresAt as number) <= (m.createdAt as number)) {
+  if (!isIdentifier(m.originDeviceId)) errors.push('originDeviceId');
+  if (!Number.isSafeInteger(m.createdAt) || (m.createdAt as number) < 0) errors.push('createdAt');
+  if (!Number.isSafeInteger(m.expiresAt) || (m.expiresAt as number) <= (m.createdAt as number)) {
     errors.push('expiresAt');
   }
   if (!Number.isInteger(m.hops) || (m.hops as number) < 0) errors.push('hops');
-  if (!Number.isInteger(m.maxHops) || (m.maxHops as number) < 0) errors.push('maxHops');
-  if (typeof m.body !== 'string' || m.body.length > MAX_BODY_LENGTH) errors.push('body');
+  if (!Number.isInteger(m.maxHops) || (m.maxHops as number) < 0 || (m.maxHops as number) > 64) errors.push('maxHops');
+  if ((m.hops as number) > (m.maxHops as number)) errors.push('hops exceeds maxHops');
+  if (typeof m.body !== 'string' || !m.body.trim() || m.body.length > MAX_BODY_LENGTH) errors.push('body');
   if (m.location !== undefined && !isGeoPoint(m.location)) errors.push('location');
-  if (m.replyTo !== undefined && typeof m.replyTo !== 'string') errors.push('replyTo');
-  if (m.kind === 'ack' && typeof m.replyTo !== 'string') errors.push('ack requires replyTo');
+  if (m.replyTo !== undefined && !isIdentifier(m.replyTo)) errors.push('replyTo');
+  if (m.recipientDeviceId !== undefined && !isIdentifier(m.recipientDeviceId)) errors.push('recipientDeviceId');
+  if (m.incidentId !== undefined && !isIdentifier(m.incidentId)) errors.push('incidentId');
+  if (m.title !== undefined && !validText(m.title, 120)) errors.push('title');
+  if (m.translations !== undefined && !validTranslations(m.translations)) errors.push('translations');
+  if (m.kind === 'ack' && !isIdentifier(m.replyTo)) errors.push('ack requires replyTo');
   return errors;
+}
+
+function validText(value: unknown, limit: number): value is string {
+  return typeof value === 'string' && value.trim().length > 0 && value.length <= limit;
+}
+
+function validTranslations(value: unknown): value is WarningTranslations {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const entries = Object.entries(value);
+  return entries.length <= 12 && entries.every(([language, text]) =>
+    /^[A-Za-z][A-Za-z0-9_-]{0,39}$/.test(language) && text && typeof text === 'object' &&
+    validText(text.title, 120) && validText(text.body, MAX_BODY_LENGTH));
 }
 
 function isGeoPoint(value: unknown): value is GeoPoint {
@@ -124,7 +160,7 @@ function isGeoPoint(value: unknown): value is GeoPoint {
     typeof p.lon === 'number' &&
     p.lon >= -180 &&
     p.lon <= 180 &&
-    (p.accuracyM === undefined || (typeof p.accuracyM === 'number' && p.accuracyM >= 0))
+    (p.accuracyM === undefined || (typeof p.accuracyM === 'number' && Number.isFinite(p.accuracyM) && p.accuracyM >= 0))
   );
 }
 
@@ -139,4 +175,14 @@ export function canForward(message: RelayMessage, now: number = Date.now()): boo
 // Ordering used for storage eviction and transfer: most important, then newest.
 export function compareByImportance(a: RelayMessage, b: RelayMessage): number {
   return b.priority - a.priority || b.createdAt - a.createdAt;
+}
+
+// Copies taking different routes may differ in hop count, never original content.
+export function sameMessage(a: RelayMessage, b: RelayMessage): boolean {
+  const identity = (m: RelayMessage) => [m.id, m.kind, m.priority, m.originDeviceId,
+    m.createdAt, m.expiresAt, m.maxHops, m.body, m.location?.lat, m.location?.lon,
+    m.location?.accuracyM, m.replyTo, m.recipientDeviceId, m.incidentId, m.title,
+    Object.entries(m.translations ?? {}).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)
+      .map(([language, text]) => [language, text?.title, text?.body])];
+  return JSON.stringify(identity(a)) === JSON.stringify(identity(b));
 }

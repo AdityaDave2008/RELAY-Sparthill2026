@@ -32,12 +32,15 @@ export function offer(store: MessageStore, now: number = Date.now()): Offer {
 }
 
 export function request(store: MessageStore, incoming: Offer, limit: number = 50): Request {
-  return { ids: incoming.ids.filter((id) => !store.has(id)).slice(0, limit) };
+  if (!Number.isInteger(limit) || limit < 0 || limit > 50) throw new RangeError('request limit must be 0 to 50');
+  if (!incoming || !Array.isArray(incoming.ids) || incoming.ids.length > 10_000 || incoming.ids.some(id => typeof id !== 'string')) throw new TypeError('Invalid offer');
+  return { ids: [...new Set(incoming.ids)].filter((id) => !store.has(id)).slice(0, limit) };
 }
 
 export function fulfil(store: MessageStore, req: Request, now: number = Date.now()): Batch {
+  if (!req || !Array.isArray(req.ids) || req.ids.length > 50 || req.ids.some(id => typeof id !== 'string')) throw new TypeError('Invalid request');
   const messages: RelayMessage[] = [];
-  for (const id of req.ids) {
+  for (const id of new Set(req.ids)) {
     const message = store.get(id);
     if (message && canForward(message, now)) {
       messages.push({ ...structuredClone(message), hops: message.hops + 1 });
@@ -47,6 +50,7 @@ export function fulfil(store: MessageStore, req: Request, now: number = Date.now
 }
 
 export function receive(store: MessageStore, batch: Batch, now: number = Date.now()): ReceiveReport {
+  if (!batch || !Array.isArray(batch.messages) || batch.messages.length > 50) throw new TypeError('Invalid batch');
   const report: ReceiveReport = { added: [], rejected: [] };
   for (const message of batch.messages) {
     const result = store.add(message, now);
