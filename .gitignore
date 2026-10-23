@@ -14,3 +14,7 @@ coverage/
 
 # macOS metadata
 .DS_Store
+
+# Local API state
+services/api/data/
+.aws-sam/

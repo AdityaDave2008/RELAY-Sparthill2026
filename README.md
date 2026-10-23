@@ -12,15 +12,22 @@ RELAY aims to keep essential information moving during disruptions and outages:
 
 ## Project status
 
-- [`packages/relay-core`](packages/relay-core): offline message model,
-  storage, and store-and-forward sync between devices, with tests.
-- The mobile app, the device-to-device transport, and the AWS uplink have
-  not started.
+- [`packages/relay-core`](packages/relay-core): durable browser message storage,
+  validated transfer frames, and gateway synchronization, with tests.
+- [`services/api`](services/api): persistent message API, automatic Bedrock
+  request analysis, grounded response/bulletin drafts, approval and replies,
+  plus DynamoDB/Lambda deployment source.
+- The frontend is being developed separately. Physical-device camera/radio
+  transfer and the full user-interface demo still need integration testing.
 
-The proposed demo targets iOS and Android with a shared React/TypeScript app
-and Amazon Bedrock. These are planning notes, not implemented capabilities.
-Government approval and emergency-service connections would be simulated in
-the demo; live integrations require agency partnerships.
+The demo targets iOS and Android with a shared React/TypeScript app. Amazon
+Bedrock in `us-east-1` drives request understanding and drafts accessible
+responses from coordinator source notes; humans approve messages before sending.
+Government approval and emergency-service connections are simulated.
+
+Start the API with `npm install` and `npm run dev:api`. Configure AWS only in
+the ignored `services/api/.env`; use its `.env.example` as a guide. See the
+[frontend/API contract](services/api/README.md) for integration and live testing.
 
 ## Background
 

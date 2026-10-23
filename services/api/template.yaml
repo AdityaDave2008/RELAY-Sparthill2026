@@ -1,0 +1,121 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: RELAY hackathon simulation API with DynamoDB and real Amazon Bedrock inference
+Parameters:
+  BedrockModelId:
+    Type: String
+    Description: Converse-compatible model or inference profile enabled in this workshop account
+    MinLength: 1
+  DeviceToken:
+    Type: String
+    NoEcho: true
+    MinLength: 16
+  CoordinatorToken:
+    Type: String
+    NoEcho: true
+    MinLength: 16
+  AllowedOrigins:
+    Type: String
+    Description: Comma-separated exact frontend origins
+    Default: http://localhost:5173
+Resources:
+  Messages:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+  Api:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs22.x
+      Handler: index.handler
+      CodeUri: dist/
+      Timeout: 25
+      MemorySize: 256
+      Environment:
+        Variables:
+          RELAY_TABLE_NAME: !Ref Messages
+          BEDROCK_MODEL_ID: !Ref BedrockModelId
+          RELAY_DEVICE_TOKEN: !Ref DeviceToken
+          RELAY_COORDINATOR_TOKEN: !Ref CoordinatorToken
+          RELAY_ALLOWED_ORIGINS: !Ref AllowedOrigins
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Messages
+        - Statement:
+            - Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource:
+                - !Sub arn:${AWS::Partition}:bedrock:*::foundation-model/*
+                - !Sub arn:${AWS::Partition}:bedrock:*:${AWS::AccountId}:inference-profile/*
+                - !Sub arn:${AWS::Partition}:bedrock:*:${AWS::AccountId}:application-inference-profile/*
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /{proxy+}
+            Method: ANY
+            PayloadFormatVersion: '2.0'
+  ClassificationWorker:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs22.x
+      Handler: worker.handler
+      CodeUri: dist/
+      Timeout: 25
+      MemorySize: 256
+      Environment:
+        Variables:
+          RELAY_TABLE_NAME: !Ref Messages
+          BEDROCK_MODEL_ID: !Ref BedrockModelId
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Messages
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:DescribeStream
+                - dynamodb:GetRecords
+                - dynamodb:GetShardIterator
+                - dynamodb:ListStreams
+              Resource: !GetAtt Messages.StreamArn
+            - Effect: Allow
+              Action: bedrock:InvokeModel
+              Resource:
+                - !Sub arn:${AWS::Partition}:bedrock:*::foundation-model/*
+                - !Sub arn:${AWS::Partition}:bedrock:*:${AWS::AccountId}:inference-profile/*
+                - !Sub arn:${AWS::Partition}:bedrock:*:${AWS::AccountId}:application-inference-profile/*
+      Events:
+        RequestCreated:
+          Type: DynamoDB
+          Properties:
+            Stream: !GetAtt Messages.StreamArn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 1
+            MaximumRetryAttempts: 2
+            MaximumRecordAgeInSeconds: 3600
+            FunctionResponseTypes:
+              - ReportBatchItemFailures
+            FilterCriteria:
+              Filters:
+                - Pattern: '{"eventName":["INSERT"]}'
+Outputs:
+  ApiUrl:
+    Value: !Sub https://${HttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}

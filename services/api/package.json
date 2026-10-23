@@ -1,0 +1,24 @@
+{
+  "name": "@relay/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env src/server.ts",
+    "test": "node --test test/*.test.ts",
+    "build": "node build.mjs",
+    "aws:models": "node --env-file-if-exists=.env scripts/aws-models.ts",
+    "smoke:bedrock": "node --env-file-if-exists=.env scripts/bedrock-smoke.ts",
+    "smoke:http": "node --env-file-if-exists=.env scripts/http-smoke.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock": "^3.1156.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.900.0",
+    "@aws-sdk/client-dynamodb": "^3.900.0",
+    "@aws-sdk/lib-dynamodb": "^3.900.0",
+    "@relay/core": "0.1.0"
+  }
+}
