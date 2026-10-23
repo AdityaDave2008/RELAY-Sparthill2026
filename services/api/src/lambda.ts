@@ -13,7 +13,7 @@ export interface HttpEvent {
 export function createLambdaHandler(api: (request: Request) => Promise<Response>) {
   return async (event: HttpEvent) => {
     const body = event.body ? Buffer.from(event.body, event.isBase64Encoded ? 'base64' : 'utf8') : undefined;
-    if (body && body.length > MAX_REQUEST_BYTES) return { statusCode: 413, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ error: { code: 'body_too_large', message: 'Request body exceeds 256 KiB' } }) };
+    if (body && body.length > MAX_REQUEST_BYTES) return { statusCode: 413, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ error: { code: 'body_too_large', message: 'Request body exceeds 2 MiB' } }) };
     const headers = new Headers();
     for (const [key, value] of Object.entries(event.headers ?? {})) if (value !== undefined) headers.set(key, value);
     const method = event.requestContext.http.method;

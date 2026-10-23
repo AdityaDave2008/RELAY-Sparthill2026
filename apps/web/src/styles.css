@@ -42,7 +42,7 @@ p { margin: 0; line-height: 1.5; }
 /* App chrome */
 .topbar {
   position: sticky; top: 0; z-index: 10;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
   padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
   background: var(--ink); color: white;
 }
@@ -52,8 +52,8 @@ p { margin: 0; line-height: 1.5; }
 .topbar .spacer { flex: 1; }
 .page { max-width: 1180px; margin: 0 auto; padding: 16px 16px calc(96px + env(safe-area-inset-bottom)); }
 .page.narrow { max-width: 560px; }
-.stack { display: grid; gap: 12px; }
-.stack-lg { display: grid; gap: 20px; }
+.stack { display: grid; gap: 12px; min-width: 0; }
+.stack-lg { display: grid; gap: 20px; min-width: 0; }
 .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .between { justify-content: space-between; }
 .grid-2 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
@@ -93,7 +93,7 @@ textarea { min-height: 96px; resize: vertical; }
 .chip svg { width: 22px; height: 22px; }
 
 /* Badges & banners */
-.badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; max-width: 100%; overflow-wrap: anywhere; }
 .badge.ok { background: var(--ok-soft); color: var(--ok); }
 .badge.warn { background: var(--warn-soft); color: var(--warn); }
 .badge.danger { background: var(--danger-soft); color: var(--danger); }
@@ -107,7 +107,7 @@ textarea { min-height: 96px; resize: vertical; }
 .banner.warn { background: var(--warn-soft); color: #713f12; }
 
 .bedrock { border: 1px solid #c7d2fe; background: linear-gradient(180deg, #eef2ff, #ffffff 60%); border-radius: 12px; padding: 12px; }
-.bedrock-head { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 700; color: #3730a3; }
+.bedrock-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 700; color: #3730a3; overflow-wrap: anywhere; }
 .bedrock-head.mock { color: var(--warn); }
 
 /* Resident */
@@ -141,10 +141,12 @@ textarea { min-height: 96px; resize: vertical; }
 
 /* Coordinator */
 .dash { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+.dash > * { min-width: 0; }
 /* On a phone the Bedrock brief and request queue come first. */
 .dash > section { order: -1; }
 @media (min-width: 980px) {
   .dash { grid-template-columns: 380px minmax(0, 1fr); align-items: start; }
+  .dash > section { order: 0; }
 }
 .map { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #e0f2fe; border: 1px solid var(--line); }
 .map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -165,9 +167,9 @@ textarea { min-height: 96px; resize: vertical; }
 .req { display: grid; gap: 8px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: white; }
 .req.critical { border-left: 5px solid var(--danger); }
 .req.high { border-left: 5px solid #f59e0b; }
-.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 0.88rem; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; font-size: 0.88rem; }
 .kv dt { color: var(--muted); }
-.kv dd { margin: 0; }
+.kv dd { margin: 0; overflow-wrap: anywhere; }
 
 .approval { display: grid; gap: 10px; padding: 14px; border-radius: 12px; border: 2px dashed #a78bfa; background: var(--sim-soft); }
 

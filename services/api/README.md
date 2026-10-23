@@ -7,8 +7,9 @@ npm install
 npm run dev:api
 ```
 
-The local API listens on `http://127.0.0.1:8787` and persists to
-`services/api/data/relay.json`. Copy `.env.example` to `.env` in this directory
+The local API listens on `http://127.0.0.1:8787` and persists to DynamoDB when
+`RELAY_TABLE_NAME` is configured, otherwise `services/api/data/relay.json`.
+Copy `.env.example` to `.env` in this directory
 to configure AWS or tokens. No AWS account is needed for local message delivery;
 classification requires real Bedrock credentials and `BEDROCK_MODEL_ID`.
 
@@ -41,7 +42,9 @@ All request/response bodies are JSON. Errors are
 | `POST /v1/requests/:id/response-draft` | Coordinator | `{ notes, language? }` → `{ request: RequestRecord, draft: BulletinDraft }`; Bedrock extracts needs, then prepares a grounded reply and accessible versions using source notes; does not send |
 | `POST /v1/requests/:id/replies` | Coordinator | `{ id, body }` → `{ message: RelayMessage }`; client generates a stable reply ID for retries |
 | `POST /v1/warnings` | Coordinator | `{ id, body, title?, translations?, incidentId?, location?, ttlMs? }` → `{ message: RelayMessage }`; this action represents simulated approval |
-| `POST /v1/bulletins/draft` | Coordinator | `{ notes, language?: "English" }` → `{ message, spokenMessage, noticeTitle, noticeLines, language, requiresHumanApproval: true, source: "amazon-bedrock", modelId, awsRequestId? }`; generates drafts without publishing |
+| `POST /v1/bulletins/draft` | Coordinator | `{ notes, language?: "English" }` → `{ message, spokenMessage, noticeTitle, noticeLines, pictograms, language, requiresHumanApproval: true, source: "amazon-bedrock", modelId, awsRequestId? }`; generates drafts without publishing |
+| `POST /v1/briefing` | Coordinator | `{ zones }` → `{ generatedAt, headline, priorities, zones, gaps, requiresHumanReview: true, source, modelId, awsRequestId? }`; Bedrock reviews all open requests, ranks follow-up and flags information gaps |
+| `POST /v1/cards/read` | Device / coordinator | `{ imageBase64, mediaType: "image/jpeg", incidentId }` → `{ needs, peopleCount, locationDescription, notes, unreadable, requiresHumanReview: true, source, modelId, awsRequestId? }`; real Bedrock vision, no automatic save |
 
 `RequestRecord = { message: RelayMessage, receivedAt: number, repliedAt?: number,
 classification?: { needs: string[], peopleCount: number | null,
@@ -51,6 +54,20 @@ awsRequestId?: string } }`.
 
 Pagination order is message ID. Treat cursors as opaque, and follow them even
 when a filtered page is empty. Merge records by message ID in the frontend.
+
+Briefs accept 1–24 unique zones with `id`, `name`, `population`, `connectivity`
+(`online`, `degraded`, `offline`) and `reach: { digital, radio, none }` shares
+adding to 1. At most 100 open requests are supported; larger inputs return an
+explicit capacity error. Output request/zone IDs are checked against the inputs.
+Priorities are logistics follow-up suggestions for human review, not clinical
+triage or dispatch instructions. Silent zones have unknown needs.
+
+Card images must be valid base64 JPEGs, at most 1 MiB decoded and 1400 pixels
+per side. The card endpoint accepts JSON up to 2 MiB; other JSON routes remain
+limited to 256 KiB. Images go to Bedrock and are not persisted. A volunteer
+checks the extracted fields before creating a normal help request. Pictograms
+are chosen by Bedrock from `water`, `food`, `medical`, `shelter`, `danger`,
+`route`, `info` and validated before returning the draft.
 
 Send `Authorization: Bearer <token>` when configured. Coordinator tokens can
 also use device routes. Both device and coordinator tokens are required outside
@@ -113,6 +130,8 @@ Workshop AWS calls are pinned to **us-east-1**. Set both `AWS_REGION` and
 `AWS_DEFAULT_REGION` accordingly. The event operator must authorize any change.
 The current workshop model is `us.anthropic.claude-sonnet-5-5`. The SDK request
 omits temperature/top-p settings so models that deprecate them can run.
+For Sonnet 5.5, `additionalModelRequestFields.output_config.effort` is `low`
+to keep the bounded extraction/drafting jobs responsive.
 
 ```sh
 npm run aws:models --workspace=@relay/api
@@ -133,9 +152,9 @@ test suite does not deploy them.
 `smoke:http` requires a running API and verifies that a real HTTP upload triggers
 automatic Bedrock classification, prepares a Spanish response, and persists
 coordinator approval. It creates fictional demo records in the local database.
-For Claude's frontend, set `VITE_API_URL=http://127.0.0.1:8787` in its local
-environment and restart Vite. Without `VITE_API_URL`, the current frontend uses
-its in-browser mock and cannot demonstrate the required live AWS AI workflow.
+The integrated frontend defaults to live `/api` through its same-origin proxy.
+`npm run dev` or `npm start` at the root starts both servers. Explicit
+`VITE_MOCK_API=true` enables labelled fixtures; it cannot demonstrate AWS AI.
 Never put AWS credentials in a `VITE_*` variable; only the backend reads them.
 
 Native nearby transfer, public warning-system integration, signatures, and

@@ -2,10 +2,16 @@ import { PrintCard, PrintNotice, Volunteer } from './analog/Analog.tsx';
 import { api } from './api/index.ts';
 import { Coordinator } from './coordinator/Coordinator.tsx';
 import { Resident } from './resident/Resident.tsx';
-import { SimulationBanner, TopBar, useRoute } from './ui/common.tsx';
+import { SimulationBanner, TopBar, usePoll, useRoute } from './ui/common.tsx';
+import { useDevice } from './device/device.ts';
 import { Icon } from './ui/icons.tsx';
 
 export function App() {
+  const d = useDevice();
+  return <>{(d.storageError || d.loadError) && <div className="banner warn" role="alert">{d.storageError || d.loadError}</div>}<Routes /></>;
+}
+
+function Routes() {
   const [section, ...rest] = useRoute();
   switch (section) {
     case 'resident':
@@ -59,13 +65,14 @@ function Home() {
           </a>
         </div>
         <SimulationBanner>All places, people, and agencies in this demo are fictional. The government approval step is simulated.</SimulationBanner>
-        {api.mode === 'mock' && <p className="small muted">Running against the in-browser mock API. Set VITE_API_URL to use the real backend and Amazon Bedrock.</p>}
+        {api.mode === 'mock' && <p className="small muted">MOCK AI mode is explicitly enabled. Disable VITE_MOCK_API to test the live Amazon Bedrock workflow.</p>}
       </main>
     </>
   );
 }
 
 function Architecture() {
+  const [health] = usePoll(() => api.health(), 30_000);
   return (
     <>
       <TopBar role="Architecture" />
@@ -96,8 +103,8 @@ function Architecture() {
           <p className="arch-arrow">⇅ HTTPS</p>
           <div className="arch-row">
             <div className="arch-box aws">
-              <h3>API · AWS Lambda</h3>
-              <p className="small">Stores messages, sends replies to the right device, and publishes approved warnings.</p>
+              <h3>Message API</h3>
+              <p className="small">The local demo API stores messages, sends replies to the right device, and publishes approved warnings. AWS Lambda deployment source is included.</p>
             </div>
             <div className="arch-box aws" style={{ gridColumn: '1 / -1', borderWidth: 2 }}>
               <h3>Amazon Bedrock, at the centre of every path</h3>
@@ -110,8 +117,8 @@ function Architecture() {
               </ol>
             </div>
             <div className="arch-box aws">
-              <h3>Amazon DynamoDB</h3>
-              <p className="small">Requests, replies and warnings, saved with conditional writes so retries never create duplicates.</p>
+              <h3>{health?.storage === 'dynamodb' ? 'Amazon DynamoDB · connected' : 'Durable message storage'}</h3>
+              <p className="small">{health?.storage === 'dynamodb' ? 'This running app stores messages and AI analysis in Amazon DynamoDB, with conditional writes to prevent duplicate uploads.' : 'The API uses file storage unless configured for Amazon DynamoDB. The AWS deployment includes conditional writes to prevent duplicate uploads.'}</p>
             </div>
           </div>
           <p className="arch-arrow">⇅</p>

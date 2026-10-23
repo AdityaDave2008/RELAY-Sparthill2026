@@ -103,6 +103,7 @@ export interface WarningDraft {
   uncertain: string[];
   source: 'amazon-bedrock' | 'mock';
   modelId: string;
+  awsRequestId?: string;
 }
 
 export interface RelayApi {

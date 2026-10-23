@@ -301,7 +301,7 @@ function RequestCard({
   }
 
   return (
-    <article className={`req ${critical ? 'critical' : 'high'}`}>
+    <article data-request-id={m.id} className={`req ${critical ? 'critical' : 'high'}`}>
       <div className="row between">
         <div className="row">
           {priority && (
@@ -541,7 +541,7 @@ function WarningComposer({ zoneId, onPublished }: { zoneId: string; onPublished:
         <>
           {draft.modelId !== 'none' && (
             <div className="bedrock stack">
-              <BedrockHeader model={draft.modelId} />
+              <BedrockHeader model={draft.modelId} requestId={draft.awsRequestId} />
               <div className="pictos">
                 {draft.pictograms.map((p) => (
                   <span key={p} className="row small" style={{ gap: 4 }}>
@@ -668,7 +668,7 @@ function SituationBrief({
   return (
     <section className="bedrock stack" aria-live="polite">
       <div className="row between">
-        <BedrockHeader model={brief?.modelId ?? (api.mode === 'mock' ? 'mock-keyword-matcher' : 'situation brief')} />
+        <BedrockHeader model={brief?.modelId ?? (api.mode === 'mock' ? 'mock-keyword-matcher' : 'situation brief')} requestId={brief?.awsRequestId} />
         <button type="button" className="btn ghost small" onClick={run} disabled={busy} style={{ minHeight: 32, padding: '4px 10px' }}>
           {busy ? 'Thinking…' : 'Refresh'}
         </button>

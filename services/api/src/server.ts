@@ -19,7 +19,7 @@ export function startServer(options: { api?: (request: Request) => Promise<Respo
       }
       if (size > MAX_REQUEST_BYTES) {
         outgoing.writeHead(413, { 'Content-Type': 'application/json' });
-        outgoing.end(JSON.stringify({ error: { code: 'body_too_large', message: 'Request body exceeds 256 KiB' } }));
+        outgoing.end(JSON.stringify({ error: { code: 'body_too_large', message: 'Request body exceeds 2 MiB' } }));
         return;
       }
       const headers = new Headers();

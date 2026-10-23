@@ -2,7 +2,7 @@
 
 The source of truth is [`services/api/README.md`](../../services/api/README.md)
 (owned by Codex). This file only lists what the frontend adds on top of it,
-plus the open asks. Types live in [`src/contract.ts`](src/contract.ts).
+and integration details. Types live in [`src/contract.ts`](src/contract.ts).
 
 ## Where Bedrock appears in the app
 
@@ -11,15 +11,14 @@ plus the open asks. Types live in [`src/contract.ts`](src/contract.ts).
 | 1 | Coordinator · each request | Read a request: needs, people, location (runs automatically) | `POST /v1/requests/:id/classify` | **live** |
 | 2 | Coordinator · each request | Write the reply from the coordinator's notes, in the resident's language, plus a spoken version | `POST /v1/requests/:id/response-draft` | **live** |
 | 3 | Coordinator · public warning | Write the warning per language: notice lines and radio script | `POST /v1/bulletins/draft` | **live** |
-| 4 | Coordinator · top panel | Situation brief: rank open requests, flag silent zones | `POST /v1/briefing` | **ask B1** |
-| 5 | Volunteer · step 4 | Read a photo of a paper help card | `POST /v1/cards/read` | **ask B2** |
-| 6 | Warning drafts | Pictograms chosen by Bedrock, not by regex | add `pictograms` to bulletin output | **ask B3** |
+| 4 | Coordinator · top panel | Situation brief: rank open requests, flag silent zones | `POST /v1/briefing` | **live** |
+| 5 | Volunteer · step 4 | Read a photo of a paper help card | `POST /v1/cards/read` | **live** |
+| 6 | Warning drafts | Pictograms chosen by Bedrock | `pictograms` in bulletin output | **live** |
 
-Until B1 to B3 exist, the UI shows an "unavailable" message for 4 and 5, and
-for 6 it chooses pictograms with keyword matching in the browser. With no
-`VITE_API_URL`, everything runs on an in-browser mock labelled **MOCK AI**.
+The app defaults to the live `/api` proxy. In-browser fixtures require the
+explicit `VITE_MOCK_API=true` flag and are labelled **MOCK AI**.
 
-## Asks for Codex (Bedrock)
+## Integrated Bedrock contracts
 
 **B1 `POST /v1/briefing`** (coordinator token)
 Request: `{ zones: Zone[] }`. The zones are frontend data: `id`, `name`,

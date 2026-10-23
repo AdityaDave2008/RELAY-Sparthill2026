@@ -2,15 +2,27 @@
   "name": "relay",
   "private": true,
   "type": "module",
-  "workspaces": ["packages/*", "services/*", "apps/*"],
-  "engines": { "node": ">=22.18" },
+  "workspaces": [
+    "packages/*",
+    "services/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "start": "node scripts/dev.mjs --preview",
+    "dev:web": "npm run dev --workspace=@relay/web",
     "test": "npm run test --workspaces --if-present",
     "typecheck": "tsc --noEmit",
     "dev:api": "npm run dev --workspace=@relay/api",
-    "build:api": "npm run build --workspace=@relay/api"
+    "build:api": "npm run build --workspace=@relay/api",
+    "build:web": "npm run build --workspace=@relay/web",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/node": "^24.0.0",
     "esbuild": "^0.25.0",
     "typescript": "^5.9.0"

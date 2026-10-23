@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { isUnavailable } from '../api/http.ts';
 import { api } from '../api/index.ts';
 import { LANG_LABEL, parseRequestBody, type CardReading, type Lang, type Need, type Pictogram, type WarningDraft, type WireMessage } from '../contract.ts';
@@ -32,16 +32,18 @@ const PICTO_FOR_WORDS: [Pictogram, RegExp][] = [
 // browser), otherwise the newest warning this phone has received.
 function useNotice(zoneId: string): Notice | null {
   const d = useDevice();
+  useEffect(() => { void d.syncNow(); }, [zoneId]);
   try {
     const saved = localStorage.getItem(`relay.notice.${zoneId}`);
     if (saved) {
       const n = JSON.parse(saved) as WarningDraft & { publishedAt: number };
-      return { ...n, issuedAt: n.publishedAt, expiresAt: n.publishedAt + 12 * 3600_000, approved: true };
+      if (n.publishedAt + 12 * 3600_000 > Date.now()) return { ...n, issuedAt: n.publishedAt, expiresAt: n.publishedAt + 12 * 3600_000, approved: true };
     }
   } catch {
     // fall through to the device copy
   }
-  const w: WireMessage | undefined = d.warnings().find((m) => m.incidentId === zoneId) ?? d.warnings()[0];
+  const w: WireMessage | undefined = d.store.list().filter(m => m.kind === 'warning' && m.expiresAt > Date.now() &&
+    (!m.incidentId || m.incidentId === zoneId)).sort((a, b) => b.createdAt - a.createdAt)[0];
   if (!w) return null;
   const text = `${w.title ?? ''} ${w.body}`;
   const pictograms = PICTO_FOR_WORDS.filter(([, re]) => re.test(text)).map(([p]) => p);
@@ -315,14 +317,22 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
           {cards.map((m) => {
             const p = parseRequestBody(m.body);
             const { state } = d.delivery(m.id);
+            const reply = d.ackFor(m.id);
             return (
-              <div key={m.id} className="card flat row between">
+              <div key={m.id} className="card flat stack">
+                <div className="row between">
                 <span className="small">
                   {p.needs.map((n) => NEED_LABEL[n]).join(', ') || 'Note'} · {p.people ?? '?'} people · {timeAgo(m.createdAt, now)}
                 </span>
                 <span className={`badge ${state === 'saved' ? 'warn' : 'ok'}`}>
                   {state === 'saved' ? 'On this phone' : state === 'relayed' ? 'Passed on' : state === 'uploaded' ? 'Reached coordinators' : 'Answered'}
                 </span>
+                </div>
+                {reply && <div className="stack small">
+                  <strong>Coordinator reply · take this back to the resident</strong>
+                  <p>{reply.body}</p>
+                  {'speechSynthesis' in window && <button type="button" className="btn" onClick={() => speak(reply.body)}>Read reply aloud</button>}
+                </div>}
               </div>
             );
           })}

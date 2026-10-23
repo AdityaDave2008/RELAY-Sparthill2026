@@ -65,6 +65,7 @@ export function createHttpApi(baseUrl: string, token?: string): RelayApi {
         uncertain: [],
         source: en.source,
         modelId: en.modelId,
+        awsRequestId: en.awsRequestId,
       };
     },
     briefing: (zones) => call<Briefing>('POST', '/v1/briefing', { zones }),
@@ -74,7 +75,7 @@ export function createHttpApi(baseUrl: string, token?: string): RelayApi {
   };
 }
 
-// Pictograms are picked locally from the English draft, not by Bedrock.
+// Compatibility with older servers; the current Bedrock API supplies pictograms.
 const PICTO_WORDS: [Pictogram, RegExp][] = [
   ['water', /water/i],
   ['food', /food|meal/i],

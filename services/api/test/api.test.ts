@@ -87,6 +87,45 @@ test('allowed-origin preflight works and unlisted origins are refused', async t 
   assert.equal((await api(new Request('http://local/v1/health', { headers: { Origin: 'https://unlisted.invalid' } }))).status, 403);
 });
 
+test('briefing traverses filtered pages and sends only open saved requests to Bedrock', async t => {
+  let called = false;
+  const { call, repository } = fixture(t, { classifier: { ...classifier, briefing: async (requests, zones, time) => {
+    called = true;
+    assert.deepEqual(requests.map(r => r.message.id), ['z-open']);
+    assert.equal(zones[0].id, 'demo-zone');
+    assert.equal(time, NOW);
+    return { generatedAt: time, headline: 'Water follow-up', priorities: [], zones: [], gaps: [], requiresHumanReview: true,
+      source: 'amazon-bedrock', modelId: 'unit-test-double' };
+  } } });
+  for (let i = 0; i < 51; i++) await repository.putIfAbsent({ message: createMessage({ id: `a-status-${i}`, kind: 'status', originDeviceId: 'device', body: 'Safe', now: NOW }), receivedAt: NOW });
+  await repository.putIfAbsent({ message: help('y-done'), receivedAt: NOW, repliedAt: NOW });
+  await repository.putIfAbsent({ message: help('z-open'), receivedAt: NOW });
+  const zone = { id: 'demo-zone', name: 'Demo', population: 100, connectivity: 'offline', reach: { digital: 0, radio: 0.5, none: 0.5 } };
+  assert.equal((await call('/v1/briefing', { zones: [zone] })).status, 200);
+  assert.equal(called, true);
+  assert.equal((await call('/v1/briefing', { zones: [zone, zone] })).status, 400);
+  assert.equal((await call('/v1/briefing', { zones: [{ ...zone, population: -1 }] })).status, 400);
+});
+
+test('card photos are validated, sent only to Bedrock, and never create a request automatically', async t => {
+  let called = 0;
+  const { call, repository } = fixture(t, { classifier: { ...classifier, readCard: async (_bytes, incidentId) => {
+    called++;
+    assert.equal(incidentId, 'demo-zone');
+    return { needs: ['water'], peopleCount: 4, locationDescription: null, notes: '', unreadable: [],
+      requiresHumanReview: true, source: 'amazon-bedrock', modelId: 'unit-test-double' };
+  } } });
+  // Minimal JPEG marker fixture with a 1x1 SOF header. SDK is stubbed here;
+  // browser end-to-end coverage supplies an actual photographed image.
+  const imageBase64 = Buffer.from([255,216,255,192,0,8,8,0,1,0,1,0,255,217]).toString('base64');
+  const body = { incidentId: 'demo-zone', mediaType: 'image/jpeg', imageBase64 };
+  assert.equal((await call('/v1/cards/read', body)).status, 200);
+  assert.equal((await call('/v1/cards/read', { ...body, imageBase64: 'not base64' })).status, 400);
+  assert.equal((await call('/v1/cards/read', { ...body, mediaType: 'image/png' })).status, 400);
+  assert.equal(called, 1);
+  assert.deepEqual((await repository.page({ now: NOW, limit: 50 })).records, []);
+});
+
 test('AI failure preserves the original request and never invents a successful result', async t => {
   const { call, repository } = fixture(t, { classifier: { classify: async () => { throw new Error('provider failure'); } } });
   await call('/v1/messages/batch', { deviceId: 'resident', messages: [help()] });

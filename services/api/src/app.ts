@@ -1,10 +1,12 @@
 import { timingSafeEqual } from 'node:crypto';
 import { createMessage, isIdentifier, sameMessage, validateMessage, type RelayMessage } from '@relay/core';
-import type { Classifier } from './bedrock.ts';
+import type { Classifier, ZoneContext } from './bedrock.ts';
+import { cardImage } from './image.ts';
 import type { Repository, RequestRecord } from './repository.ts';
 import type { RequestProcessor } from './processing.ts';
 
-export const MAX_REQUEST_BYTES = 262_144;
+export const MAX_REQUEST_BYTES = 2_097_152;
+const MAX_JSON_BYTES = 262_144;
 export interface ApiOptions {
   repository: Repository;
   classifier?: Classifier;
@@ -40,10 +42,10 @@ export function createApi(options: ApiOptions): (request: Request) => Promise<Re
     };
     if (!matches(options.coordinatorToken) && !(role === 'device' && matches(options.deviceToken))) error(401, 'unauthorized', 'A valid access token is required');
   };
-  const json = async (request: Request): Promise<Record<string, unknown>> => {
+  const json = async (request: Request, limit = MAX_JSON_BYTES): Promise<Record<string, unknown>> => {
     if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') error(415, 'content_type', 'Use application/json');
     const text = await request.text();
-    if (Buffer.byteLength(text) > MAX_REQUEST_BYTES) error(413, 'body_too_large', 'Request body exceeds 256 KiB');
+    if (Buffer.byteLength(text) > limit) error(413, 'body_too_large', `Request body exceeds ${limit / 1024} KiB`);
     let value: unknown;
     try { value = JSON.parse(text); } catch { error(400, 'invalid_json', 'Request body is not valid JSON'); }
     if (!value || typeof value !== 'object' || Array.isArray(value)) error(400, 'invalid_body', 'Expected a JSON object');
@@ -202,6 +204,45 @@ export function createApi(options: ApiOptions): (request: Request) => Promise<Re
         authorized(request, 'coordinator');
         const result = await saveCoordinatorMessage(await json(request), 'warning');
         return respond({ message: result.message }, result.status);
+      }
+      if (request.method === 'POST' && path === '/v1/briefing') {
+        authorized(request, 'coordinator');
+        const input = await json(request);
+        if (!Array.isArray(input.zones) || input.zones.length < 1 || input.zones.length > 24) error(400, 'invalid_zones', 'Provide 1 to 24 incident zones');
+        const zones: ZoneContext[] = [];
+        for (const raw of input.zones as Record<string, any>[]) {
+          if (!raw || typeof raw !== 'object' || !isIdentifier(raw.id) || typeof raw.name !== 'string' || !raw.name.trim() || raw.name.length > 100 ||
+              !Number.isSafeInteger(raw.population) || raw.population < 0 || raw.population > 10_000_000 ||
+              !['online', 'degraded', 'offline'].includes(raw.connectivity) || !raw.reach ||
+              ['digital', 'radio', 'none'].some(k => typeof raw.reach[k] !== 'number' || !Number.isFinite(raw.reach[k]) || raw.reach[k] < 0 || raw.reach[k] > 1) ||
+              Math.abs(raw.reach.digital + raw.reach.radio + raw.reach.none - 1) > 0.01) error(400, 'invalid_zones', 'Invalid incident zone context');
+          zones.push({ id: raw.id, name: raw.name, population: raw.population, connectivity: raw.connectivity,
+            reach: { digital: raw.reach.digital, radio: raw.reach.radio, none: raw.reach.none } });
+        }
+        if (new Set(zones.map(z => z.id)).size !== zones.length) error(400, 'invalid_zones', 'Zone IDs must be unique');
+        if (!options.classifier?.briefing) error(503, 'bedrock_not_configured', 'Configure Bedrock to prepare the situation brief');
+        const requests: RequestRecord[] = [];
+        let afterId: string | undefined;
+        do {
+          const page = await repo.page({ limit: 50, afterId, now: now(), kind: 'help_request' });
+          requests.push(...page.records.filter(r => r.repliedAt === undefined));
+          if (requests.length > 100) error(422, 'briefing_capacity', 'This demo supports up to 100 open requests per brief');
+          afterId = page.afterId ?? undefined;
+        } while (afterId);
+        try { return respond(await options.classifier!.briefing!(requests, zones, now())); }
+        catch { return error(502, 'briefing_failed', 'Bedrock could not prepare the brief; requests remain available for review'); }
+      }
+      if (request.method === 'POST' && path === '/v1/cards/read') {
+        authorized(request, 'device');
+        const input = await json(request, MAX_REQUEST_BYTES);
+        identifier(input.incidentId);
+        if (input.mediaType !== 'image/jpeg') error(400, 'invalid_image', 'Use a JPEG resized to at most 1400 pixels');
+        let image: Uint8Array;
+        try { image = cardImage(input.imageBase64); }
+        catch { return error(400, 'invalid_image', 'Use a valid JPEG of at most 1 MiB and 1400 pixels per side'); }
+        if (!options.classifier?.readCard) error(503, 'bedrock_not_configured', 'Configure Bedrock to read paper cards');
+        try { return respond(await options.classifier!.readCard!(image, input.incidentId as string)); }
+        catch { return error(502, 'card_read_failed', 'Bedrock could not read the card; review the original or enter it manually'); }
       }
       if (request.method === 'POST' && path === '/v1/bulletins/draft') {
         authorized(request, 'coordinator');

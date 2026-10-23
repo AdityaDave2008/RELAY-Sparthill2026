@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import { createMessage } from '@relay/core';
 import { BedrockClassifier } from '../src/bedrock.ts';
 import type { ConverseCommandOutput } from '@aws-sdk/client-bedrock-runtime';
+import type { ZoneContext } from '../src/bedrock.ts';
 
 const message = createMessage({ kind: 'help_request', originDeviceId: 'resident', body: 'Four people need water on floor three.' });
 const output = (value: unknown): ConverseCommandOutput => ({ $metadata: { requestId: 'unit-test-aws-request' }, stopReason: 'end_turn',
@@ -35,7 +36,7 @@ test('invalid or truncated model outputs cannot become structured request facts'
 });
 
 test('bulletin drafts use source notes and extracted needs without auto-approval', async () => {
-  const draft = { message: 'Demo shelter has water.', spokenMessage: 'Demo shelter has water.', noticeTitle: 'Water', noticeLines: ['Demo shelter has water.'] };
+  const draft = { message: 'Demo shelter has water.', spokenMessage: 'Demo shelter has water.', noticeTitle: 'Water', noticeLines: ['Demo shelter has water.'], pictograms: ['water'] };
   const bedrock = new BedrockClassifier({ modelId: 'test-model', send: async command => {
     const input = JSON.parse(command.input.messages![0].content![0].text!);
     assert.equal(input.sourceNotes, 'Verified fictional shelter note');
@@ -48,4 +49,39 @@ test('bulletin drafts use source notes and extracted needs without auto-approval
   assert.equal(result.requiresHumanApproval, true);
   assert.equal(result.message, draft.message);
   assert.equal(result.source, 'amazon-bedrock');
+});
+
+const zones: ZoneContext[] = [{ id: 'demo-zone', name: 'Demo Zone', population: 100, connectivity: 'offline', reach: { digital: 0, radio: 0.5, none: 0.5 } }];
+const brief = { headline: 'Water follow-up needed', priorities: [{ requestId: message.id, rank: 1, reason: 'Water request awaiting review' }],
+  zones: [{ incidentId: 'demo-zone', summary: 'One unverified water request', unmetNeeds: ['water'], suggestedAction: 'Contact a volunteer to verify needs' }],
+  gaps: ['Resource availability is unknown'] };
+
+test('situation briefs use saved requests and reject invented request or zone IDs', async () => {
+  const records = [{ message, receivedAt: message.createdAt }];
+  const bedrock = new BedrockClassifier({ modelId: 'test-model', send: async command => {
+    const prompt = JSON.parse(command.input.messages![0].content![0].text!);
+    assert.equal(prompt.unverifiedRequests[0].body, message.body);
+    assert.deepEqual(prompt.zones, zones);
+    return output(brief);
+  } });
+  const result = await bedrock.briefing(records, zones, 1234);
+  assert.equal(result.generatedAt, 1234);
+  assert.equal(result.requiresHumanReview, true);
+  assert.equal(result.awsRequestId, 'unit-test-aws-request');
+  for (const invalid of [{ ...brief, priorities: [{ requestId: 'invented', rank: 1, reason: 'Wrong' }] },
+    { ...brief, zones: [{ ...brief.zones[0], incidentId: 'invented' }] }]) {
+    await assert.rejects(new BedrockClassifier({ modelId: 'test-model', send: async () => output(invalid) }).briefing(records, zones, 1234), /Invalid/);
+  }
+});
+
+test('paper card reading passes JPEG bytes to Bedrock and forces volunteer review', async () => {
+  const bytes = new Uint8Array([255, 216, 255, 217]);
+  const bedrock = new BedrockClassifier({ modelId: 'test-model', send: async command => {
+    assert.deepEqual(command.input.messages![0].content![1].image?.source?.bytes, bytes);
+    assert.equal(command.input.messages![0].content![1].image?.format, 'jpeg');
+    return output({ needs: ['water'], peopleCount: 4, locationDescription: null, notes: '', unreadable: ['Location'], requiresHumanReview: false });
+  } });
+  assert.deepEqual((await bedrock.readCard(bytes, 'demo-zone')).needs, ['water']);
+  assert.equal((await bedrock.readCard(bytes, 'demo-zone')).requiresHumanReview, true);
+  await assert.rejects(new BedrockClassifier({ modelId: 'test-model', send: async () => output({ needs: ['invented'] }) }).readCard(bytes, 'demo-zone'));
 });

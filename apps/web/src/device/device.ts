@@ -50,6 +50,7 @@ class Device {
   private listeners = new Set<() => void>();
   private version = 0;
   loadError: string | null = null;
+  storageError: string | null = null;
   private retryMs = 5_000;
   private timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -90,8 +91,9 @@ class Device {
         seen: [...this.seen],
       };
       localStorage.setItem(KEY, JSON.stringify(data));
+      this.storageError = null;
     } catch {
-      // Private mode or full storage: keep working in memory.
+      this.storageError = 'Phone storage is unavailable. Changes are only in this open tab and may be lost if it closes.';
     }
     this.version++;
     for (const fn of this.listeners) fn();
@@ -171,12 +173,12 @@ class Device {
 
   warnings(): WireMessage[] {
     return (this.store.list() as WireMessage[])
-      .filter((m) => m.kind === 'warning' && (!m.incidentId || m.incidentId === this.zoneId))
+      .filter((m) => m.kind === 'warning' && m.expiresAt > Date.now() && (!m.incidentId || m.incidentId === this.zoneId))
       .sort((a, b) => b.priority - a.priority || b.createdAt - a.createdAt);
   }
 
   ackFor(id: string): WireMessage | undefined {
-    return (this.store.list() as WireMessage[]).find((m) => m.kind === 'ack' && m.replyTo === id);
+    return (this.store.list() as WireMessage[]).find((m) => m.kind === 'ack' && m.expiresAt > Date.now() && m.replyTo === id);
   }
 
   delivery(id: string): { state: DeliveryState; times: Partial<Record<DeliveryState, number>>; peers: number } {
