@@ -79,7 +79,7 @@ Resources:
       Runtime: nodejs22.x
       Handler: worker.handler
       CodeUri: dist/
-      Timeout: 25
+      Timeout: 29
       MemorySize: 256
       Environment:
         Variables:

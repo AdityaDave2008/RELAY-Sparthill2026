@@ -82,7 +82,7 @@ export class BedrockClassifier implements Classifier {
       'Write in the requested language. Return only JSON: message (max 1000 characters), spokenMessage (max 1500), ' +
       'noticeTitle (max 100), noticeLines (1 to 10 short strings, each max 200), ' +
       'pictograms (1 to 7 unique values from water, food, medical, shelter, danger, route, info, matching the bulletin). A human must approve every draft.',
-      { sourceNotes: notes, language, ...(requestContext ? { unverifiedRequestContext: requestContext } : {}) }, 1200);
+      { sourceNotes: notes, language, ...(requestContext ? { unverifiedRequestContext: requestContext } : {}) }, 2500);
     if (!value || !boundedText(value.message, 1000) || !boundedText(value.spokenMessage, 1500) ||
         !boundedText(value.noticeTitle, 100) || !Array.isArray(value.noticeLines) || value.noticeLines.length < 1 ||
         value.noticeLines.length > 10 || value.noticeLines.some((line: unknown) => !boundedText(line, 200)) ||
@@ -142,7 +142,7 @@ export class BedrockClassifier implements Classifier {
       ...(requestId ? { awsRequestId: requestId } : {}) };
   }
 
-  private async invoke(system: string, input: unknown, maxTokens = 512, image?: Uint8Array, timeoutMs = 10_000): Promise<{ value: any; requestId?: string }> {
+  private async invoke(system: string, input: unknown, maxTokens = 512, image?: Uint8Array, timeoutMs = 25_000): Promise<{ value: any; requestId?: string }> {
     const output = await this.send(new ConverseCommand({ modelId: this.modelId,
       system: [{ text: system }],
       messages: [{ role: 'user', content: [{ text: JSON.stringify(input) },
