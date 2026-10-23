@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { isUnavailable } from '../api/http.ts';
 import { api } from '../api/index.ts';
 import { LANG_LABEL, parseRequestBody, type Briefing, type BulletinDraft, type Lang, type RequestRecord, type WarningDraft, type WireMessage, type Zone } from '../contract.ts';
 import { BedrockHeader, clock, SimulationBanner, timeAgo, Toast, TopBar, useNow, usePoll, useToast } from '../ui/common.tsx';
@@ -632,13 +633,17 @@ function SituationBrief({
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
+  const [unavailable, setUnavailable] = useState(false);
+
   async function run() {
+    if (unavailable) return;
     setBusy(true);
     setErr(null);
     try {
       onBrief(await api.briefing(ZONES));
     } catch (e) {
-      setErr(e instanceof Error ? e.message : String(e));
+      if (isUnavailable(e)) setUnavailable(true);
+      else setErr(e instanceof Error ? e.message : String(e));
     } finally {
       setBusy(false);
     }
@@ -651,6 +656,14 @@ function SituationBrief({
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openKey]);
+
+  if (unavailable) {
+    return (
+      <p className="small muted row" style={{ gap: 6 }}>
+        <Icon name="sparkle" size={14} /> Bedrock situation brief isn't available on this server yet.
+      </p>
+    );
+  }
 
   return (
     <section className="bedrock stack" aria-live="polite">

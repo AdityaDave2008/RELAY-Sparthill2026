@@ -11,6 +11,11 @@ export class ApiError extends Error {
   }
 }
 
+// True when the server doesn't offer a route yet (proposed Bedrock routes).
+export function isUnavailable(e: unknown): boolean {
+  return e instanceof ApiError && [404, 405, 501, 503].includes(e.status);
+}
+
 export function createHttpApi(baseUrl: string, token?: string): RelayApi {
   const base = baseUrl.replace(/\/$/, '');
 

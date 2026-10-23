@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react';
+import { isUnavailable } from '../api/http.ts';
 import { api } from '../api/index.ts';
 import { LANG_LABEL, parseRequestBody, type CardReading, type Lang, type Need, type Pictogram, type WarningDraft, type WireMessage } from '../contract.ts';
 import { useDevice } from '../device/device.ts';
@@ -189,6 +190,7 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
   const [reading, setReading] = useState<CardReading | null>(null);
   const [readBusy, setReadBusy] = useState(false);
   const [readErr, setReadErr] = useState<string | null>(null);
+  const [readUnavailable, setReadUnavailable] = useState(false);
   const cards = d.paperRequests().filter((m) => m.incidentId === zoneId);
 
   // Bedrock vision reads a photo of the returned card and pre-fills the form.
@@ -205,6 +207,11 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
       setWhere(r.locationDescription ?? '');
       setNotes(r.notes);
     } catch (e) {
+      if (isUnavailable(e)) {
+        setReadUnavailable(true);
+        setReadErr("Reading card photos isn't available on this server yet. Enter the card by hand below.");
+        return;
+      }
       setReadErr(
         navigator.onLine
           ? `Bedrock couldn't read the photo (${e instanceof Error ? e.message : e}). Enter it by hand below.`
@@ -242,6 +249,7 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
         <h2>4 · Enter returned cards</h2>
       </div>
       <div className="card stack">
+        {!readUnavailable && (
         <label className="btn dark" style={{ cursor: readBusy ? 'wait' : 'pointer' }}>
           <Icon name="sparkle" size={18} />
           {readBusy ? 'Reading the card…' : api.mode === 'mock' ? 'Photograph card (mock AI)' : 'Photograph card · Amazon Bedrock reads it'}
@@ -258,6 +266,7 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
             }}
           />
         </label>
+        )}
         {readErr && <div className="banner warn small">{readErr}</div>}
         {reading && (
           <div className="bedrock stack" style={{ gap: 4 }}>
