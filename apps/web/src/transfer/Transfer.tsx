@@ -7,11 +7,10 @@
 //
 // The receipt is what makes "relayed" honest: a message is only marked
 // relayed once the other phone has confirmed it holds it.
-import { offer } from '@relay/core';
+import { encodeTransfer, offer, TransferReceiver } from '@relay/core';
 import { useMemo, useState } from 'react';
 import { useDevice } from '../device/device.ts';
 import { Icon } from '../ui/icons.tsx';
-import { createReceiver, encodeTransfer, transportAvailable } from './core.ts';
 import { QrScanner, QrSequence } from './qr.tsx';
 
 interface Receipt {
@@ -45,7 +44,7 @@ export function QrTransfer() {
   const [step, setStep] = useState<Step>({ name: 'idle' });
   const [err, setErr] = useState<string | null>(null);
   // One receiver per receiving session, so partial transfers are kept.
-  const receiver = useMemo(() => createReceiver(d.store), [d.store]);
+  const receiver = useMemo(() => new TransferReceiver(d.store), [d.store]);
   const forwardable = offer(d.store).ids.length;
 
   async function startSend() {
@@ -92,11 +91,7 @@ export function QrTransfer() {
         <span className="badge neutral">No signal needed</span>
       </div>
 
-      {step.name === 'idle' && !transportAvailable && (
-        <p className="small muted">Phone-to-phone transfer arrives with the next core update.</p>
-      )}
-
-      {step.name === 'idle' && transportAvailable && (
+      {step.name === 'idle' && (
         <>
           <p className="small muted">
             Works with no internet or cell service. One phone shows codes, the other scans them with its camera. Requests, warnings and
