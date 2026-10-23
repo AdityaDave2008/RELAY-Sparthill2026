@@ -1,1 +1,16 @@
 node_modules/
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+.aws/
+
+# Generated files
+dist/
+build/
+coverage/
+*.log
+
+# macOS metadata
+.DS_Store
