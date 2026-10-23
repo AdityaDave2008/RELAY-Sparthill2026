@@ -141,6 +141,8 @@ textarea { min-height: 96px; resize: vertical; }
 
 /* Coordinator */
 .dash { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+/* On a phone the Bedrock brief and request queue come first. */
+.dash > section { order: -1; }
 @media (min-width: 980px) {
   .dash { grid-template-columns: 380px minmax(0, 1fr); align-items: start; }
 }
@@ -196,7 +198,22 @@ textarea { min-height: 96px; resize: vertical; }
 .helpcard .box svg { width: 56px; height: 56px; }
 .helpcard .tick { width: 44px; height: 44px; border: 3px solid #000; border-radius: 6px; flex: none; }
 .helpcard .line { border-bottom: 2px solid #000; height: 36px; }
-.helpcard .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.helpcard .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+/* On a phone screen the sheet is a preview: scale it down to fit. */
+@media screen and (max-width: 640px) {
+  .sheet { padding: 16px; }
+  .notice h1 { font-size: 1.6rem; }
+  .notice .big { font-size: 1.05rem; }
+  .notice .pictos svg { width: 56px; height: 56px; }
+  .helpcard h1 { font-size: 1.25rem !important; }
+  .helpcard .box { gap: 8px; padding: 8px; font-size: 1rem; }
+  .helpcard .box svg { width: 32px; height: 32px; flex: none; }
+  .helpcard .tick { width: 28px; height: 28px; }
+  .helpcard .row > span { font-size: 1rem !important; }
+  .helpcard .row > svg { width: 32px; height: 32px; flex: none; }
+  .helpcard .line { min-width: 40px; }
+}
 
 @media print {
   @page { margin: 12mm; }

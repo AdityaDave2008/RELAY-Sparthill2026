@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { api } from '../api/index.ts';
-import { LANG_LABEL, parseRequestBody, type Lang, type RequestRecord, type WarningDraft, type WireMessage, type Zone } from '../contract.ts';
+import { LANG_LABEL, parseRequestBody, type Briefing, type BulletinDraft, type Lang, type RequestRecord, type WarningDraft, type WireMessage, type Zone } from '../contract.ts';
 import { BedrockHeader, clock, SimulationBanner, timeAgo, Toast, TopBar, useNow, usePoll, useToast } from '../ui/common.tsx';
 import { Icon, PICTO_LABEL } from '../ui/icons.tsx';
 import { ZONES, zoneName } from '../zones.ts';
@@ -41,14 +41,20 @@ export function Coordinator() {
       const z = r.message.incidentId ?? 'unknown';
       c[z] ??= { total: 0, open: 0 };
       c[z].total++;
-      if (!replies[r.message.id]) c[z].open++;
+      if (!(replies[r.message.id] || r.repliedAt)) c[z].open++;
     }
     return c;
   }, [requests, replies]);
 
+  const [brief, setBrief] = useState<Briefing | null>(null);
+  const rank = useMemo(() => new Map(brief?.priorities.map((p) => [p.requestId, p] as const) ?? []), [brief]);
   const visible = (requests ?? []).filter((r) => !zoneId || r.message.incidentId === zoneId);
-  const open = visible.filter((r) => !replies[r.message.id]);
-  const done = visible.filter((r) => replies[r.message.id]);
+  // Bedrock's ranking orders the queue; unranked (newer) requests go first so nothing hides.
+  const open = visible
+    .filter((r) => !(replies[r.message.id] || r.repliedAt))
+    .sort((a, b) => (rank.get(a.message.id)?.rank ?? 0) - (rank.get(b.message.id)?.rank ?? 0));
+  const openIds = (requests ?? []).filter((r) => !(replies[r.message.id] || r.repliedAt)).map((r) => r.message.id).join(',');
+  const done = visible.filter((r) => replies[r.message.id] || r.repliedAt);
 
   function recordReply(id: string, body: string) {
     const next = { ...replies, [id]: { body, at: Date.now() } };
@@ -77,6 +83,7 @@ export function Coordinator() {
             <WarningComposer zoneId={zoneId ?? ZONES[0].id} onPublished={(w) => showToast(`Warning published to ${zoneName(w.incidentId)}`)} />
           </div>
           <section className="stack">
+            <SituationBrief brief={brief} onBrief={setBrief} openKey={openIds} onSelectZone={setZoneId} />
             <div className="section-title">
               <h2>
                 Incoming requests {zoneId && `· ${zoneName(zoneId)}`} ({open.length} open)
@@ -92,7 +99,7 @@ export function Coordinator() {
               </div>
             )}
             {open.map((r) => (
-              <RequestCard key={r.message.id} record={r} onReplied={recordReply} />
+              <RequestCard key={r.message.id} record={r} priority={rank.get(r.message.id)} onReplied={recordReply} />
             ))}
             {done.length > 0 && (
               <details>
@@ -211,17 +218,31 @@ function ZoneDetail({ zone }: { zone: Zone }) {
   );
 }
 
-function RequestCard({ record, reply, onReplied }: { record: RequestRecord; reply?: { body: string; at: number }; onReplied: (id: string, body: string) => void }) {
+function RequestCard({
+  record,
+  reply,
+  priority,
+  onReplied,
+}: {
+  record: RequestRecord;
+  reply?: { body: string; at: number };
+  priority?: Briefing['priorities'][number];
+  onReplied: (id: string, body: string) => void;
+}) {
   const now = useNow();
   const m = record.message;
   const parsed = parseRequestBody(m.body);
   const [classification, setClassification] = useState(record.classification);
-  const [busy, setBusy] = useState<'classify' | 'reply' | null>(null);
+  const [busy, setBusy] = useState<'classify' | 'reply' | 'draft' | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [notes, setNotes] = useState('');
+  const [lang, setLang] = useState<Lang>('en');
+  const [draft, setDraft] = useState<BulletinDraft | null>(null);
   const [text, setText] = useState('');
   const c = classification ?? record.classification;
   const critical = /medical|evacuation/.test((c?.needs ?? parsed.needs).join(','));
   const fromPaper = m.originDeviceId.startsWith('paper:');
+  const answered = reply ?? (record.repliedAt ? { body: 'Reply sent', at: record.repliedAt } : undefined);
 
   // Bedrock reads every request as soon as it reaches the dashboard. The
   // button below is only for retrying after a failure.
@@ -245,6 +266,25 @@ function RequestCard({ record, reply, onReplied }: { record: RequestRecord; repl
     }
   }
 
+  // Primary AI workflow: the coordinator states what is actually available,
+  // and Bedrock writes the reply from those notes only, in the resident's language.
+  async function prepare() {
+    setBusy('draft');
+    setErr(null);
+    try {
+      const res = await api.responseDraft(m.id, notes.trim(), lang);
+      if (res.request.classification) setClassification(res.request.classification);
+      setDraft(res.draft);
+      setText(res.draft.message);
+    } catch (e) {
+      setErr(`Bedrock could not prepare a response (${e instanceof Error ? e.message : e}). You can write the reply yourself below.`);
+      setDraft(null);
+      setText((t) => t || notes);
+    } finally {
+      setBusy(null);
+    }
+  }
+
   async function sendReply(body: string) {
     setBusy('reply');
     setErr(null);
@@ -252,7 +292,6 @@ function RequestCard({ record, reply, onReplied }: { record: RequestRecord; repl
       // Stable id so a retried click doesn't create a second reply.
       await api.reply(m.id, `reply-${m.id}`.slice(0, 64), body);
       onReplied(m.id, body);
-      setText('');
     } catch (e) {
       setErr(`Reply not sent: ${e instanceof Error ? e.message : e}`);
     } finally {
@@ -260,16 +299,15 @@ function RequestCard({ record, reply, onReplied }: { record: RequestRecord; repl
     }
   }
 
-  const quick = [
-    'Received. Help is being arranged. Stay where you are if it is safe.',
-    'Water and supplies are available at the nearest shelter listed in your alerts.',
-    'A volunteer team will check on you. Keep your phone with you.',
-  ];
-
   return (
     <article className={`req ${critical ? 'critical' : 'high'}`}>
       <div className="row between">
         <div className="row">
+          {priority && (
+            <span className="badge danger" title={priority.reason}>
+              Priority #{priority.rank}
+            </span>
+          )}
           <strong>{zoneName(m.incidentId)}</strong>
           {fromPaper ? <span className="badge neutral">Paper card</span> : <span className="badge neutral">Phone</span>}
           {m.hops > 0 && <span className="badge info">Relayed through {m.hops} phone{m.hops > 1 ? 's' : ''}</span>}
@@ -278,7 +316,7 @@ function RequestCard({ record, reply, onReplied }: { record: RequestRecord; repl
           Sent {clock(m.createdAt)} · arrived {timeAgo(record.receivedAt, now)}
         </span>
       </div>
-      <p style={{ whiteSpace: 'pre-wrap' }}>{parsed.notes || m.body}</p>
+      <p style={{ whiteSpace: 'pre-wrap' }}>{parsed.notes || <span className="muted">No message. Ticked options only.</span>}</p>
       <div className="row small muted">
         {parsed.needs.length > 0 && <span>Ticked: {parsed.needs.join(', ')}</span>}
         {parsed.people && <span>· {parsed.people} people</span>}
@@ -292,7 +330,7 @@ function RequestCard({ record, reply, onReplied }: { record: RequestRecord; repl
 
       {c ? (
         <div className="bedrock">
-          <BedrockHeader model={c.modelId} />
+          <BedrockHeader model={c.modelId} requestId={c.awsRequestId} />
           <dl className="kv" style={{ marginTop: 8 }}>
             <dt>Summary</dt>
             <dd>{c.summary}</dd>
@@ -302,6 +340,12 @@ function RequestCard({ record, reply, onReplied }: { record: RequestRecord; repl
             <dd>{c.peopleCount ?? 'Unknown'}</dd>
             <dt>Location</dt>
             <dd>{c.locationDescription ?? 'Not described'}</dd>
+            {priority && (
+              <>
+                <dt>Why #{priority.rank}</dt>
+                <dd>{priority.reason}</dd>
+              </>
+            )}
           </dl>
           <p className="small muted" style={{ marginTop: 6 }}>
             AI output. A person must check it before acting.
@@ -316,26 +360,64 @@ function RequestCard({ record, reply, onReplied }: { record: RequestRecord; repl
 
       {err && <div className="banner warn">{err}</div>}
 
-      {reply ? (
+      {answered ? (
         <div className="banner" style={{ background: 'var(--ok-soft)', color: '#064e3b' }}>
           <Icon name="check" size={18} />
           <span>
-            Replied {clock(reply.at)}: {reply.body}
+            Replied {clock(answered.at)}: {answered.body}
           </span>
+        </div>
+      ) : !draft ? (
+        <div className="stack">
+          <label className="field small">
+            What can you offer? Facts only. Bedrock writes the reply from these notes.
+            <textarea
+              value={notes}
+              maxLength={800}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="e.g. Water truck at Elm St church 3 PM today. Insulin available at Lincoln shelter gym."
+              style={{ minHeight: 64 }}
+            />
+          </label>
+          <div className="row" style={{ flexWrap: 'nowrap' }}>
+            <select aria-label="Reply language" value={lang} onChange={(e) => setLang(e.target.value as Lang)} style={{ width: 'auto' }}>
+              {LANGS.map((l) => (
+                <option key={l} value={l}>
+                  {LANG_LABEL[l]}
+                </option>
+              ))}
+            </select>
+            <button type="button" className="btn dark" style={{ flex: 1 }} disabled={!notes.trim() || busy !== null} onClick={prepare}>
+              <Icon name="sparkle" size={18} />
+              {busy === 'draft' ? 'Preparing…' : api.mode === 'mock' ? 'Prepare response (mock AI)' : 'Prepare response with Bedrock'}
+            </button>
+          </div>
         </div>
       ) : (
         <div className="stack">
-          <div className="chips">
-            {quick.map((q) => (
-              <button key={q} type="button" className="chip small" style={{ minHeight: 36, fontWeight: 500 }} onClick={() => setText(q)}>
-                {q.split('.')[0]}
-              </button>
-            ))}
+          <div className="bedrock stack">
+            <BedrockHeader model={draft.modelId} requestId={draft.awsRequestId} />
+            <label className="field small">
+              Reply in {draft.language}. Edit before sending.
+              <textarea value={text} maxLength={1000} onChange={(e) => setText(e.target.value)} aria-label="Reply" style={{ minHeight: 80 }} />
+            </label>
+            {draft.spokenMessage && (
+              <details>
+                <summary className="small" style={{ cursor: 'pointer' }}>
+                  Spoken version for a volunteer to read out
+                </summary>
+                <p className="small" style={{ marginTop: 4 }}>
+                  {draft.spokenMessage}
+                </p>
+              </details>
+            )}
           </div>
-          <div className="row" style={{ flexWrap: 'nowrap' }}>
-            <input type="text" placeholder="Reply to resident…" value={text} maxLength={500} onChange={(e) => setText(e.target.value)} aria-label="Reply" />
+          <div className="row">
             <button type="button" className="btn ok" disabled={!text.trim() || busy !== null} onClick={() => sendReply(text.trim())}>
-              {busy === 'reply' ? 'Sending…' : 'Acknowledge'}
+              {busy === 'reply' ? 'Sending…' : 'Approve & send'}
+            </button>
+            <button type="button" className="btn ghost" onClick={() => setDraft(null)}>
+              Back
             </button>
           </div>
         </div>
@@ -531,6 +613,89 @@ function WarningComposer({ zoneId, onPublished }: { zoneId: string; onPublished:
         </>
       )}
       {err && <div className="banner warn">{err}</div>}
+    </section>
+  );
+}
+
+function SituationBrief({
+  brief,
+  onBrief,
+  openKey,
+  onSelectZone,
+}: {
+  brief: Briefing | null;
+  onBrief: (b: Briefing) => void;
+  openKey: string;
+  onSelectZone: (id: string) => void;
+}) {
+  const now = useNow();
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  async function run() {
+    setBusy(true);
+    setErr(null);
+    try {
+      onBrief(await api.briefing(ZONES));
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  // Re-brief whenever the set of open requests changes (debounced).
+  useEffect(() => {
+    if (!openKey && brief) return;
+    const t = setTimeout(run, 1200);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [openKey]);
+
+  return (
+    <section className="bedrock stack" aria-live="polite">
+      <div className="row between">
+        <BedrockHeader model={brief?.modelId ?? (api.mode === 'mock' ? 'mock-keyword-matcher' : 'situation brief')} />
+        <button type="button" className="btn ghost small" onClick={run} disabled={busy} style={{ minHeight: 32, padding: '4px 10px' }}>
+          {busy ? 'Thinking…' : 'Refresh'}
+        </button>
+      </div>
+      <h2 style={{ fontSize: '1.1rem' }}>{brief ? brief.headline : busy ? 'Reading every open request…' : 'Situation brief'}</h2>
+      {err && <div className="banner warn small">Situation brief unavailable: {err}</div>}
+      {brief && (
+        <>
+          {brief.gaps.length > 0 && (
+            <div className="banner warn small">
+              <span>
+                <strong>Information gaps:</strong> {brief.gaps.join(' ')}
+              </span>
+            </div>
+          )}
+          <div className="stack" style={{ gap: 6 }}>
+            {brief.zones
+              .filter((z) => z.unmetNeeds.length || z.suggestedAction)
+              .map((z) => (
+                <button
+                  key={z.incidentId}
+                  type="button"
+                  className="row between small"
+                  onClick={() => onSelectZone(z.incidentId)}
+                  style={{ background: 'white', border: '1px solid var(--line)', borderRadius: 10, padding: '8px 10px', textAlign: 'left', cursor: 'pointer' }}
+                >
+                  <span>
+                    <strong>{zoneName(z.incidentId)}</strong> · {z.summary}
+                    <br />
+                    <span className="muted">→ {z.suggestedAction}</span>
+                  </span>
+                  {z.unmetNeeds.length > 0 && <span className="badge warn">{z.unmetNeeds.join(', ')}</span>}
+                </button>
+              ))}
+          </div>
+          <p className="small muted">
+            Generated {timeAgo(brief.generatedAt, now)} from all open requests and zone data. AI suggestions. Coordinators decide.
+          </p>
+        </>
+      )}
     </section>
   );
 }

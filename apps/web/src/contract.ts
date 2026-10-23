@@ -48,12 +48,14 @@ export interface Classification {
   requiresHumanReview: true;
   source: 'amazon-bedrock' | 'mock';
   modelId: string;
+  awsRequestId?: string;
 }
 
 export interface RequestRecord {
   message: WireMessage;
   receivedAt: number;
   classification?: Classification;
+  repliedAt?: number;
 }
 
 export interface Page<T> {
@@ -85,8 +87,10 @@ export interface BulletinDraft {
   noticeLines: string[];
   language: string;
   requiresHumanApproval: true;
-  source: 'amazon-bedrock';
+  source: 'amazon-bedrock' | 'mock';
   modelId: string;
+  awsRequestId?: string;
+  pictograms?: Pictogram[]; // ask B3
 }
 
 export interface WarningDraft {
@@ -111,6 +115,35 @@ export interface RelayApi {
   reply(requestId: string, replyId: string, body: string): Promise<WireMessage>;
   publishWarning(input: { id: string; body: string; incidentId?: string; ttlMs?: number; title?: string; translations?: WarningDraft['translations'] }): Promise<WireMessage>;
   draftWarning(rawReport: string, incidentId: string, languages: Lang[]): Promise<WarningDraft>;
+  // Proposed Bedrock routes (CONTRACT.md, asks B1 and B2).
+  briefing(zones: Zone[]): Promise<Briefing>;
+  responseDraft(requestId: string, notes: string, language: Lang): Promise<{ request: RequestRecord; draft: BulletinDraft }>;
+  readCard(input: { imageBase64: string; mediaType: string; incidentId: string }): Promise<CardReading>;
+}
+
+interface BedrockOutput {
+  requiresHumanReview: true;
+  source: 'amazon-bedrock' | 'mock';
+  modelId: string;
+  awsRequestId?: string;
+}
+
+// B1: POST /v1/briefing. Bedrock reads every open request with the zone data.
+export interface Briefing extends BedrockOutput {
+  generatedAt: number;
+  headline: string;
+  priorities: { requestId: string; rank: number; reason: string }[];
+  zones: { incidentId: string; summary: string; unmetNeeds: string[]; suggestedAction: string }[];
+  gaps: string[]; // what is unknown, e.g. "No reports from Old Mill in 3 h"
+}
+
+// B2: POST /v1/cards/read. Bedrock vision reads a photo of a paper help card.
+export interface CardReading extends BedrockOutput {
+  needs: Need[];
+  peopleCount: number | null;
+  locationDescription: string | null;
+  notes: string;
+  unreadable: string[];
 }
 
 // --- Help-request body (frontend convention, see CONTRACT.md) --------------

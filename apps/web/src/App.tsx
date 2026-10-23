@@ -99,9 +99,15 @@ function Architecture() {
               <h3>API · AWS Lambda</h3>
               <p className="small">Stores messages, sends replies to the right device, and publishes approved warnings.</p>
             </div>
-            <div className="arch-box aws">
-              <h3>Amazon Bedrock</h3>
-              <p className="small">Turns free-text requests and paper cards into structured needs, people and location. Drafts plain-language warnings, translations and radio scripts.</p>
+            <div className="arch-box aws" style={{ gridColumn: '1 / -1', borderWidth: 2 }}>
+              <h3>Amazon Bedrock, at the centre of every path</h3>
+              <ol className="small" style={{ margin: '4px 0 0', paddingLeft: 18, lineHeight: 1.6 }}>
+                <li><strong>Reads every request</strong>: pulls needs, number of people and location out of messy text.</li>
+                <li><strong>Reads paper help cards</strong>: vision turns a photo of a returned card into a request.</li>
+                <li><strong>Situation brief</strong>: ranks all open requests and flags areas that have gone silent.</li>
+                <li><strong>Writes replies</strong>: based only on the coordinator's notes, in the resident's language.</li>
+                <li><strong>Writes warnings</strong>: plain language, translations, printable notice and radio script.</li>
+              </ol>
             </div>
             <div className="arch-box aws">
               <h3>Amazon DynamoDB</h3>

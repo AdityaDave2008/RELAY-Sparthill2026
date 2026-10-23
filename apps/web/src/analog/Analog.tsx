@@ -1,7 +1,8 @@
 import { useState, type ReactNode } from 'react';
-import { LANG_LABEL, parseRequestBody, type Lang, type Need, type Pictogram, type WarningDraft, type WireMessage } from '../contract.ts';
+import { api } from '../api/index.ts';
+import { LANG_LABEL, parseRequestBody, type CardReading, type Lang, type Need, type Pictogram, type WarningDraft, type WireMessage } from '../contract.ts';
 import { useDevice } from '../device/device.ts';
-import { clock, SimulationBanner, timeAgo, Toast, TopBar, useNow, useToast } from '../ui/common.tsx';
+import { BedrockHeader, clock, SimulationBanner, timeAgo, Toast, TopBar, useNow, useToast } from '../ui/common.tsx';
 import { Icon, NEED_LABEL, PICTO_LABEL } from '../ui/icons.tsx';
 import { ZONES, zoneName } from '../zones.ts';
 
@@ -185,7 +186,34 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
   const [where, setWhere] = useState('');
   const [notes, setNotes] = useState('');
   const [toast, showToast] = useToast();
+  const [reading, setReading] = useState<CardReading | null>(null);
+  const [readBusy, setReadBusy] = useState(false);
+  const [readErr, setReadErr] = useState<string | null>(null);
   const cards = d.paperRequests().filter((m) => m.incidentId === zoneId);
+
+  // Bedrock vision reads a photo of the returned card and pre-fills the form.
+  // The volunteer checks every field before saving.
+  async function readPhoto(file: File) {
+    setReadBusy(true);
+    setReadErr(null);
+    try {
+      const { base64, mediaType } = await shrinkImage(file);
+      const r = await api.readCard({ imageBase64: base64, mediaType, incidentId: zoneId });
+      setReading(r);
+      setNeeds(r.needs);
+      setPeople(r.peopleCount ? String(r.peopleCount) : '');
+      setWhere(r.locationDescription ?? '');
+      setNotes(r.notes);
+    } catch (e) {
+      setReadErr(
+        navigator.onLine
+          ? `Bedrock couldn't read the photo (${e instanceof Error ? e.message : e}). Enter it by hand below.`
+          : 'Reading a photo needs a connection. Enter the card by hand, or read it once you are back in coverage.',
+      );
+    } finally {
+      setReadBusy(false);
+    }
+  }
 
   function save() {
     try {
@@ -204,6 +232,7 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
     setPeople('');
     setWhere('');
     setNotes('');
+    setReading(null);
     showToast(d.sync.online ? 'Card saved and sending' : 'Card saved. It will send when you have a connection.');
   }
 
@@ -213,6 +242,30 @@ function PaperEntry({ zoneId }: { zoneId: string }) {
         <h2>4 · Enter returned cards</h2>
       </div>
       <div className="card stack">
+        <label className="btn dark" style={{ cursor: readBusy ? 'wait' : 'pointer' }}>
+          <Icon name="sparkle" size={18} />
+          {readBusy ? 'Reading the card…' : api.mode === 'mock' ? 'Photograph card (mock AI)' : 'Photograph card · Amazon Bedrock reads it'}
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            hidden
+            disabled={readBusy}
+            onChange={(e) => {
+              const f = e.target.files?.[0];
+              e.target.value = '';
+              if (f) void readPhoto(f);
+            }}
+          />
+        </label>
+        {readErr && <div className="banner warn small">{readErr}</div>}
+        {reading && (
+          <div className="bedrock stack" style={{ gap: 4 }}>
+            <BedrockHeader model={reading.modelId} requestId={reading.awsRequestId} />
+            <p className="small">Fields below were filled in from the photo. Check them against the card before saving.</p>
+            {reading.unreadable.length > 0 && <p className="small" style={{ color: 'var(--warn)' }}>Couldn't read: {reading.unreadable.join(', ')}</p>}
+          </div>
+        )}
         <label className="field">
           Your name (volunteer)
           <input type="text" value={volunteer} onChange={(e) => setVolunteer(e.target.value)} placeholder="e.g. Sam R." />
@@ -376,4 +429,17 @@ function PrintShell({ back, label, children }: { back: string; label: string; ch
       </main>
     </>
   );
+}
+
+// Phone photos are several MB; Bedrock only needs a readable card.
+async function shrinkImage(file: File, maxSide = 1400): Promise<{ base64: string; mediaType: string }> {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  canvas.getContext('2d')!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+  return { base64: dataUrl.slice(dataUrl.indexOf(',') + 1), mediaType: 'image/jpeg' };
 }

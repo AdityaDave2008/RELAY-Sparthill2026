@@ -1,81 +1,71 @@
-# RELAY shared contract: proposal v0.1
+# Frontend contract notes
 
-Status: **proposed by Claude (frontend), waiting for Codex (core + API) to review.**
-Source of truth for the types: [`src/contract.ts`](src/contract.ts). If you
-change something, edit this file and that one together, and bump the version.
+The source of truth is [`services/api/README.md`](../../services/api/README.md)
+(owned by Codex). This file only lists what the frontend adds on top of it,
+plus the open asks. Types live in [`src/contract.ts`](src/contract.ts).
 
-## 1. Message (on the device and on the wire)
+## Where Bedrock appears in the app
 
-The base is `RelayMessage` from `packages/relay-core`. `validateMessage()`
-ignores unknown fields, so these optional fields can travel today without a
-core change. Codex, please add them to core so they are validated:
+| # | Screen | Bedrock job | Route | Status |
+| --- | --- | --- | --- | --- |
+| 1 | Coordinator · each request | Read a request: needs, people, location (runs automatically) | `POST /v1/requests/:id/classify` | **live** |
+| 2 | Coordinator · each request | Write the reply from the coordinator's notes, in the resident's language, plus a spoken version | `POST /v1/requests/:id/response-draft` | **live** |
+| 3 | Coordinator · public warning | Write the warning per language: notice lines and radio script | `POST /v1/bulletins/draft` | **live** |
+| 4 | Coordinator · top panel | Situation brief: rank open requests, flag silent zones | `POST /v1/briefing` | **ask B1** |
+| 5 | Volunteer · step 4 | Read a photo of a paper help card | `POST /v1/cards/read` | **ask B2** |
+| 6 | Warning drafts | Pictograms chosen by Bedrock, not by regex | add `pictograms` to bulletin output | **ask B3** |
 
-| Field | Type | Used by |
-| --- | --- | --- |
-| `title` | string ≤ 120 | warnings: the short headline shown on the lock screen and the printed notice |
-| `zoneId` | string | warnings: the target zone. help_request: the zone the sender picked |
-| `translations` | `Record<lang, { title, body }>` | warnings: versions drafted by Bedrock and approved by a coordinator |
-| `channel` | `'app' \| 'paper' \| 'radio'` | how a help_request entered the system (paper = entered by a volunteer from a card) |
-| `sig` | string (base64) | KMS signature over the canonical message, checked offline |
+Until B1 to B3 exist, the UI shows an "unavailable" message for 4 and 5, and
+for 6 it chooses pictograms with keyword matching in the browser. With no
+`VITE_API_URL`, everything runs on an in-browser mock labelled **MOCK AI**.
 
-### Help request body
+## Asks for Codex (Bedrock)
 
-Kept as **human-readable text** on purpose. The resident (or a volunteer
-copying a paper card) writes freely, and Bedrock turns it into structured data
-on the server. The app adds a header line built from the tapped options:
-
+**B1 `POST /v1/briefing`** (coordinator token)
+Request: `{ zones: Zone[] }`. The zones are frontend data: `id`, `name`,
+`population`, `connectivity`, and `reach: { digital, radio, none }`.
+The server sends Bedrock every open request (no `repliedAt`) with its
+classification, plus the zones. Response:
 ```
-NEEDS: water, medical | PEOPLE: 25
-We have 25 people at the church and running out of drinking water. One diabetic.
+{ generatedAt, headline,
+  priorities: [{ requestId, rank, reason }],          // rank 1 = most urgent; only ids that exist
+  zones: [{ incidentId, summary, unmetNeeds: string[], suggestedAction }],
+  gaps: string[],    // e.g. "No requests from Old Mill. It has no signal, so silence ≠ safe."
+  requiresHumanReview: true, source: "amazon-bedrock", modelId, awsRequestId? }
 ```
 
-### Acknowledgement
+**B2 `POST /v1/cards/read`** (coordinator or device token)
+Request: `{ imageBase64, mediaType: "image/jpeg", incidentId }`. The image is
+JPEG, at most 1400 px on its longest side, so roughly 200 to 400 KB. It is a
+photo of the printable help card (`#/print/card/<zone>`): six tick boxes
+(water, food, medical, shelter, evacuation, power), "How many people?",
+"Where?" and free space. Response:
+```
+{ needs: Need[], peopleCount: number | null, locationDescription: string | null,
+  notes: string, unreadable: string[],
+  requiresHumanReview: true, source: "amazon-bedrock", modelId, awsRequestId? }
+```
+The volunteer checks the fields, and the app then sends a normal
+`help_request` from `paper:<volunteer>` through `/v1/messages/batch`.
+Nothing is stored by this route.
 
-A coordinator reply is a normal message: `kind: 'ack'`, `replyTo: <request id>`,
-`originDeviceId: 'coordinator:<zone>'`, with the reply text in `body`. It goes
-back to the device the same way a warning does, over the API when online or
-relayed peer to peer when offline.
+**B3 Pictograms in `bulletins/draft`**: add
+`pictograms: ("water"|"food"|"medical"|"shelter"|"danger"|"route"|"info")[]`.
+The frontend already uses them when present.
 
-## 2. Delivery states (resident sees these)
+## Frontend conventions
 
-| State | Meaning | Who sets it |
-| --- | --- | --- |
-| `saved` | stored on this device (survives a restart) | frontend on create |
-| `relayed` | handed to at least one nearby device | transport (Codex) calls `recordRelay(ids, peerId)` |
-| `uploaded` | API accepted it (`accepted` or `duplicate`) | upload loop after `POST /v1/messages:batch` |
-| `acknowledged` | an `ack` with `replyTo = id` is in the device store | derived from the store |
-
-The states only move forward. A device may jump from `saved` straight to
-`acknowledged` if the ack comes back offline before this device ever uploads.
-
-## 3. HTTP API (`services/api`, owned by Codex)
-
-Base URL comes from `VITE_API_URL`. All bodies are JSON. Each error has the form
-`{ error: { code, message } }`.
-
-| Method & path | Request | Response |
-| --- | --- | --- |
-| `POST /v1/messages:batch` | `{ deviceId, messages: RelayMessage[] }` | `{ results: [{ id, status: 'accepted'\|'duplicate'\|'rejected', reason? }] }` |
-| `GET /v1/messages?since=<ms>&zoneId=` | — | `{ messages: RelayMessage[], now }` approved warnings and acks for download |
-| `GET /v1/zones` | — | `{ zones: Zone[] }` |
-| `GET /v1/requests?status=` | — | `{ requests: RequestRecord[] }` |
-| `POST /v1/requests/{id}/ack` | `{ body }` | `{ ack: RelayMessage }` |
-| `POST /v1/warnings/draft` | `{ rawReport, zoneId, languages: string[] }` | `{ draft: WarningDraft }` (**Bedrock**) |
-| `POST /v1/warnings/{draftId}/approve` | `{ approver, edits?: {title, body} }` | `{ warning: RelayMessage }` (signed). Approval is **simulated** in the demo |
-| `POST /v1/paper-responses` | `PaperResponse` | `{ request: RelayMessage }` |
-
-`RequestRecord` = the original message plus `bedrock: StructuredRequest | null`
-(null while Bedrock is still running) and `status: 'new' | 'acknowledged'`.
-
-### What Bedrock must return (structured output)
-
-- `StructuredRequest`: `{ needs: Need[], peopleCount: number | null, urgency: 'critical'|'high'|'normal', summary, locationText, uncertain: string[], model }`
-- `WarningDraft`: `{ id, title, body, translations, pictograms: Pictogram[], facts: string[], uncertain: string[], radioScript, model }`
-
-`model` holds the Bedrock model id, so the dashboard can show it. That is
-what proves Bedrock is in use in the video.
-
-## 4. Simulated government workflow
-
-Approving a warning is a **simulation**. Every screen that shows it says so.
-No real agency, alerting system, or emergency number is contacted.
+- **Zones** are frontend data ([`src/zones.ts`](src/zones.ts)). A zone id is
+  sent as `incidentId` on warnings and help requests.
+- **Help-request body** is readable text with a header line built from the
+  tapped options (`NEEDS: water, medical | PEOPLE: 25`, then the free text).
+  Bedrock `classify` reads all of it.
+- **Paper help cards** become `help_request` messages from
+  `paper:<volunteer>`. Replies go to that id, and the volunteer's phone
+  collects them during sync.
+- **Reply ids** are `reply-<requestId>` (cut to 64 characters), so a retried
+  click can't create a second reply.
+- **Answered** means `repliedAt` is set on the record, or this browser has
+  sent a reply.
+- **Delivery states** follow the README: saved, relayed, uploaded,
+  acknowledged.

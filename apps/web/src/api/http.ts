@@ -1,5 +1,5 @@
 // Client for services/api. Contract: services/api/README.md.
-import { LANG_NAME, type BulletinDraft, type Health, type Lang, type Pictogram, type RelayApi, type RequestRecord, type WarningDraft, type WireMessage } from '../contract.ts';
+import { LANG_NAME, type Briefing, type BulletinDraft, type CardReading, type Health, type Lang, type Pictogram, type RelayApi, type RequestRecord, type WarningDraft, type WireMessage } from '../contract.ts';
 
 export class ApiError extends Error {
   readonly code: string;
@@ -55,13 +55,17 @@ export function createHttpApi(baseUrl: string, token?: string): RelayApi {
         body: en.message,
         noticeLines: en.noticeLines,
         translations: Object.fromEntries(langs.slice(1).map((l, i) => [l, { title: drafts[i + 1].noticeTitle, body: drafts[i + 1].message }])),
-        pictograms: pictogramsFor(`${en.noticeTitle} ${en.message} ${en.noticeLines.join(' ')}`),
+        pictograms: en.pictograms?.length ? en.pictograms : pictogramsFor(`${en.noticeTitle} ${en.message} ${en.noticeLines.join(' ')}`),
         radioScript: en.spokenMessage,
         uncertain: [],
         source: en.source,
         modelId: en.modelId,
       };
     },
+    briefing: (zones) => call<Briefing>('POST', '/v1/briefing', { zones }),
+    responseDraft: (id, notes, language) =>
+      call('POST', `/v1/requests/${encodeURIComponent(id)}/response-draft`, { notes, language: LANG_NAME[language] }),
+    readCard: (input) => call<CardReading>('POST', '/v1/cards/read', input),
   };
 }
 

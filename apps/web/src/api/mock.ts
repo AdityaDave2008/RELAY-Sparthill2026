@@ -4,6 +4,7 @@
 // keyword matching, labelled MOCK wherever it appears. It is not Bedrock.
 import { createMessage, validateMessage } from '@relay/core';
 import {
+  LANG_NAME,
   parseRequestBody,
   type Classification,
   type Need,
@@ -130,6 +131,7 @@ export function createMockApi(): RelayApi {
       const state = load();
       const record = state.requests.find((r) => r.message.id === id);
       if (!record) throw new Error('Request not found');
+      record.repliedAt ??= Date.now();
       const existing = state.outbound.find((m) => m.id === replyId);
       if (existing) return existing;
       const message: WireMessage = {
@@ -171,6 +173,75 @@ export function createMockApi(): RelayApi {
         pictograms: pictograms.length ? pictograms : ['info'],
         radioScript: `This is an emergency update for ${zoneName(incidentId)}. ${body} Again: ${title}.`,
         uncertain: /\b(may|might|unconfirmed|reported|possibly)\b/i.test(rawReport) ? ['Report contains unconfirmed details'] : [],
+        source: 'mock',
+        modelId: MOCK_MODEL,
+      };
+    },
+
+    async briefing(zones) {
+      await delay(1500);
+      const open = load().requests.filter((r) => !load().outbound.some((m) => m.replyTo === r.message.id));
+      const scored = open
+        .map((r) => {
+          const c = r.classification ?? mockClassify(r.message);
+          const score = (c.needs.includes('medical') ? 3 : 0) + (c.needs.includes('evacuation') ? 3 : 0) + (c.needs.includes('water') ? 1 : 0) + Math.min(3, (c.peopleCount ?? 1) / 10);
+          return { r, c, score };
+        })
+        .sort((a, b) => b.score - a.score);
+      const zoneSummaries = zones.map((z) => {
+        const inZone = scored.filter((s) => s.r.message.incidentId === z.id);
+        const needs = [...new Set(inZone.flatMap((s) => s.c.needs))];
+        return {
+          incidentId: z.id,
+          summary: inZone.length ? `${inZone.length} open request(s), ${inZone.reduce((n, s) => n + (s.c.peopleCount ?? 1), 0)} people` : 'No open requests',
+          unmetNeeds: needs,
+          suggestedAction: z.reach.none > 0.1 ? 'Send a volunteer with printed notices and help cards' : needs.length ? `Route ${needs.join(', ')} supplies` : 'Keep monitoring',
+        };
+      });
+      return {
+        generatedAt: Date.now(),
+        headline: scored.length ? `${scored.length} open requests. Start with ${zoneName(scored[0].r.message.incidentId)}.` : 'No open requests.',
+        priorities: scored.slice(0, 5).map((s, i) => ({ requestId: s.r.message.id, rank: i + 1, reason: s.c.summary })),
+        zones: zoneSummaries,
+        gaps: zones.filter((z) => z.connectivity === 'offline' && !scored.some((s) => s.r.message.incidentId === z.id)).map((z) => `No requests from ${z.name}. It has no signal, so silence does not mean it is safe.`),
+        requiresHumanReview: true,
+        source: 'mock',
+        modelId: MOCK_MODEL,
+      };
+    },
+
+    async responseDraft(id, notes, language) {
+      await delay(1400);
+      const state = load();
+      const record = state.requests.find((r) => r.message.id === id);
+      if (!record) throw new Error('Request not found');
+      record.classification ??= mockClassify(record.message);
+      save(state);
+      const facts = notes.trim() || 'Your request has been received.';
+      return {
+        request: record,
+        draft: {
+          message: `${language !== 'en' ? `[${language}: translation needs Bedrock] ` : ''}We received your request. ${facts} Stay where you are if it is safe.`,
+          spokenMessage: `Message for the household that asked for ${record.classification.needs.join(' and ') || 'help'}. ${facts}`,
+          noticeTitle: 'Reply to your request',
+          noticeLines: [facts],
+          language: LANG_NAME[language],
+          requiresHumanApproval: true,
+          source: 'mock',
+          modelId: MOCK_MODEL,
+        },
+      };
+    },
+
+    async readCard() {
+      await delay(1500);
+      return {
+        needs: ['water'],
+        peopleCount: null,
+        locationDescription: null,
+        notes: 'Mock reading: connect the API to have Amazon Bedrock read the photo.',
+        unreadable: ['Mock mode cannot read images'],
+        requiresHumanReview: true,
         source: 'mock',
         modelId: MOCK_MODEL,
       };

@@ -43,7 +43,7 @@ export function SimulationBanner({ children }: { children?: ReactNode }) {
   );
 }
 
-export function BedrockHeader({ model }: { model: string }) {
+export function BedrockHeader({ model, requestId }: { model: string; requestId?: string }) {
   const mock = api.mode === 'mock' || model.startsWith('mock');
   return (
     <div className={`bedrock-head${mock ? ' mock' : ''}`}>
@@ -51,6 +51,7 @@ export function BedrockHeader({ model }: { model: string }) {
       {mock ? 'MOCK AI (connect API for Amazon Bedrock)' : 'Amazon Bedrock'}
       <span className="mono muted" style={{ fontWeight: 400 }}>
         {model}
+        {requestId && ` · req ${requestId.slice(0, 8)}`}
       </span>
     </div>
   );
