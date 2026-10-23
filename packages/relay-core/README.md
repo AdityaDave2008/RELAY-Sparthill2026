@@ -2,8 +2,8 @@
 
 The offline messaging core of RELAY: the message format, on-device storage,
 and the store-and-forward exchange that moves messages between nearby phones
-without a network. It has no dependencies and no UI, transport, or AWS code,
-so the app, the device-to-device link, and the cloud uplink can all build on it.
+without a network. It has no dependencies or UI. The app can use its text
+transport frames and HTTP gateway helper without bundling AWS credentials.
 
 ```sh
 cd packages/relay-core
@@ -29,8 +29,8 @@ another device with `validateMessage()`; `MessageStore.add()` already does this.
 capacity limit. When it is full, it removes the least important message, but
 never one more important than the message arriving. `pendingUpload()` and
 `markUploaded()` form the queue for the AWS uplink. `toJSON()` and
-`fromJSON()` let the app save the store (AsyncStorage or a file) until a
-SQLite store is added.
+`fromJSON()` support snapshot adapters. `MessageStore.open()` connects a
+persistence adapter, including the provided localStorage adapter.
 
 ## Sync protocol
 
@@ -46,11 +46,35 @@ B       receive(storeB, batch)     validates, removes duplicates, stores, report
 `exchange(a, b)` runs both directions in one process, for tests and the
 demo simulator.
 
-## Not done yet (open for whoever picks them up)
+## Remaining platform integrations
 
 - Message signing and authenticity checks. Right now any device can claim
   any `originDeviceId`.
 - A device-to-device transport, such as BLE or Wi-Fi Direct through a React
   Native module.
-- A Bedrock or Lambda endpoint that receives `pendingUpload()` batches.
-- Persistent storage (SQLite).
+- A native SQLite storage adapter, if required by the eventual native app.
+
+## Frontend integration
+
+`MessageStore.open(localStoragePersistence(localStorage, "relay:device-id"))`
+loads durable state. Writes happen before mutations report success; handle
+storage exceptions in the UI. Use one active owner for each storage key.
+
+`encodeTransfer(store, { ids? })` returns QR-ready text frames, including
+fragmentation for multilingual messages. A `TransferReceiver` accepts frames
+in any order, tolerates repeats, validates their checksum, and returns its
+actual receive report when complete. The camera and QR renderer belong to
+the frontend; a successful software exchange is not a physical-device test.
+
+`syncWithGateway(store, { baseUrl, deviceId, token? })` uploads pending messages
+and retrieves approved warnings and replies. Relays retrieve replies for the
+original request senders so they can carry them back offline. Retry failures
+with the same message IDs; only explicit server receipts clear the outbox.
+
+Warning `title` and `translations` survive storage and transport. Translations
+are `{ [languageCode]: { title, body } }`, matching the frontend contract.
+Optional `recipientDeviceId` addresses replies, and `incidentId` links warnings
+to frontend-owned zones. These fields are included in duplicate conflict checks.
+
+For backend routes and delivery-label semantics, see
+[`services/api/README.md`](../../services/api/README.md).
