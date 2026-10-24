@@ -1,9 +1,19 @@
-import { type JSX, useEffect, useState } from 'react';
+import { type JSX, useEffect, useMemo, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 
 import { configureAmplify, isAuthConfigured } from './config/amplify';
+import { summarizeHealth, useHealthProfile } from './relay/health';
+import { HealthScreen } from './screens/HealthScreen';
 import { ResidentScreen } from './screens/ResidentScreen';
+
+type Tab = 'help' | 'health';
+
+const TABS: { id: Tab; label: string; glyph: string }[] = [
+  { id: 'help', label: 'Ask for help', glyph: '🆘' },
+  { id: 'health', label: 'Health info', glyph: '✚' },
+];
 
 /**
  * Root component.
@@ -30,7 +40,7 @@ export default function App(): JSX.Element {
     <SafeAreaProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <StatusBar style="auto" />
-        <ResidentScreen />
+        <Tabs />
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -41,6 +51,52 @@ export default function App(): JSX.Element {
   }
 
   return <AuthenticatedApp>{content}</AuthenticatedApp>;
+}
+
+/**
+ * Both screens stay mounted so the help form keeps its draft and background
+ * sync keeps running while the resident edits health info.
+ */
+function Tabs(): JSX.Element {
+  const [tab, setTab] = useState<Tab>('help');
+  const health = useHealthProfile();
+  const healthSummary = useMemo(() => summarizeHealth(health.profile), [health.profile]);
+
+  return (
+    <View style={styles.root}>
+      <View style={[styles.screen, tab !== 'help' && styles.hidden]}>
+        <ResidentScreen healthSummary={healthSummary} onEditHealth={() => setTab('health')} />
+      </View>
+      <View style={[styles.screen, tab !== 'health' && styles.hidden]}>
+        <HealthScreen
+          ready={health.ready}
+          profile={health.profile}
+          loadError={health.error}
+          onSave={health.save}
+          onClear={health.clear}
+        />
+      </View>
+      <View style={styles.tabBar} accessibilityRole="tablist">
+        {TABS.map((t) => {
+          const selected = tab === t.id;
+          return (
+            <Pressable
+              key={t.id}
+              style={styles.tab}
+              onPress={() => setTab(t.id)}
+              accessibilityRole="tab"
+              accessibilityState={{ selected }}
+            >
+              <Text style={[styles.tabGlyph, !selected && styles.tabInactive]}>{t.glyph}</Text>
+              <Text style={[styles.tabLabel, selected ? styles.tabLabelActive : styles.tabInactive]}>
+                {t.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
 }
 
 /**
@@ -56,3 +112,20 @@ function AuthenticatedApp({ children }: { children: JSX.Element }): JSX.Element 
     </Authenticator.Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: '#f8fafc' },
+  screen: { flex: 1 },
+  hidden: { display: 'none' },
+  tabBar: {
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderTopColor: '#e2e8f0',
+    backgroundColor: 'white',
+  },
+  tab: { flex: 1, alignItems: 'center', paddingVertical: 10, gap: 2 },
+  tabGlyph: { fontSize: 20 },
+  tabLabel: { fontSize: 13, fontWeight: '600' },
+  tabLabelActive: { color: '#ea580c' },
+  tabInactive: { color: '#64748b', opacity: 0.7 },
+});

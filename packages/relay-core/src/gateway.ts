@@ -32,7 +32,18 @@ export async function syncWithGateway(store: MessageStore, options: GatewayOptio
     const timer = setTimeout(() => controller.abort(), 15_000);
     try {
       const response = await fetcher(new URL(path, base), { ...init, headers, signal: controller.signal });
-      if (!response.ok) throw new Error(`Gateway request failed (${response.status})`);
+      if (!response.ok) {
+        let detail = '';
+        try {
+          const payload = await response.json() as { error?: { code?: unknown; message?: unknown } };
+          const code = typeof payload.error?.code === 'string' ? payload.error.code : '';
+          const message = typeof payload.error?.message === 'string' ? payload.error.message : '';
+          detail = [code, message].filter(Boolean).join(': ');
+        } catch {
+          // Preserve the HTTP status when the gateway does not return its JSON error envelope.
+        }
+        throw new Error(`Gateway request failed (${response.status})${detail ? `: ${detail}` : ''}`);
+      }
       return await response.json();
     } finally { clearTimeout(timer); }
   };
