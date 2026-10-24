@@ -2,7 +2,7 @@ import { closeSync, existsSync, fsyncSync, mkdirSync, openSync, readFileSync, re
 import { dirname, resolve } from 'node:path';
 import { validateMessage, type RelayMessage } from '@relay/core';
 
-export const NEEDS = ['water', 'food', 'medical', 'shelter', 'evacuation', 'power', 'other'] as const;
+export const NEEDS = ['water', 'food', 'medical_assistance', 'shelter', 'other'] as const;
 export interface Classification {
   needs: (typeof NEEDS)[number][];
   peopleCount: number | null;

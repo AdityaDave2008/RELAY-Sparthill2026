@@ -19,23 +19,6 @@ export function getApiUrl(): string {
   return (fromExtra ?? 'http://127.0.0.1:8787').replace(/\/$/, '');
 }
 
-export interface DispatcherLocation {
-  lat: number;
-  lon: number;
-}
-
-/**
- * Fixed position of the dispatch centre, used to show the resident how far
- * their phone is from dispatch. Returns null when not configured or invalid.
- */
-export function getDispatcherLocation(): DispatcherLocation | null {
-  const lat = Number.parseFloat(process.env.EXPO_PUBLIC_DISPATCHER_LAT ?? '');
-  const lon = Number.parseFloat(process.env.EXPO_PUBLIC_DISPATCHER_LON ?? '');
-  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
-  if (lat < -90 || lat > 90 || lon < -180 || lon > 180) return null;
-  return { lat, lon };
-}
-
 /**
  * Demo bearer token for authenticating to the API outside loopback. These are
  * shared demo tokens per the API contract, not verified device identity.
