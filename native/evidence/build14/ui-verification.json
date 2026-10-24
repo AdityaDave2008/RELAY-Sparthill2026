@@ -1,0 +1,15 @@
+{
+  "build": "0.1.0 (14)",
+  "scope": "Presentation and navigation polish; core protocol, cloud submission and stock operations unchanged",
+  "visual_checks": {
+    "macOS_dark": "Inbox, Open/Closed filters, inventory cards: PASS",
+    "iPhone17Pro_simulator_iOS26_1_light": "Help, supply selection, quantity/people, keyboard/Done, sticky review action, review sheet/Edit, voice screen: PASS",
+    "paid_operations_during_UI_check": "None; no new transcription, AI preview, request submission or stock mutation",
+    "physical_phone_UI": "Installed/launched; visual/tap verification remains operator task",
+    "largest_dynamic_type_and_older_OS": "NOT TESTED"
+  },
+  "tests": "49 Swift tests pass; backend last verified67 unchanged",
+  "physical_radio": "NOT TESTED by this cosmetic update",
+  "testflight": "Upload succeeded2026-10-24 02:19:07PDT; browser sign-in expired before internal availability check",
+  "release_debug_importer_excluded": true
+}

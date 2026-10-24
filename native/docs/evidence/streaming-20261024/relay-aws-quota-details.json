@@ -1,0 +1,136 @@
+{
+  "transcribe": [
+    {
+      "name": "Transactions per second, StartCallAnalyticsStreamTranscriptionWebsocket",
+      "value": 25.0,
+      "code": "L-49DA58C9"
+    },
+    {
+      "name": "Transactions per second, StartStreamTranscriptionWebSocket",
+      "value": 25.0,
+      "code": "L-00A7F8C0"
+    },
+    {
+      "name": "Transactions per second, StartStreamTranscription",
+      "value": 25.0,
+      "code": "L-2B06FDCC"
+    },
+    {
+      "name": "Number of concurrent Call Analytics streams (HTTP/2 + Websocket)",
+      "value": 25.0,
+      "code": "L-A34A9084"
+    },
+    {
+      "name": "Transactions per second, StartCallAnalyticsStreamTranscription",
+      "value": 25.0,
+      "code": "L-F6E06B47"
+    },
+    {
+      "name": "Number of concurrent streams (HTTP/2 + Websocket)",
+      "value": 25.0,
+      "code": "L-0599F82B"
+    }
+  ],
+  "bedrock": [
+    {
+      "name": "Cross-region model inference requests per minute for Amazon Nova Lite",
+      "value": 4000.0,
+      "code": "L-89F8391A"
+    },
+    {
+      "name": "Model units per provisioned model for the 300k context length variant for Amazon Nova Lite",
+      "value": 0.0,
+      "code": "L-127FC9D0"
+    },
+    {
+      "name": "Records per batch inference job for Nova Lite V1",
+      "value": 100000.0,
+      "code": "L-916C9264"
+    },
+    {
+      "name": "(Model customization) Sum of on demand custom model deployment requests per minute for Amazon Nova Lite",
+      "value": 2000.0,
+      "code": "L-7374C882"
+    },
+    {
+      "name": "(Managed Knowledge Bases) AgenticRetrieveStream requests per minute per account",
+      "value": 60.0,
+      "code": "L-315A9D5B"
+    },
+    {
+      "name": "Sum of in-progress and submitted batch inference jobs using a base model for Nova Lite V1",
+      "value": 100.0,
+      "code": "L-E2ED42E6"
+    },
+    {
+      "name": "(Managed Knowledge Bases) AgenticRetrieveStream user query size",
+      "value": 10000.0,
+      "code": "L-C0CD87F5"
+    },
+    {
+      "name": "Minimum number of records per batch inference job for Nova Lite V1",
+      "value": 100.0,
+      "code": "L-39FA8DCA"
+    },
+    {
+      "name": "On-demand model inference tokens per minute for Amazon Nova Lite",
+      "value": 4000000.0,
+      "code": "L-70423BF8"
+    },
+    {
+      "name": "Records per input file per batch inference job for Nova Lite V1",
+      "value": 100000.0,
+      "code": "L-B8626674"
+    },
+    {
+      "name": "Batch inference job size (in GB) for Nova Lite V1",
+      "value": 100.0,
+      "code": "L-19E52681"
+    },
+    {
+      "name": "(Knowledge Bases) RetrieveAndGenerateStream requests per second",
+      "value": 20.0,
+      "code": "L-00DFDB26"
+    },
+    {
+      "name": "Model invocation max tokens per day for Amazon Nova Lite (doubled for cross-region calls)",
+      "value": 5760000000.0,
+      "code": "L-45E0AD92"
+    },
+    {
+      "name": "(Model customization) Sum of on demand custom model deployment tokens per day for Amazon Nova Lite",
+      "value": 5760000000.0,
+      "code": "L-B706E06A"
+    },
+    {
+      "name": "(Model customization) Sum of on demand custom model deployment tokens per minute for Amazon Nova Lite",
+      "value": 4000000.0,
+      "code": "L-153ADCCB"
+    },
+    {
+      "name": "Model units per provisioned model for the 24k context length variant for Amazon Nova Lite ",
+      "value": 0.0,
+      "code": "L-4532261E"
+    },
+    {
+      "name": "Cross-region model inference tokens per minute for Amazon Nova Lite",
+      "value": 8000000.0,
+      "code": "L-7C42E72A"
+    },
+    {
+      "name": "Batch inference input file size (in GB) for Nova Lite V1",
+      "value": 1.0,
+      "code": "L-F60B56CC"
+    },
+    {
+      "name": "(Model customization) Sum of training and validation records for a Amazon Nova Lite Fine-tuning job",
+      "value": 20000.0,
+      "code": "L-031F46A7"
+    },
+    {
+      "name": "On-demand model inference requests per minute for Amazon Nova Lite",
+      "value": 2000.0,
+      "code": "L-E386A278"
+    }
+  ]
+}

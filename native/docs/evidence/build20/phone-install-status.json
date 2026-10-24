@@ -1,0 +1,18 @@
+{
+  "15": {
+    "bundleIdentifier": "org.relay.prototype.ios",
+    "bundleVersion": "20",
+    "name": "RELAY",
+    "version": "0.1.0",
+    "install-final": "success",
+    "launch-final": "success"
+  },
+  "16": {
+    "bundleIdentifier": "org.relay.prototype.ios",
+    "bundleVersion": "20",
+    "name": "RELAY",
+    "version": "0.1.0",
+    "install-final": "success",
+    "launch-final": "success"
+  }
+}

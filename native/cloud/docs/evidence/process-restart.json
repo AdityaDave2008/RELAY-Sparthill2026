@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "mode": "local-test",
+  "storage": "sqlite",
+  "finished_at": "2026-10-24T04:54:19.834563+00:00",
+  "request_id": "REDACTED-ID-74ef481d1e7d",
+  "api_restart_replay": "PASS",
+  "separate_worker_process_recovery": "PASS",
+  "logical_request_count": 1,
+  "analysis_attempts": 1,
+  "real_aws": "NOT TESTED"
+}

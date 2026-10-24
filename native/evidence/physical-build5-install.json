@@ -1,0 +1,39 @@
+{
+  "timestamp_utc": "2026-10-24T02:40:37.988821+00:00",
+  "devices": [
+    {
+      "device": "a",
+      "hardware": "iPhone 15 Pro Max / iOS 27.0.1 (24A446)",
+      "version": "0.1.0",
+      "build": "5",
+      "install": "PASS",
+      "launch": "BLOCKED: device locked",
+      "device_id": "REDACTED-ID-85ca2bd297a6",
+      "display_name": null,
+      "schema_version": 1,
+      "before_count": 15,
+      "after_count": 15,
+      "identity_preserved": true,
+      "all_existing_message_ids_and_immutable_contents_preserved": true,
+      "existing_final_receipts_preserved": true,
+      "physical_wireless_test": "NOT TESTED"
+    },
+    {
+      "device": "b",
+      "hardware": "iPhone 16 / iOS 26.2 (23C55)",
+      "version": "0.1.0",
+      "build": "5",
+      "install": "PASS",
+      "launch": "PASS",
+      "device_id": "REDACTED-ID-1684768e4451",
+      "display_name": "iPhone 4E32",
+      "schema_version": 2,
+      "before_count": 16,
+      "after_count": 16,
+      "identity_preserved": true,
+      "all_existing_message_ids_and_immutable_contents_preserved": true,
+      "existing_final_receipts_preserved": true,
+      "physical_wireless_test": "NOT TESTED"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "phone": "iPhone 16",
+  "installed_build": 19,
+  "install": "PASS",
+  "launch": "PASS",
+  "integrity": "ok",
+  "device_id_unchanged": true,
+  "messages_before": 47,
+  "messages_after": 47,
+  "all_original_message_bodies_preserved": true,
+  "existing_final_receipts_preserved": true,
+  "cloud_submissions_before": 46,
+  "all_original_cloud_submissions_preserved": true,
+  "physical_no_router_acceptance": "NOT TESTED"
+}

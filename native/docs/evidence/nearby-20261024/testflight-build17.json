@@ -1,0 +1,21 @@
+{
+  "version": "0.1.0",
+  "build": 17,
+  "bundle_id": "com.nikilthalapaneni.relay",
+  "team": "U4G9LV39GM",
+  "archive_status": "PASS",
+  "upload_status": "PASS",
+  "uploaded_at": "2026-10-24T05:25:17-07:00",
+  "apple_upload_result": "Uploaded package is processing",
+  "external_testing_status": "NOT VERIFIED",
+  "physical_installation_this_session": "NOT TESTED: both paired phones disconnected",
+  "source_manifest": "docs/evidence/nearby-20261024/build17-source-manifest.json",
+  "archive": "/tmp/RELAY-testflight.tyvDOM/RELAY.xcarchive",
+  "mac_build": "PASS",
+  "simulator_build": "PASS",
+  "mac_and_simulator_launch": "PASS",
+  "original_bundle_build": "PASS",
+  "original_bundle_id": "org.relay.prototype.ios",
+  "original_team": "3TUBL56UTY",
+  "original_device_app": "/tmp/RELAY-release17-device/Build/Products/Debug-iphoneos/RELAY-iOS.app"
+}

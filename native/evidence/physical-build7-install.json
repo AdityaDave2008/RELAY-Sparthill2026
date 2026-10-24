@@ -1,0 +1,47 @@
+{
+  "build": "0.1.0 (7)",
+  "bundle_id": "org.relay.prototype.ios",
+  "checked_at": "2026-10-23T23:14:49.394163-07:00",
+  "physical_wireless_tests": "NOT TESTED",
+  "network_conditions": "Uncontrolled installation session. A wired; B paired localNetwork; no offline or no-router isolation.",
+  "devices": [
+    {
+      "role": "A",
+      "hardware": "iPhone 15 Pro Max",
+      "os": "27.0.1 (24A446)",
+      "installed_build": "7",
+      "install": "PASS",
+      "launch": "PASS",
+      "integrity_before": "ok",
+      "integrity_after": "ok",
+      "persistent_id_preserved": true,
+      "envelopes_before": 24,
+      "envelopes_after": 24,
+      "all_message_bodies_and_receipt_fields_unchanged": true,
+      "existing_final_receipt_links_preserved": 3,
+      "shelters_before": 1,
+      "shelters_after": 1,
+      "shelters_unchanged": true,
+      "user_shelter_removed_by_agent": false
+    },
+    {
+      "role": "B",
+      "hardware": "iPhone 16",
+      "os": "26.2 (23C55)",
+      "installed_build": "7",
+      "install": "PASS",
+      "launch": "PASS",
+      "integrity_before": "ok",
+      "integrity_after": "ok",
+      "persistent_id_preserved": true,
+      "envelopes_before": 23,
+      "envelopes_after": 23,
+      "all_message_bodies_and_receipt_fields_unchanged": true,
+      "existing_final_receipt_links_preserved": 4,
+      "shelters_before": 1,
+      "shelters_after": 1,
+      "shelters_unchanged": true,
+      "user_shelter_removed_by_agent": false
+    }
+  ]
+}

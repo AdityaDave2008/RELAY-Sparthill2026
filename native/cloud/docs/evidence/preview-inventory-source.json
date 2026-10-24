@@ -1,0 +1,23 @@
+{
+  "native_backend_source": "fe7b88dad016c43066a6f272f2a0f6ae94855667",
+  "source_branch_commit": "62dcf9035bc0bf02054debe53b08a478e4bf379e",
+  "backend_module_count": 14,
+  "backend_modules_match": true,
+  "module_sha256": {
+    "__init__.py": "3aa409fd7a80269df395f02738212d9dd4bcf27e006482e8531a8fc748da07a4",
+    "__main__.py": "a799014eb44cd308e259f811cf569a081295b83b772f3767abd31b758a8eab98",
+    "analysis.py": "94cfece7f04f94132c76281dc8e5da516947a6fd04652de6575e75004450b503",
+    "api.py": "88fb5e215e6743d61c36b7492723d625551f489d00a4990aa7e182a63505c872",
+    "auth.py": "d469351d9d769bdd2a6a7a5f16cc926d02333467b5f6fc8ae92d128e85046497",
+    "common.py": "4db7f4bc8bf2e97918bf1cedd3d903150d1eb1b19502c2611486e4613e584ef8",
+    "config.py": "d2f5eeb934d324f3a1bd274a6140e04c017b89a7104df18706ff8b10b03409be",
+    "interpretations.py": "01505b983a88670fbbfca9a6842762e3e9cdb6e28702da148a1d6e3868296fa7",
+    "inventory.py": "a4c30653dc153897ee86631fc9d68994cfefddb8ade1a3c35b2f6e9f12e18fc1",
+    "lambda_handlers.py": "30fa9e6a246005889b7fe668b4364fcd5c19acd61a925d354943504a18f48748",
+    "models.py": "fd2e8d9cfa95c5dee42dea5d906a083fa7a6f77875be77d165db5418b5a19d13",
+    "providers.py": "b1f3934a69df01afda1ebfe704c48387d9bffa5236be8f1fa2268abebde271ca",
+    "service.py": "4956b836e9dc643d6a8968b0eab60fc41878a4e0364a3b71b4a9810b37d700cd",
+    "store.py": "745cb1cad948d1cca0d6a2b4e18814649b92223e98bcbb64147bae3eb5ff73b9"
+  },
+  "scope": "Files on disk; no Lambda deployment or in-memory source attestation inferred"
+}

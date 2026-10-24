@@ -1,0 +1,231 @@
+{
+  "observed_at": "2026-10-24T05:02:33.671484+00:00",
+  "region": "us-east-1",
+  "checks": {
+    "nova_lite_availability": {
+      "status": "PASS",
+      "result": {
+        "modelId": "amazon.nova-lite-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      }
+    },
+    "nova_lite_metadata": {
+      "status": "PASS",
+      "result": {
+        "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0",
+        "modelId": "amazon.nova-lite-v1:0",
+        "modelName": "Nova Lite",
+        "providerName": "Amazon",
+        "inputModalities": [
+          "TEXT",
+          "IMAGE",
+          "VIDEO"
+        ],
+        "outputModalities": [
+          "TEXT"
+        ],
+        "responseStreamingSupported": true,
+        "customizationsSupported": [],
+        "inferenceTypesSupported": [
+          "ON_DEMAND",
+          "INFERENCE_PROFILE"
+        ],
+        "modelLifecycle": {
+          "status": "ACTIVE",
+          "startOfLifeTime": "2024-12-03 08:00:00+00:00"
+        }
+      }
+    },
+    "table": {
+      "status": "PASS",
+      "result": {
+        "TableName": "relay-messages",
+        "TableArn": "arn:aws:dynamodb:us-east-1:928489693154:table/relay-messages",
+        "TableStatus": "ACTIVE",
+        "KeySchema": [
+          {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "sk",
+            "KeyType": "RANGE"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "sk",
+            "AttributeType": "S"
+          }
+        ],
+        "BillingModeSummary": {
+          "BillingMode": "PAY_PER_REQUEST",
+          "LastUpdateToPayPerRequestDateTime": "2026-10-23 18:50:49.610000-07:00"
+        },
+        "StreamSpecification": {
+          "StreamEnabled": true,
+          "StreamViewType": "NEW_IMAGE"
+        },
+        "ItemCount": 0,
+        "TableSizeBytes": 0
+      }
+    },
+    "table_tags": {
+      "status": "PASS",
+      "result": [
+        {
+          "Key": "Project",
+          "Value": "RELAY"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "CriticalServiceContinuity"
+        }
+      ]
+    },
+    "reserved_ddb_namespace": {
+      "status": "PASS",
+      "result": {
+        "work_exists": false,
+        "budget_records_exist": false,
+        "note": "Checks reserved queue/counters only, not a table scan"
+      }
+    },
+    "artifacts_public_access_block": {
+      "status": "PASS",
+      "result": {
+        "BlockPublicAcls": true,
+        "IgnorePublicAcls": true,
+        "BlockPublicPolicy": true,
+        "RestrictPublicBuckets": true
+      }
+    },
+    "artifacts_policy_status": {
+      "status": "ABSENT",
+      "code": "NoSuchBucketPolicy",
+      "request_id": "GSPPFNF44A1D8916"
+    },
+    "artifacts_encryption": {
+      "status": "PASS",
+      "result": {
+        "Rules": [
+          {
+            "ApplyServerSideEncryptionByDefault": {
+              "SSEAlgorithm": "AES256"
+            },
+            "BucketKeyEnabled": false,
+            "BlockedEncryptionTypes": {
+              "EncryptionType": [
+                "SSE-C"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "artifacts_tags": {
+      "status": "ABSENT",
+      "code": "NoSuchTagSet",
+      "request_id": "GSPQWC4MAWTAN9EX"
+    },
+    "artifacts_ownership": {
+      "status": "PASS",
+      "result": {
+        "Rules": [
+          {
+            "ObjectOwnership": "BucketOwnerEnforced"
+          }
+        ]
+      }
+    },
+    "reserved_s3_prefix": {
+      "status": "PASS",
+      "result": {
+        "objects_exist": false
+      }
+    },
+    "cognito_pool": {
+      "status": "PASS",
+      "result": {
+        "Id": "us-east-1_f7wyKUgiY",
+        "Name": "RELAY-Dispatchers-SpartHill",
+        "Arn": "arn:aws:cognito-idp:us-east-1:928489693154:userpool/us-east-1_f7wyKUgiY",
+        "Domain": null,
+        "CustomDomain": null,
+        "UserPoolTags": {
+          "Project": "RELAY",
+          "Purpose": "DispatcherVerification"
+        },
+        "UserPoolTier": "ESSENTIALS",
+        "AdminCreateUserConfig": {
+          "AllowAdminCreateUserOnly": true,
+          "UnusedAccountValidityDays": 1
+        },
+        "UsernameAttributes": [
+          "email"
+        ],
+        "AutoVerifiedAttributes": null
+      }
+    },
+    "cognito_mfa": {
+      "status": "PASS",
+      "result": {
+        "SoftwareTokenMfaConfiguration": {
+          "Enabled": true
+        },
+        "MfaConfiguration": "ON"
+      }
+    },
+    "cognito_clients": {
+      "status": "PASS",
+      "result": [
+        {
+          "ClientId": "63gjrcdlap598pmu9ho7sstr38",
+          "ClientName": "RELAY-Dispatcher-Web",
+          "AllowedOAuthFlows": null,
+          "AllowedOAuthScopes": null,
+          "AllowedOAuthFlowsUserPoolClient": false,
+          "CallbackURLs": null,
+          "LogoutURLs": null,
+          "ExplicitAuthFlows": [
+            "ALLOW_USER_PASSWORD_AUTH"
+          ],
+          "SupportedIdentityProviders": [
+            "COGNITO"
+          ],
+          "has_client_secret": false
+        }
+      ]
+    },
+    "lambda_account_settings": {
+      "status": "PASS",
+      "result": {
+        "AccountLimit": {
+          "TotalCodeSize": 322122547200,
+          "CodeSizeUnzipped": 262144000,
+          "CodeSizeZipped": 52428800,
+          "ConcurrentExecutions": 1000,
+          "UnreservedConcurrentExecutions": 110
+        },
+        "AccountUsage": {
+          "TotalCodeSize": 292,
+          "FunctionCount": 1
+        }
+      }
+    }
+  },
+  "identity": {
+    "Account": "928489693154",
+    "Arn": "arn:aws:sts::928489693154:assumed-role/WSParticipantRole/Participant"
+  },
+  "identity_request_id": "REDACTED-ID-eed6f4ee209e"
+}

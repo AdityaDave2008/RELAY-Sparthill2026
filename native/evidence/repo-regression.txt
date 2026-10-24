@@ -1,0 +1,142 @@
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/lib/python3.13/site-packages/torchrl/modules/mcts/scores.py:574: FutureWarning: functools.partial will be a method descriptor in future Python versions; wrap it in enum.member() if you want to preserve the old behavior
+  PUCT = functools.partial(PUCTScore, c=5)  # AlphaGo default value
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/lib/python3.13/site-packages/torchrl/modules/mcts/scores.py:575: FutureWarning: functools.partial will be a method descriptor in future Python versions; wrap it in enum.member() if you want to preserve the old behavior
+  UCB = functools.partial(UCBScore, c=math.sqrt(2))  # default from Auer et al. 2002
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/lib/python3.13/site-packages/torchrl/modules/mcts/scores.py:576: FutureWarning: functools.partial will be a method descriptor in future Python versions; wrap it in enum.member() if you want to preserve the old behavior
+  UCB1_TUNED = functools.partial(
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/lib/python3.13/site-packages/torchrl/modules/mcts/scores.py:579: FutureWarning: functools.partial will be a method descriptor in future Python versions; wrap it in enum.member() if you want to preserve the old behavior
+  EXP3 = functools.partial(EXP3Score, gamma=0.1)
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/optim/laprop.py:88: UserWarning: This overload of addcmul_ is deprecated:
+	addcmul_(Number value, Tensor tensor1, Tensor tensor2)
+Consider using one of the following signatures instead:
+	addcmul_(Tensor tensor1, Tensor tensor2, *, Number value = 1) (Triggered internally at /Users/RELAY_DEVELOPER/work/pytorch/pytorch/pytorch/torch/csrc/utils/python_arg_parser.cpp:1853.)
+  exp_avg_sq.mul_(beta2).addcmul_(1 - beta2, grad, grad)
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/lib/python3.13/site-packages/torch/optim/lr_scheduler.py:462: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  _warn_get_lr_called_within_step(self)
+...Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        43,168: rssm
+         2,886: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 104589 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        37,896: rssm
+         2,886: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 99317 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        39,368: rssm
+         2,118: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 100021 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        39,368: rssm
+         2,118: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 100021 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        37,496: rssm
+         2,118: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 98149 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        37,496: rssm
+         2,118: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 98149 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        37,584: rssm
+         2,118: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 98237 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        43,168: rssm
+         2,886: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 104589 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        43,168: rssm
+         2,886: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+Optimizer has: 104589 parameters.
+Encoder CNN shapes: {'image': (32, 32, 3)}
+Encoder MLP shapes: {}
+        37,896: rssm
+         2,886: actor
+         3,711: value
+         2,623: reward
+         1,633: cont
+         1,416: encoder
+        49,152: projector
+         4,256: cpc_pred_heads
+        66,720: cpc_target_heads
+Optimizer has: 170293 parameters.
+[92m2026-10-23 15:18:39,419 [torchrl][INFO][0m    Initialized LazyTensorStorage with torch.Size([32, 2]) shape[92m [END][0m
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/lib/python3.13/site-packages/torchrl/data/replay_buffers/samplers.py:659: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+  index = torch.as_tensor(np.ravel_multi_index(index.unbind(-1), shape))
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/lib/python3.13/site-packages/torchrl/data/replay_buffers/samplers.py:2248: DeprecationWarning: __array__ implementation doesn't accept a copy keyword, so passing copy=False failed. __array__ must implement 'dtype' and 'copy' keyword arguments. To learn more, see the migration guide https://numpy.org/devdocs/numpy_2_0_migration_guide.html#adapting-to-changes-in-the-copy-keyword
+  np.ravel_multi_index(preceding_stop_idx, storage.shape)
+.[92m2026-10-23 15:18:39,429 [torchrl][INFO][0m    Initialized LazyTensorStorage with torch.Size([32, 2]) shape[92m [END][0m
+.Saved checkpoint at step 100 to /var/folders/qz/n2kd5djn09b26j8vkx90t_mw0000gn/T/tmp1j1q4ab5/latest.pt
+....................s..Wrote analysis outputs to /var/folders/qz/n2kd5djn09b26j8vkx90t_mw0000gn/T/tmpjfpk0c93/analysis
+./Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=gru seed=0 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousEasy-v0/gru/seed0 env.task=popgym_RepeatPreviousEasy-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=gru seed=1 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousEasy-v0/gru/seed1 env.task=popgym_RepeatPreviousEasy-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=transformer seed=0 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousEasy-v0/transformer/seed0 env.task=popgym_RepeatPreviousEasy-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=transformer seed=1 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousEasy-v0/transformer/seed1 env.task=popgym_RepeatPreviousEasy-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=gru seed=0 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousMedium-v0/gru/seed0 env.task=popgym_RepeatPreviousMedium-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=gru seed=1 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousMedium-v0/gru/seed1 env.task=popgym_RepeatPreviousMedium-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=transformer seed=0 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousMedium-v0/transformer/seed0 env.task=popgym_RepeatPreviousMedium-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=transformer seed=1 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousMedium-v0/transformer/seed1 env.task=popgym_RepeatPreviousMedium-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=gru seed=0 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousHard-v0/gru/seed0 env.task=popgym_RepeatPreviousHard-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=gru seed=1 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousHard-v0/gru/seed1 env.task=popgym_RepeatPreviousHard-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=transformer seed=0 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousHard-v0/transformer/seed0 env.task=popgym_RepeatPreviousHard-v0
+/Users/RELAY_DEVELOPER/Documents/dreamerv3/.venv/bin/python train.py env=popgym_repeat_previous model=size12M subexp=none model.backbone=transformer seed=1 logdir=logdir/proposal/popgym_repeat_previous/none/popgym_RepeatPreviousHard-v0/transformer/seed1 env.task=popgym_RepeatPreviousHard-v0
+.
+----------------------------------------------------------------------
+Ran 30 tests in 2.962s
+
+OK (skipped=1)

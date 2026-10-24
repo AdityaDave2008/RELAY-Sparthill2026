@@ -1,0 +1,57 @@
+{
+  "observed_at": "2026-10-24T06:48:41.746878+00:00",
+  "local_api_base_url": "http://127.0.0.1:8787",
+  "openapi_version": "1.0.0",
+  "paths": [
+    "/v1/health",
+    "/v1/requests",
+    "/v1/requests/{request_id}",
+    "/v1/requests/{request_id}/retry-analysis",
+    "/v1/shelters",
+    "/v1/transcriptions",
+    "/v1/transcriptions/{transcription_id}",
+    "/v1/transcriptions/{transcription_id}/start"
+  ],
+  "integration_profile_present": false,
+  "integration_history_present": false,
+  "integration_events_present": false,
+  "backend": {
+    "head": "db7d03a4fb106969cf7aac9538d68b903dd8f4a5",
+    "branch": "feature/cloud-mvp",
+    "status": []
+  },
+  "native_integration": {
+    "head": "c19b4358b4fd1d24a25b7ff2becccd0620e110cf",
+    "branch": "feature/cloud-integration",
+    "status": [
+      " M App/RelayApp.swift",
+      " M App/ShelterViews.swift",
+      " M Config/iOS-Info.plist",
+      " M Config/macOS-Info.plist",
+      " M Config/macOS.entitlements",
+      " M RELAY.xcodeproj/project.pbxproj",
+      " M Sources/RelayCore/Conversations.swift",
+      " M Sources/RelayCore/Shelters.swift",
+      " M Sources/RelayCore/Store.swift",
+      " M cloud/relay_backend/api.py",
+      " M cloud/relay_backend/models.py",
+      " M cloud/relay_backend/service.py",
+      " M scripts/generate_project.py",
+      "?? App/CloudAuth.swift",
+      "?? App/CloudModel.swift",
+      "?? App/CloudViews.swift",
+      "?? App/VoiceRecorder.swift",
+      "?? Sources/RelayCore/CloudHTTP.swift",
+      "?? Sources/RelayCore/CloudProtocol.swift",
+      "?? Sources/RelayCore/RequestUpdates.swift",
+      "?? cloud/tests/test_request_history.py"
+    ]
+  },
+  "native_coordination": {
+    "task_title": "Build and Test RELAY Offline P2P",
+    "task_id": "REDACTED-ID-e94d642195a5",
+    "response": "Integration work is uncommitted/not package-ready. Native task will supply a tested commit. No hosted URL known; do not package yet.",
+    "reported_backend_fixture_tests": 35,
+    "independently_rerun_by_this_audit": false
+  }
+}

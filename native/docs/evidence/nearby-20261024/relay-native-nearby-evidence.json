@@ -1,0 +1,52 @@
+{
+  "mac": {
+    "device_id": "REDACTED-ID-337a93bc8deb",
+    "requests": [
+      {
+        "request_id": "REDACTED-ID-453c2f5043dd",
+        "state": "accepted",
+        "nearby_state": "received",
+        "problem": null,
+        "cloud_accepted": true,
+        "location": {
+          "captured_at": "2026-10-24T11:18:03Z",
+          "horizontal_accuracy": 5,
+          "latitude": 1.23456,
+          "longitude": 2.34567,
+          "precision": "precise",
+          "source": "device"
+        },
+        "receipt_id": null,
+        "ciphertext_present": true,
+        "plaintext_absent_from_wire": true
+      }
+    ]
+  },
+  "requester_a": {
+    "device_id": "REDACTED-ID-ee5abc667601",
+    "requests": []
+  },
+  "requester_b": {
+    "device_id": "REDACTED-ID-3fa5296dc94b",
+    "requests": [
+      {
+        "request_id": "REDACTED-ID-453c2f5043dd",
+        "state": "queued",
+        "nearby_state": "shelter_saved",
+        "problem": null,
+        "cloud_accepted": false,
+        "location": {
+          "captured_at": "2026-10-24T11:18:03Z",
+          "horizontal_accuracy": 5,
+          "latitude": 1.23456,
+          "longitude": 2.34567,
+          "precision": "precise",
+          "source": "device"
+        },
+        "receipt_id": "REDACTED-ID-4c72bed4f187",
+        "ciphertext_present": true,
+        "plaintext_absent_from_wire": true
+      }
+    ]
+  }
+}

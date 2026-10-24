@@ -1,0 +1,45 @@
+{
+  "timestamp_utc": "2026-10-24T05:58:29.245133+00:00",
+  "bundle_id": "org.relay.prototype.ios",
+  "signing_team": "3TUBL56UTY",
+  "devices": [
+    {
+      "device": "A",
+      "hardware": "iPhone 15 Pro Max",
+      "os_version": "27.0.1",
+      "os_build": "24A446",
+      "version": "0.1.0",
+      "build": "6",
+      "install": "PASS",
+      "launch": "PASS",
+      "device_id": "REDACTED-ID-85ca2bd297a6",
+      "display_name": "iPhone D802",
+      "schema_version": 3,
+      "before_count": 19,
+      "after_count": 19,
+      "identity_preserved": true,
+      "all_existing_message_ids_and_immutable_contents_preserved": true,
+      "existing_final_receipts_preserved": true,
+      "physical_wireless_test": "NOT TESTED"
+    },
+    {
+      "device": "B",
+      "hardware": "iPhone 16",
+      "os_version": "26.2",
+      "os_build": "23C55",
+      "version": "0.1.0",
+      "build": "6",
+      "install": "PASS",
+      "launch": "PASS",
+      "device_id": "REDACTED-ID-1684768e4451",
+      "display_name": "iPhone 4E32",
+      "schema_version": 3,
+      "before_count": 16,
+      "after_count": 16,
+      "identity_preserved": true,
+      "all_existing_message_ids_and_immutable_contents_preserved": true,
+      "existing_final_receipts_preserved": true,
+      "physical_wireless_test": "NOT TESTED"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "scope": "Read-only account/endpoint/budget checks; no AI or physical wireless check",
+  "status": "FAIL",
+  "error_type": "HTTPError",
+  "http_status": 503
+}

@@ -1,0 +1,22 @@
+{
+  "device": {
+    "build_succeeded": true,
+    "build_number": 21
+  },
+  "sim": {
+    "build_succeeded": true,
+    "build_number": 21
+  },
+  "mac": {
+    "build_succeeded": true,
+    "build_number": 21
+  },
+  "testflight": {
+    "upload_succeeded": true,
+    "upload_completion": "2026-10-24 09:47:27 PDT",
+    "processing": true,
+    "external_availability_verified": false,
+    "bundle_id": "com.nikilthalapaneni.relay",
+    "build_number": 21
+  }
+}

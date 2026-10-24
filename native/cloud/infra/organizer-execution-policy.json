@@ -1,0 +1,87 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "IsolatedData",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:Query"
+      ],
+      "Resource": "arn:aws:dynamodb:us-east-1:928489693154:table/relay-messages",
+      "Condition": {
+        "ForAllValues:StringLike": {
+          "dynamodb:LeadingKeys": [
+            "RELAY_MVP_V1#*"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "PrivateAudioObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::relay-artifacts-928489693154-use1/cloud-mvp-v1/uploads/*",
+        "arn:aws:s3:::relay-artifacts-928489693154-use1/cloud-mvp-v1/sealed/*",
+        "arn:aws:s3:::relay-artifacts-928489693154-use1/cloud-mvp-v1/transcripts/*"
+      ]
+    },
+    {
+      "Sid": "BucketLocation",
+      "Effect": "Allow",
+      "Action": "s3:GetBucketLocation",
+      "Resource": "arn:aws:s3:::relay-artifacts-928489693154-use1"
+    },
+    {
+      "Sid": "NovaLiteOnly",
+      "Effect": "Allow",
+      "Action": "bedrock:InvokeModel",
+      "Resource": "arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-lite-v1:0"
+    },
+    {
+      "Sid": "StartBatchSpeech",
+      "Effect": "Allow",
+      "Action": "transcribe:StartTranscriptionJob",
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestedRegion": "us-east-1",
+          "transcribe:OutputBucketName": "relay-artifacts-928489693154-use1"
+        },
+        "StringLike": {
+          "transcribe:OutputKey": "cloud-mvp-v1/transcripts/*"
+        }
+      }
+    },
+    {
+      "Sid": "ReadOwnBatchSpeech",
+      "Effect": "Allow",
+      "Action": "transcribe:GetTranscriptionJob",
+      "Resource": "arn:aws:transcribe:us-east-1:928489693154:transcription-job/relay-mvp-*"
+    },
+    {
+      "Sid": "WakeOwnWorker",
+      "Effect": "Allow",
+      "Action": "lambda:InvokeFunction",
+      "Resource": "arn:aws:lambda:us-east-1:928489693154:function:relay-cloud-mvp-worker"
+    },
+    {
+      "Sid": "ExistingLogGroups",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-east-1:928489693154:log-group:/aws/lambda/relay-cloud-mvp-api:*",
+        "arn:aws:logs:us-east-1:928489693154:log-group:/aws/lambda/relay-cloud-mvp-worker:*"
+      ]
+    }
+  ]
+}

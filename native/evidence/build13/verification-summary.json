@@ -1,0 +1,21 @@
+{
+  "build": "0.1.0 (13)",
+  "macOS_debug": "PASS",
+  "iOS_device_signed_debug": "PASS",
+  "iOS_release_archive_upload": "PASS",
+  "internal_testflight": "Testing in RELAY Development, 1 tester; observed 2026-10-24 08:54 UTC",
+  "release_debug_importer_filename_absent": true,
+  "phone_sessions_imported_and_one_use_files_removed": true,
+  "both_phone_authorized_directories_cached": true,
+  "native_mac_UI": {
+    "password_MFA_signin": "PASS",
+    "pre_send_Bedrock_preview": "PASS",
+    "review_send": "PASS",
+    "request_id": "REDACTED-ID-4732500990f0",
+    "approve_reserve": "PASS: available18 reserved2 onhand20",
+    "release": "PASS: available20 reserved0 onhand20",
+    "phone_microphone_GPS": "NOT TESTED by agent"
+  },
+  "physical_wireless_A_to_E": "NOT TESTED",
+  "network_conditions": "Internet available; API over public Cloudflare HTTPS. No infrastructure-isolation claim."
+}

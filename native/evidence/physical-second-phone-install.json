@@ -1,0 +1,18 @@
+{
+  "timestamp_utc": "2026-10-24T00:53:16.186554+00:00",
+  "model": "iPhone 16",
+  "os": "26.2",
+  "developer_mode": "enabled",
+  "ddi_available": true,
+  "signed_build": "PASS",
+  "second_phone_install": "PASS \u2014 org.relay.prototype.ios",
+  "first_phone_update": "PASS \u2014 same build installed",
+  "signed_executable_sha256": "e883c9fee3209ed38e34d19bfae607f4fe1dd53ac3e1ec352354acf68f599508",
+  "profile_device_count": 2,
+  "profile_expires_utc": "2026-10-31T00:50:21Z",
+  "second_phone_initial_launch": "BLOCKED \u2014 iOS Security/signing/trust message; local codesign verification passed and second phone is included in profile; user asked to trust Developer App profile",
+  "wireless_delivery": "NOT TESTED",
+  "second_phone_launch_retry": "PASS \u2014 devicectl confirmed launch at 2026-10-24 00:53:28 UTC after user trusted profile",
+  "persistent_device_id": "REDACTED-ID-1684768e4451",
+  "sqlite_store": "Verified startup log and SQLite store with zero messages"
+}

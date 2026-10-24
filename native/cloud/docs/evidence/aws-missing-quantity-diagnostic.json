@@ -1,0 +1,124 @@
+{
+  "started_at": "2026-10-24T05:33:21.123594+00:00",
+  "base_url": "http://127.0.0.1:8787",
+  "checks": {
+    "authentication_and_directory": "PASS",
+    "idempotency_and_authorization": "PASS",
+    "text_pipeline": "PASS"
+  },
+  "requests": [
+    {
+      "request_id": "REDACTED-ID-c850b383f080",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-44b780f76ed8",
+        "request_id": "REDACTED-ID-c850b383f080",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-0306a57eed74",
+        "original_text": "SYNTHETIC: Shelter A needs 20 water packs.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:33:21.165801Z",
+        "expires_at": "2026-10-24T06:33:21.165801Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:33:21.463337Z",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 20,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs 20 water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-f0f0184eece2",
+        "usage": {
+          "inputTokens": 445,
+          "outputTokens": 50,
+          "totalTokens": 495
+        },
+        "stop_reason": "end_turn"
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    },
+    {
+      "request_id": "REDACTED-ID-5722d499e11a",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-1cb4be133a15",
+        "request_id": "REDACTED-ID-5722d499e11a",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-3d28f1cc5326",
+        "original_text": "Shelter A needs water packs.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:33:25.025127Z",
+        "expires_at": "2026-10-24T06:33:25.025127Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:33:25.127089Z",
+      "cloud_state": "accepted",
+      "analysis_state": "needs_review",
+      "result": {
+        "status": "needs_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 1,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A requests one water pack."
+        },
+        "review_reasons": [
+          "quantity_not_grounded"
+        ],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-25ce00a7039e",
+        "usage": {
+          "inputTokens": 438,
+          "outputTokens": 47,
+          "totalTokens": 485
+        },
+        "stop_reason": "end_turn"
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    }
+  ],
+  "transcriptions": [],
+  "native_app_integration": "NOT TESTED",
+  "mode": "aws",
+  "storage": "dynamodb",
+  "status": "FAIL",
+  "failure": "",
+  "finished_at": "2026-10-24T05:33:27.551624+00:00"
+}

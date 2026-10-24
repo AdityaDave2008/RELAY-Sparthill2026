@@ -1,0 +1,3214 @@
+openapi: 3.1.0
+info:
+  title: RELAY Cloud API
+  description: Durable authenticated requests, pre-send previews, reviewed speech
+    and coordinator inventory ledger. Inventory fulfillment is a staff-recorded stock
+    transaction, not proof of physical delivery. Nearby gateway ingestion verifies
+    enrolled sender signatures. See docs/INTEGRATION_HANDOFF.md for idempotency, PKCE,
+    review and retry semantics.
+  version: 1.0.0
+servers:
+- url: http://127.0.0.1:8787
+paths:
+  /v1/health:
+    get:
+      tags:
+      - Health
+      summary: Health
+      operationId: getHealth
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Health'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '410':
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Content Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v1/me:
+    get:
+      tags:
+      - Account
+      summary: Me
+      operationId: me_v1_me_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '410':
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Content Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - HTTPBearer: []
+  /v1/interpretations:
+    post:
+      tags:
+      - Pre-send preview
+      summary: Interpret
+      operationId: interpret_v1_interpretations_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterpretationSubmission'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterpretationResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '410':
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Content Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '200':
+          description: Identical preview already accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterpretationResult'
+      security:
+      - HTTPBearer: []
+  /v1/interpretations/{interpretation_id}:
+    get:
+      tags:
+      - Pre-send preview
+      summary: Interpretation
+      operationId: interpretation_v1_interpretations__interpretation_id__get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: interpretation_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Interpretation Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterpretationResult'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/inventory:
+    get:
+      tags:
+      - Inventory
+      summary: Inventory
+      operationId: inventory_v1_inventory_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: shelter_id
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Shelter Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/inventory/{shelter_id}/adjust:
+    post:
+      tags:
+      - Inventory
+      summary: Adjust Inventory
+      operationId: adjust_inventory_v1_inventory__shelter_id__adjust_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: shelter_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Shelter Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryAdjustment'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Inventory'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/requests/{request_id}/snapshot:
+    get:
+      tags:
+      - Requests
+      summary: Request Snapshot
+      operationId: request_snapshot_v1_requests__request_id__snapshot_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Request Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InboxRequestResult'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/requests/{request_id}/inventory:
+    get:
+      tags:
+      - Inventory
+      summary: Request Inventory
+      operationId: request_inventory_v1_requests__request_id__inventory_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Request Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestInventory'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+    post:
+      tags:
+      - Inventory
+      summary: Change Inventory
+      operationId: change_inventory_v1_requests__request_id__inventory_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Request Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventoryCommand'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestInventory'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/requests/{request_id}/history:
+    get:
+      tags:
+      - Requests
+      summary: History
+      operationId: history_v1_requests__request_id__history_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Request Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestHistory'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/requests/{request_id}/events:
+    post:
+      tags:
+      - Requests
+      summary: Request Event
+      operationId: request_event_v1_requests__request_id__events_post
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Request Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestEventCommand'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestHistory'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/shelters:
+    get:
+      tags:
+      - Directory
+      summary: Shelters
+      operationId: listShelters
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShelterDirectory'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '410':
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Content Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - HTTPBearer: []
+  /v1/devices:
+    post:
+      tags:
+      - Nearby delivery
+      summary: Register Device
+      operationId: register_device_v1_devices_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceRegistration'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '410':
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Content Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - HTTPBearer: []
+  /v1/shelters/{shelter_id}/receiver:
+    put:
+      tags:
+      - Nearby delivery
+      summary: Assign Receiver
+      operationId: assign_receiver_v1_shelters__shelter_id__receiver_put
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: shelter_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Shelter Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiverAssignment'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/relay/requests:
+    post:
+      tags:
+      - Nearby delivery
+      summary: Ingest Nearby
+      operationId: ingest_nearby_v1_relay_requests_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignedRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '410':
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Content Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - HTTPBearer: []
+  /v1/requests:
+    post:
+      tags:
+      - Requests
+      summary: Submit
+      operationId: submitRequest
+      security:
+      - HTTPBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestSubmission'
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResult'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+        '200':
+          description: An identical request was already accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResult'
+    get:
+      tags:
+      - Requests
+      summary: List Requests
+      operationId: listRequests
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: view
+        in: query
+        required: false
+        schema:
+          enum:
+          - mine
+          - shelter
+          type: string
+          default: mine
+          title: View
+      - name: shelter_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Shelter Id
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            maxLength: 1024
+          - type: 'null'
+          title: Cursor
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 50
+          minimum: 1
+          default: 20
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestPage'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/requests/{request_id}:
+    get:
+      tags:
+      - Requests
+      summary: Get Request
+      operationId: getRequest
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Request Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResult'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/transcriptions:
+    post:
+      tags:
+      - Recorded speech
+      summary: Allocate Transcription
+      operationId: allocateTranscription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TranscriptionAllocation'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranscriptionResult'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '410':
+          description: Gone
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Content Too Large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - HTTPBearer: []
+  /v1/transcriptions/{transcription_id}/start:
+    post:
+      tags:
+      - Recorded speech
+      summary: Start Transcription
+      operationId: startTranscription
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: transcription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Transcription Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartTranscription'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranscriptionResult'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/transcriptions/{transcription_id}:
+    get:
+      tags:
+      - Recorded speech
+      summary: Get Transcription
+      operationId: getTranscription
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: transcription_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Transcription Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranscriptionResult'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+  /v1/requests/{request_id}/retry-analysis:
+    post:
+      tags:
+      - Requests
+      summary: Retry Analysis
+      operationId: retryAnalysis
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: request_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Request Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartTranscription'
+      responses:
+        '202':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestResult'
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Not Found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Gone
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Content Too Large
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Content
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Too Many Requests
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Service Unavailable
+components:
+  schemas:
+    DeviceRegistration:
+      properties:
+        device_id:
+          type: string
+          format: uuid
+          title: Device Id
+        signing_key:
+          type: string
+          maxLength: 128
+          title: Signing Key
+        encryption_key:
+          type: string
+          maxLength: 64
+          title: Encryption Key
+      additionalProperties: false
+      type: object
+      required:
+      - device_id
+      - signing_key
+      - encryption_key
+      title: DeviceRegistration
+    DirectoryEntry:
+      properties:
+        shelter_id:
+          type: string
+          title: Shelter Id
+        incident_id:
+          type: string
+          title: Incident Id
+        display_name:
+          type: string
+          title: Display Name
+        receiver:
+          anyOf:
+          - $ref: '#/components/schemas/ShelterReceiver'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - shelter_id
+      - incident_id
+      - display_name
+      title: DirectoryEntry
+    ErrorDetail:
+      properties:
+        code:
+          type: string
+          title: Code
+        message:
+          type: string
+          title: Message
+        retryable:
+          type: boolean
+          title: Retryable
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - code
+      - message
+      title: ErrorDetail
+    ErrorResponse:
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+      additionalProperties: false
+      type: object
+      required:
+      - error
+      title: ErrorResponse
+      examples:
+      - error:
+          code: idempotency_conflict
+          message: An identifier was already used with different immutable content
+          retryable: false
+    Health:
+      properties:
+        status:
+          type: string
+          const: ok
+          title: Status
+        api_version:
+          type: string
+          title: Api Version
+        schema_version:
+          type: integer
+          const: 1
+          title: Schema Version
+        mode:
+          type: string
+          enum:
+          - local-test
+          - aws
+          title: Mode
+        storage:
+          type: string
+          enum:
+          - sqlite
+          - dynamodb
+          title: Storage
+        performs_ai_check:
+          type: boolean
+          const: false
+          title: Performs Ai Check
+          default: false
+        note:
+          type: string
+          title: Note
+      additionalProperties: false
+      type: object
+      required:
+      - status
+      - api_version
+      - schema_version
+      - mode
+      - storage
+      - note
+      title: Health
+    InboxRequestResult:
+      properties:
+        request_id:
+          type: string
+          format: uuid
+          title: Request Id
+        schema_version:
+          type: integer
+          const: 1
+          title: Schema Version
+        revision:
+          type: integer
+          const: 1
+          title: Revision
+        submission:
+          $ref: '#/components/schemas/RequestSubmission'
+        accepted_at:
+          type: string
+          format: date-time
+          title: Accepted At
+        cloud_state:
+          type: string
+          const: accepted
+          title: Cloud State
+        analysis_state:
+          type: string
+          enum:
+          - pending
+          - retrying
+          - ready_for_review
+          - needs_review
+          - failed
+          title: Analysis State
+        result:
+          anyOf:
+          - $ref: '#/components/schemas/ValidatedResult'
+          - type: 'null'
+        analysis_attempts:
+          type: integer
+          title: Analysis Attempts
+        manual_retry_count:
+          type: integer
+          title: Manual Retry Count
+          default: 0
+        error:
+          anyOf:
+          - $ref: '#/components/schemas/ErrorDetail'
+          - type: 'null'
+        provider_evidence:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Provider Evidence
+        assignment_state:
+          type: string
+          enum:
+          - not_implemented
+          - unassigned
+          - reserved
+          - released
+          - fulfilled
+          title: Assignment State
+        fulfillment_state:
+          type: string
+          enum:
+          - not_implemented
+          - not_fulfilled
+          - fulfilled
+          title: Fulfillment State
+        history:
+          $ref: '#/components/schemas/RequestHistory'
+        reservation:
+          anyOf:
+          - $ref: '#/components/schemas/Reservation'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - request_id
+      - schema_version
+      - revision
+      - submission
+      - accepted_at
+      - cloud_state
+      - analysis_state
+      - result
+      - analysis_attempts
+      - error
+      - provider_evidence
+      - assignment_state
+      - fulfillment_state
+      - history
+      - reservation
+      title: InboxRequestResult
+    InterpretationResult:
+      properties:
+        interpretation_id:
+          type: string
+          format: uuid
+          title: Interpretation Id
+        status:
+          type: string
+          enum:
+          - pending
+          - ready_for_review
+          - needs_review
+          - failed
+          title: Status
+        result:
+          anyOf:
+          - $ref: '#/components/schemas/ValidatedResult'
+          - type: 'null'
+        error:
+          anyOf:
+          - $ref: '#/components/schemas/ErrorDetail'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - interpretation_id
+      - status
+      title: InterpretationResult
+    InterpretationSubmission:
+      properties:
+        operation_id:
+          type: string
+          format: uuid
+          title: Operation Id
+        interpretation_id:
+          type: string
+          format: uuid
+          title: Interpretation Id
+        incident_id:
+          type: string
+          maxLength: 80
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Incident Id
+        destination_shelter_id:
+          type: string
+          maxLength: 80
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Destination Shelter Id
+        original_text:
+          type: string
+          maxLength: 4096
+          minLength: 1
+          title: Original Text
+        transcription_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Transcription Id
+      additionalProperties: false
+      type: object
+      required:
+      - operation_id
+      - interpretation_id
+      - incident_id
+      - destination_shelter_id
+      - original_text
+      title: InterpretationSubmission
+    Inventory:
+      properties:
+        shelter_id:
+          type: string
+          title: Shelter Id
+        items:
+          items:
+            $ref: '#/components/schemas/InventoryItem'
+          type: array
+          title: Items
+      additionalProperties: false
+      type: object
+      required:
+      - shelter_id
+      - items
+      title: Inventory
+    InventoryAdjustment:
+      properties:
+        operation_id:
+          type: string
+          format: uuid
+          title: Operation Id
+        item_id:
+          type: string
+          enum:
+          - water_packs
+          - food_packs
+          - blankets
+          title: Item Id
+        quantity_delta:
+          type: integer
+          maximum: 1000000.0
+          minimum: -1000000.0
+          title: Quantity Delta
+        expected_revision:
+          type: integer
+          minimum: 0.0
+          title: Expected Revision
+        note:
+          type: string
+          maxLength: 500
+          minLength: 1
+          title: Note
+      additionalProperties: false
+      type: object
+      required:
+      - operation_id
+      - item_id
+      - quantity_delta
+      - expected_revision
+      - note
+      title: InventoryAdjustment
+    InventoryCommand:
+      properties:
+        operation_id:
+          type: string
+          format: uuid
+          title: Operation Id
+        action:
+          type: string
+          enum:
+          - reserve
+          - fulfill
+          - release
+          title: Action
+        item_id:
+          anyOf:
+          - type: string
+            enum:
+            - water_packs
+            - food_packs
+            - blankets
+          - type: 'null'
+          title: Item Id
+        quantity:
+          anyOf:
+          - type: integer
+            maximum: 10000.0
+            minimum: 1.0
+          - type: 'null'
+          title: Quantity
+        expected_inventory_revision:
+          anyOf:
+          - type: integer
+            minimum: 0.0
+          - type: 'null'
+          title: Expected Inventory Revision
+      additionalProperties: false
+      type: object
+      required:
+      - operation_id
+      - action
+      title: InventoryCommand
+    InventoryItem:
+      properties:
+        item_id:
+          type: string
+          enum:
+          - water_packs
+          - food_packs
+          - blankets
+          title: Item Id
+        unit:
+          type: string
+          enum:
+          - pack
+          - piece
+          title: Unit
+        on_hand:
+          type: integer
+          minimum: 0.0
+          title: On Hand
+        reserved:
+          type: integer
+          minimum: 0.0
+          title: Reserved
+        available:
+          type: integer
+          minimum: 0.0
+          title: Available
+        revision:
+          type: integer
+          minimum: 0.0
+          title: Revision
+      additionalProperties: false
+      type: object
+      required:
+      - item_id
+      - unit
+      - on_hand
+      - reserved
+      - available
+      - revision
+      title: InventoryItem
+    ModelProposal:
+      properties:
+        item_id:
+          anyOf:
+          - type: string
+            enum:
+            - water_packs
+            - blankets
+            - food_packs
+            - medicines
+            - other
+          - type: 'null'
+          title: Item Id
+        quantity:
+          anyOf:
+          - type: integer
+            maximum: 10000.0
+            minimum: 1.0
+          - type: 'null'
+          title: Quantity
+        unit:
+          anyOf:
+          - type: string
+            enum:
+            - pack
+            - piece
+            - bottle
+            - item
+            - tablet
+            - vial
+            - box
+          - type: 'null'
+          title: Unit
+        shelter_id:
+          anyOf:
+          - type: string
+            maxLength: 80
+          - type: 'null'
+          title: Shelter Id
+        negated:
+          type: boolean
+          title: Negated
+        missing_fields:
+          items:
+            type: string
+            enum:
+            - item
+            - quantity
+            - unit
+            - shelter
+          type: array
+          maxItems: 4
+          title: Missing Fields
+        summary:
+          type: string
+          maxLength: 400
+          minLength: 1
+          title: Summary
+        people:
+          anyOf:
+          - type: integer
+            maximum: 1000000.0
+            minimum: 1.0
+          - type: 'null'
+          title: People
+        landmark:
+          anyOf:
+          - type: string
+            maxLength: 240
+          - type: 'null'
+          title: Landmark
+        medicine_details:
+          anyOf:
+          - type: string
+            maxLength: 240
+          - type: 'null'
+          title: Medicine Details
+        urgency:
+          anyOf:
+          - type: string
+            enum:
+            - routine
+            - soon
+            - urgent
+            - immediate
+          - type: 'null'
+          title: Urgency
+        urgency_evidence:
+          anyOf:
+          - type: string
+            maxLength: 240
+          - type: 'null'
+          title: Urgency Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - item_id
+      - unit
+      - shelter_id
+      - negated
+      - missing_fields
+      - summary
+      title: ModelProposal
+    Profile:
+      properties:
+        subject:
+          type: string
+          title: Subject
+        role:
+          type: string
+          enum:
+          - requester
+          - dispatcher
+          title: Role
+        incident_id:
+          type: string
+          title: Incident Id
+        shelter_ids:
+          items:
+            type: string
+          type: array
+          title: Shelter Ids
+      additionalProperties: false
+      type: object
+      required:
+      - subject
+      - role
+      - incident_id
+      - shelter_ids
+      title: Profile
+    ReceiverAssignment:
+      properties:
+        device_id:
+          type: string
+          format: uuid
+          title: Device Id
+        expected_revision:
+          type: integer
+          minimum: 0.0
+          title: Expected Revision
+      additionalProperties: false
+      type: object
+      required:
+      - device_id
+      - expected_revision
+      title: ReceiverAssignment
+    RequestEvent:
+      properties:
+        event_id:
+          type: string
+          format: uuid
+          title: Event Id
+        revision:
+          type: integer
+          title: Revision
+        author_role:
+          type: string
+          enum:
+          - requester
+          - dispatcher
+          title: Author Role
+        text:
+          type: string
+          title: Text
+        status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+      additionalProperties: false
+      type: object
+      required:
+      - event_id
+      - revision
+      - author_role
+      - text
+      - status
+      - created_at
+      title: RequestEvent
+    RequestEventCommand:
+      properties:
+        operation_id:
+          type: string
+          format: uuid
+          title: Operation Id
+        expected_revision:
+          type: integer
+          minimum: 0.0
+          title: Expected Revision
+        text:
+          type: string
+          maxLength: 2000
+          title: Text
+          default: ''
+        status:
+          anyOf:
+          - type: string
+            enum:
+            - accepted
+            - in_progress
+            - completed
+            - rejected
+            - cancelled
+          - type: 'null'
+          title: Status
+      additionalProperties: false
+      type: object
+      required:
+      - operation_id
+      - expected_revision
+      title: RequestEventCommand
+    RequestHistory:
+      properties:
+        request_id:
+          type: string
+          format: uuid
+          title: Request Id
+        revision:
+          type: integer
+          title: Revision
+        status:
+          type: string
+          title: Status
+        events:
+          items:
+            $ref: '#/components/schemas/RequestEvent'
+          type: array
+          title: Events
+        resource_allocation_verified:
+          type: boolean
+          title: Resource Allocation Verified
+          default: false
+        physical_delivery_verified:
+          type: boolean
+          const: false
+          title: Physical Delivery Verified
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - request_id
+      - revision
+      - status
+      - events
+      title: RequestHistory
+    RequestInventory:
+      properties:
+        request_id:
+          type: string
+          format: uuid
+          title: Request Id
+        reservation:
+          anyOf:
+          - $ref: '#/components/schemas/Reservation'
+          - type: 'null'
+        history:
+          $ref: '#/components/schemas/RequestHistory'
+      additionalProperties: false
+      type: object
+      required:
+      - request_id
+      - reservation
+      - history
+      title: RequestInventory
+    RequestLocation:
+      properties:
+        latitude:
+          type: number
+          maximum: 90.0
+          minimum: -90.0
+          title: Latitude
+        longitude:
+          type: number
+          maximum: 180.0
+          minimum: -180.0
+          title: Longitude
+        horizontal_accuracy:
+          type: number
+          maximum: 20000000.0
+          minimum: 0.0
+          title: Horizontal Accuracy
+        captured_at:
+          type: string
+          format: date-time
+          title: Captured At
+        precision:
+          type: string
+          enum:
+          - precise
+          - approximate
+          title: Precision
+        source:
+          type: string
+          enum:
+          - device
+          - manual
+          title: Source
+      additionalProperties: false
+      type: object
+      required:
+      - latitude
+      - longitude
+      - horizontal_accuracy
+      - captured_at
+      - precision
+      - source
+      title: RequestLocation
+    RequestPage:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/InboxRequestResult'
+          type: array
+          title: Items
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+      additionalProperties: false
+      type: object
+      required:
+      - items
+      - next_cursor
+      title: RequestPage
+    RequestResult:
+      properties:
+        request_id:
+          type: string
+          format: uuid
+          title: Request Id
+        schema_version:
+          type: integer
+          const: 1
+          title: Schema Version
+        revision:
+          type: integer
+          const: 1
+          title: Revision
+        submission:
+          $ref: '#/components/schemas/RequestSubmission'
+        accepted_at:
+          type: string
+          format: date-time
+          title: Accepted At
+        cloud_state:
+          type: string
+          const: accepted
+          title: Cloud State
+        analysis_state:
+          type: string
+          enum:
+          - pending
+          - retrying
+          - ready_for_review
+          - needs_review
+          - failed
+          title: Analysis State
+        result:
+          anyOf:
+          - $ref: '#/components/schemas/ValidatedResult'
+          - type: 'null'
+        analysis_attempts:
+          type: integer
+          title: Analysis Attempts
+        manual_retry_count:
+          type: integer
+          title: Manual Retry Count
+          default: 0
+        error:
+          anyOf:
+          - $ref: '#/components/schemas/ErrorDetail'
+          - type: 'null'
+        provider_evidence:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Provider Evidence
+        assignment_state:
+          type: string
+          enum:
+          - not_implemented
+          - unassigned
+          - reserved
+          - released
+          - fulfilled
+          title: Assignment State
+        fulfillment_state:
+          type: string
+          enum:
+          - not_implemented
+          - not_fulfilled
+          - fulfilled
+          title: Fulfillment State
+      additionalProperties: false
+      type: object
+      required:
+      - request_id
+      - schema_version
+      - revision
+      - submission
+      - accepted_at
+      - cloud_state
+      - analysis_state
+      - result
+      - analysis_attempts
+      - error
+      - provider_evidence
+      - assignment_state
+      - fulfillment_state
+      title: RequestResult
+    RequestSubmission:
+      properties:
+        schema_version:
+          type: integer
+          const: 1
+          title: Schema Version
+          default: 1
+        operation_id:
+          type: string
+          format: uuid
+          title: Operation Id
+        request_id:
+          type: string
+          format: uuid
+          title: Request Id
+        incident_id:
+          type: string
+          maxLength: 80
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Incident Id
+        destination_shelter_id:
+          type: string
+          maxLength: 80
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Destination Shelter Id
+        origin_device_id:
+          type: string
+          format: uuid
+          title: Origin Device Id
+        original_text:
+          type: string
+          maxLength: 4096
+          minLength: 1
+          title: Original Text
+        input_mode:
+          type: string
+          enum:
+          - text
+          - reviewed_transcript
+          title: Input Mode
+        transcription_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Transcription Id
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+        expires_at:
+          type: string
+          format: date-time
+          title: Expires At
+        revision:
+          type: integer
+          const: 1
+          title: Revision
+          default: 1
+        location:
+          anyOf:
+          - $ref: '#/components/schemas/RequestLocation'
+          - type: 'null'
+        structured_fields:
+          anyOf:
+          - $ref: '#/components/schemas/StructuredFields'
+          - type: 'null'
+        interpretation_id:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+          title: Interpretation Id
+      additionalProperties: false
+      type: object
+      required:
+      - operation_id
+      - request_id
+      - incident_id
+      - destination_shelter_id
+      - origin_device_id
+      - original_text
+      - input_mode
+      - created_at
+      - expires_at
+      title: RequestSubmission
+      examples:
+      - schema_version: 1
+        operation_id: a0000000-0000-4000-8000-000000000001
+        request_id: b0000000-0000-4000-8000-000000000001
+        incident_id: synthetic-demo-01
+        destination_shelter_id: shelter-a
+        origin_device_id: c0000000-0000-4000-8000-000000000001
+        original_text: Shelter A needs 20 water packs.
+        input_mode: text
+        created_at: '2026-10-24T04:00:00Z'
+        expires_at: '2026-10-25T04:00:00Z'
+        revision: 1
+    Reservation:
+      properties:
+        item_id:
+          type: string
+          enum:
+          - water_packs
+          - food_packs
+          - blankets
+          title: Item Id
+        quantity:
+          type: integer
+          minimum: 1.0
+          title: Quantity
+        unit:
+          type: string
+          enum:
+          - pack
+          - piece
+          title: Unit
+        status:
+          type: string
+          enum:
+          - reserved
+          - fulfilled
+          - released
+          title: Status
+      additionalProperties: false
+      type: object
+      required:
+      - item_id
+      - quantity
+      - unit
+      - status
+      title: Reservation
+    ShelterDirectory:
+      properties:
+        schema_version:
+          type: integer
+          const: 1
+          title: Schema Version
+        items:
+          items:
+            $ref: '#/components/schemas/DirectoryEntry'
+          type: array
+          title: Items
+      additionalProperties: false
+      type: object
+      required:
+      - schema_version
+      - items
+      title: ShelterDirectory
+    ShelterReceiver:
+      properties:
+        account_subject:
+          type: string
+          title: Account Subject
+        device_id:
+          type: string
+          format: uuid
+          title: Device Id
+        signing_key:
+          type: string
+          title: Signing Key
+        encryption_key:
+          type: string
+          title: Encryption Key
+        revision:
+          type: integer
+          title: Revision
+      additionalProperties: false
+      type: object
+      required:
+      - account_subject
+      - device_id
+      - signing_key
+      - encryption_key
+      - revision
+      title: ShelterReceiver
+    SignedRequest:
+      properties:
+        body:
+          type: string
+          maxLength: 32000
+          minLength: 1
+          title: Body
+        signature:
+          type: string
+          maxLength: 112
+          minLength: 1
+          title: Signature
+        signing_key:
+          type: string
+          maxLength: 128
+          minLength: 1
+          title: Signing Key
+      additionalProperties: false
+      type: object
+      required:
+      - body
+      - signature
+      - signing_key
+      title: SignedRequest
+    StartTranscription:
+      properties:
+        operation_id:
+          type: string
+          format: uuid
+          title: Operation Id
+      additionalProperties: false
+      type: object
+      required:
+      - operation_id
+      title: StartTranscription
+    StructuredFields:
+      properties:
+        item_id:
+          anyOf:
+          - type: string
+            enum:
+            - water_packs
+            - blankets
+            - food_packs
+            - medicines
+            - other
+          - type: 'null'
+          title: Item Id
+        quantity:
+          anyOf:
+          - type: integer
+            maximum: 10000.0
+            minimum: 1.0
+          - type: 'null'
+          title: Quantity
+        unit:
+          anyOf:
+          - type: string
+            enum:
+            - pack
+            - piece
+            - bottle
+            - item
+            - tablet
+            - vial
+            - box
+          - type: 'null'
+          title: Unit
+        people:
+          anyOf:
+          - type: integer
+            maximum: 1000000.0
+            minimum: 1.0
+          - type: 'null'
+          title: People
+        landmark:
+          anyOf:
+          - type: string
+            maxLength: 500
+          - type: 'null'
+          title: Landmark
+        urgency:
+          anyOf:
+          - type: string
+            enum:
+            - routine
+            - soon
+            - urgent
+            - immediate
+          - type: 'null'
+          title: Urgency
+        medicine_details:
+          anyOf:
+          - type: string
+            maxLength: 240
+          - type: 'null'
+          title: Medicine Details
+      additionalProperties: false
+      type: object
+      title: StructuredFields
+    TranscriptionAllocation:
+      properties:
+        schema_version:
+          type: integer
+          const: 1
+          title: Schema Version
+          default: 1
+        operation_id:
+          type: string
+          format: uuid
+          title: Operation Id
+        transcription_id:
+          type: string
+          format: uuid
+          title: Transcription Id
+        incident_id:
+          type: string
+          maxLength: 80
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]+$
+          title: Incident Id
+        content_type:
+          type: string
+          const: audio/wav
+          title: Content Type
+          default: audio/wav
+        byte_length:
+          type: integer
+          maximum: 2097152.0
+          minimum: 45.0
+          title: Byte Length
+        sha256:
+          type: string
+          pattern: ^[a-f0-9]{64}$
+          title: Sha256
+        language_code:
+          type: string
+          const: en-US
+          title: Language Code
+          default: en-US
+      additionalProperties: false
+      type: object
+      required:
+      - operation_id
+      - transcription_id
+      - incident_id
+      - byte_length
+      - sha256
+      title: TranscriptionAllocation
+    TranscriptionResult:
+      properties:
+        schema_version:
+          type: integer
+          const: 1
+          title: Schema Version
+        transcription_id:
+          type: string
+          format: uuid
+          title: Transcription Id
+        incident_id:
+          type: string
+          title: Incident Id
+        content_type:
+          type: string
+          const: audio/wav
+          title: Content Type
+        byte_length:
+          type: integer
+          title: Byte Length
+        sha256:
+          type: string
+          title: Sha256
+        language_code:
+          type: string
+          const: en-US
+          title: Language Code
+        status:
+          type: string
+          enum:
+          - awaiting_upload
+          - upload_expired
+          - queued
+          - processing
+          - completed
+          - failed
+          title: Status
+        created_at:
+          type: number
+          title: Created At
+        upload_expires_at:
+          type: number
+          title: Upload Expires At
+        transcript:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Transcript
+        error:
+          anyOf:
+          - $ref: '#/components/schemas/ErrorDetail'
+          - type: 'null'
+        provider_evidence:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Provider Evidence
+        start_count:
+          type: integer
+          title: Start Count
+        started_at:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Started At
+        duration_seconds:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Duration Seconds
+        sample_rate:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Sample Rate
+        upload:
+          anyOf:
+          - $ref: '#/components/schemas/UploadAuthorization'
+          - type: 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - schema_version
+      - transcription_id
+      - incident_id
+      - content_type
+      - byte_length
+      - sha256
+      - language_code
+      - status
+      - created_at
+      - upload_expires_at
+      - transcript
+      - error
+      - provider_evidence
+      - start_count
+      title: TranscriptionResult
+    UploadAuthorization:
+      properties:
+        method:
+          type: string
+          enum:
+          - POST
+          - PUT
+          title: Method
+        url:
+          type: string
+          title: Url
+        fields:
+          additionalProperties:
+            type: string
+          type: object
+          title: Fields
+        headers:
+          additionalProperties:
+            type: string
+          type: object
+          title: Headers
+        requires_bearer_token:
+          type: boolean
+          title: Requires Bearer Token
+        expires_in_seconds:
+          type: integer
+          title: Expires In Seconds
+      additionalProperties: false
+      type: object
+      required:
+      - method
+      - url
+      - fields
+      - headers
+      - requires_bearer_token
+      - expires_in_seconds
+      title: UploadAuthorization
+    ValidatedResult:
+      properties:
+        status:
+          type: string
+          enum:
+          - ready_for_review
+          - needs_review
+          title: Status
+        proposal:
+          anyOf:
+          - $ref: '#/components/schemas/ModelProposal'
+          - type: 'null'
+        review_reasons:
+          items:
+            type: string
+          type: array
+          title: Review Reasons
+        allocation_authorized:
+          type: boolean
+          const: false
+          title: Allocation Authorized
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - status
+      - proposal
+      - review_reasons
+      title: ValidatedResult
+      examples:
+      - status: ready_for_review
+        proposal:
+          item_id: water_packs
+          quantity: 20
+          unit: pack
+          shelter_id: shelter-a
+          negated: false
+          missing_fields: []
+          summary: Shelter A requests 20 water packs.
+        review_reasons: []
+        allocation_authorized: false
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

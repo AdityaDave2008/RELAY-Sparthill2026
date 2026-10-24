@@ -1,0 +1,19 @@
+{
+  "scope": "Real HTTPS / Cognito / DynamoDB / Bedrock worker check with synthetic reviewed text. No physical wireless or stock mutation.",
+  "request_id": "REDACTED-ID-7ce234021035",
+  "cloud_state": "accepted",
+  "same_id_replay": "PASS",
+  "analysis_state": "ready_for_review",
+  "elapsed_seconds": 2.697,
+  "proposal": {
+    "item_id": "water_packs",
+    "quantity": 2,
+    "unit": "pack",
+    "shelter_id": "shelter-a",
+    "negated": false,
+    "missing_fields": [],
+    "summary": "Shelter A needs 2 water packs."
+  },
+  "allocation_authorized": false,
+  "status": "PASS"
+}

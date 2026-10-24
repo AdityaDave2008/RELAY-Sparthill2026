@@ -1,0 +1,4 @@
+23:11:06  Acquired tunnel connection to device.
+23:11:06  Enabling developer disk image services.
+23:11:06  Acquired usage assertion.
+Launched application with org.relay.prototype.ios bundle identifier.

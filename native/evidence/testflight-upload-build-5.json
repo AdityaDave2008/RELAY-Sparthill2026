@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "build": "5",
+  "app_id": "6826458231",
+  "bundle_id": "com.nikilthalapaneni.relay",
+  "team": "U4G9LV39GM",
+  "archive": "PASS",
+  "upload": "PASS",
+  "upload_time_pdt": "2026-10-23 19:37:57",
+  "apple_processing": "Complete",
+  "internal_availability": "Testing",
+  "external_build_2": "Waiting for Review",
+  "physical_wireless_verification": false,
+  "apple_build_id": "REDACTED-ID-eb2270d82708",
+  "test_notes": "Saved",
+  "internal_group": "RELAY Development",
+  "verified_utc": "2026-10-24T02:43:47.719080+00:00"
+}

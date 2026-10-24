@@ -1,0 +1,187 @@
+{
+  "bedrock_invocations_with_evidence": 16,
+  "accepted_requests": 12,
+  "diagnostic_invocations": 4,
+  "input_tokens": 6948,
+  "output_tokens": 1181,
+  "transcription_jobs": 1,
+  "source": "Observed SDK usage and request IDs, not billing invoice",
+  "calls": [
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-4876aae14289",
+      "usage": {
+        "inputTokens": 273,
+        "outputTokens": 75,
+        "totalTokens": 348
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-f2887745a9b6",
+      "usage": {
+        "inputTokens": 347,
+        "outputTokens": 213,
+        "totalTokens": 560
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-f0f0184eece2",
+      "usage": {
+        "inputTokens": 445,
+        "outputTokens": 50,
+        "totalTokens": 495
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-25ce00a7039e",
+      "usage": {
+        "inputTokens": 438,
+        "outputTokens": 47,
+        "totalTokens": 485
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-d3dcaf4d33e2",
+      "usage": {
+        "inputTokens": 491,
+        "outputTokens": 50,
+        "totalTokens": 541
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-4dcdb2dd771b",
+      "usage": {
+        "inputTokens": 484,
+        "outputTokens": 55,
+        "totalTokens": 539
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-7c84489d73bf",
+      "usage": {
+        "inputTokens": 491,
+        "outputTokens": 50,
+        "totalTokens": 541
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-d72b39abe4ca",
+      "usage": {
+        "inputTokens": 484,
+        "outputTokens": 55,
+        "totalTokens": 539
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-ad68aa3030c1",
+      "usage": {
+        "inputTokens": 489,
+        "outputTokens": 53,
+        "totalTokens": 542
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-b4492e943b7f",
+      "usage": {
+        "inputTokens": 486,
+        "outputTokens": 47,
+        "totalTokens": 533
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-3cf9478856b9",
+      "usage": {
+        "inputTokens": 486,
+        "outputTokens": 48,
+        "totalTokens": 534
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-cf5a8948bdc0",
+      "usage": {
+        "inputTokens": 485,
+        "outputTokens": 45,
+        "totalTokens": 530
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-24af1830740e",
+      "usage": {
+        "inputTokens": 273,
+        "outputTokens": 75,
+        "totalTokens": 348
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-beb49faa3b82",
+      "usage": {
+        "inputTokens": 347,
+        "outputTokens": 213,
+        "totalTokens": 560
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-939507d4e117",
+      "usage": {
+        "inputTokens": 445,
+        "outputTokens": 50,
+        "totalTokens": 495
+      },
+      "stop_reason": "end_turn"
+    },
+    {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-8233c78af588",
+      "usage": {
+        "inputTokens": 484,
+        "outputTokens": 55,
+        "totalTokens": 539
+      },
+      "stop_reason": "end_turn"
+    }
+  ]
+}

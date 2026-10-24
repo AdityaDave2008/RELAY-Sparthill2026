@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-24T05:35:55.121064+00:00",
+  "purpose": "Missing-quantity output diagnostic",
+  "input_text": "Shelter A needs water packs.",
+  "raw_output": "{\"item_id\":\"water_packs\",\"quantity\":null,\"unit\":\"pack\",\"shelter_id\":\"shelter-a\",\"negated\":false,\"missing_fields\":[\"quantity\"],\"summary\":\"Shelter A needs water packs, but the quantity is not specified.\"}]",
+  "provider_evidence": {
+    "provider": "aws",
+    "model_id": "amazon.nova-lite-v1:0",
+    "request_id": "REDACTED-ID-8233c78af588",
+    "usage": {
+      "inputTokens": 484,
+      "outputTokens": 55,
+      "totalTokens": 539
+    },
+    "stop_reason": "end_turn"
+  },
+  "validation": {
+    "status": "needs_review",
+    "proposal": null,
+    "review_reasons": [
+      "invalid_model_output"
+    ],
+    "allocation_authorized": false
+  }
+}

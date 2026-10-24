@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-24",
+  "devices": [
+    {
+      "device": "iphone15promax",
+      "bundle": "org.relay.prototype.ios",
+      "build": "9",
+      "install": "PASS",
+      "launch": "PASS",
+      "integrity": "ok",
+      "identity_preserved": true,
+      "messages_before": 28,
+      "messages_after": 28,
+      "all_old_messages_and_receipts_preserved": true,
+      "shelters_preserved": true,
+      "network_conditions": "Not isolated: installation only",
+      "physical_wireless": "NOT TESTED"
+    },
+    {
+      "device": "iphone16",
+      "bundle": "org.relay.prototype.ios",
+      "build": "9",
+      "install": "PASS",
+      "launch": "PASS",
+      "integrity": "ok",
+      "identity_preserved": true,
+      "messages_before": 27,
+      "messages_after": 27,
+      "all_old_messages_and_receipts_preserved": true,
+      "shelters_preserved": true,
+      "network_conditions": "Not isolated: installation only",
+      "physical_wireless": "NOT TESTED"
+    }
+  ],
+  "radio_acceptance": "NOT TESTED"
+}

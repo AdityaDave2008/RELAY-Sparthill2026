@@ -1,0 +1,40 @@
+{
+  "build": 19,
+  "scope": "Native iPhone simulator requester and native Mac coordinator, internet available; not physical router-free verification",
+  "observed_ui": [
+    "Bedrock filled quantity 2, people 4, room 12, Urgent",
+    "Selected Soon manually and verified review screen",
+    "Sent request; Mac inbox retained Soon",
+    "Coordinator reply appeared in requester detail without manual refresh after reply"
+  ],
+  "records": [
+    {
+      "request_id": "REDACTED-ID-a90234153072",
+      "fields": {
+        "item_id": "water_packs",
+        "landmark": "room 12",
+        "people": 4,
+        "quantity": 2,
+        "unit": "pack",
+        "urgency": "soon"
+      },
+      "cloud_state": "accepted",
+      "nearby_state": "shelter_saved",
+      "history": {
+        "events": [
+          {
+            "author_role": "dispatcher",
+            "created_at": "2026-10-24T14:58:34Z",
+            "event_id": "REDACTED-ID-40eecd0a84ba",
+            "revision": 1,
+            "text": "SYNTHETIC build 19: reply refresh verified."
+          }
+        ],
+        "request_id": "REDACTED-ID-a90234153072",
+        "revision": 1,
+        "status": "new"
+      },
+      "problem": null
+    }
+  ]
+}

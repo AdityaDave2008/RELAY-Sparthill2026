@@ -1,0 +1,10 @@
+mac-final
+** BUILD SUCCEEDED **
+sim-final
+** BUILD SUCCEEDED **
+device
+** BUILD SUCCEEDED **
+testflight
+** ARCHIVE SUCCEEDED **
+2026-10-24 02:45:16.572 xcodebuild[69712:8011880] Progress 100%: Upload succeeded.
+** EXPORT SUCCEEDED **

@@ -1,0 +1,35 @@
+Monitoring boot status for iPhone 17 Pro (REDACTED-ID-14a8441b471f).
+[2026-10-23 22:26:13 +0000] Status=1, isTerminal=NO, Elapsed=00:02.
+	Waiting on BackBoard
+
+[2026-10-23 22:26:13 +0000] Status=2, isTerminal=NO, Elapsed=00:02.
+	Waiting on Data Migration
+		Reason:(null)
+		Migration Elapsed:00:00 seconds
+
+[2026-10-23 22:26:14 +0000] Status=4, isTerminal=NO, Elapsed=00:03.
+	Waiting on System App
+
+[2026-10-23 22:26:15 +0000] Status=4, isTerminal=NO, Elapsed=00:04.
+	Waiting on System App
+
+[2026-10-23 22:26:16 +0000] Status=4, isTerminal=NO, Elapsed=00:05.
+	Waiting on System App
+
+[2026-10-23 22:26:17 +0000] Status=4, isTerminal=NO, Elapsed=00:06.
+	Waiting on System App
+
+[2026-10-23 22:26:18 +0000] Status=4, isTerminal=NO, Elapsed=00:07.
+	Waiting on System App
+
+[2026-10-23 22:26:19 +0000] Status=4, isTerminal=NO, Elapsed=00:08.
+	Waiting on System App
+
+[2026-10-23 22:26:19 +0000] Status=4, isTerminal=NO, Elapsed=00:08.
+	Waiting on System App
+
+[2026-10-23 22:26:21 +0000] Status=4294967295, isTerminal=YES, Elapsed=00:10.
+	Finished
+
+org.relay.prototype.ios: 77433
+org.relay.prototype.ios: 79017

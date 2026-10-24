@@ -14,6 +14,30 @@ in `us-east-1` drives the coordinator's main workflow:
 - Bedrock vision to read photographed paper help cards for volunteer review.
 - Accessible information and help requests for people without digital devices.
 
+## Native iPhone/macOS application
+
+The complete Swift prototype is in **[`native/`](native/README.md)**, including the
+Xcode project, shared Network.framework/SQLite relay engine, native resident and
+coordinator interfaces, AWS Transcribe/Bedrock integration, Python backend, tests,
+and reproducible demo instructions. Start with [`native/MORNING_DEMO.md`](native/MORNING_DEMO.md).
+
+```sh
+cd native
+swift test
+open RELAY.xcodeproj
+```
+
+The Apple app and `native/cloud` backend form one tested stack. The existing
+React/Expo/web apps and `services/api` remain intact and use their own contract;
+they have not been automatically integrated with the native transport/backend.
+Expo Go and a browser do not acquire Apple's peer-to-peer transport merely by
+sharing this repository. Physical router-independent acceptance remains a separate
+manual test; see [`native/TEST_RESULTS.md`](native/TEST_RESULTS.md).
+
+The `dev` branch contains the team integration snapshot. `main` remains the GitHub
+default branch; publication to it uses ordinary fast-forward updates, preserving
+existing team history. [Credential/privacy cleanup report](native/PUBLICATION_CLEANUP.md).
+
 ## Project status
 
 - [`packages/relay-core`](packages/relay-core): durable browser message storage,
@@ -73,7 +97,7 @@ Browser tests use installed Google Chrome and the built app at port 5174
 demo records in the configured database. The QR test uses camera streams of
 real QR images; physical Android/iPhone cameras still need manual testing.
 Phone camera access requires HTTPS; see `npm run dev:phone --workspace=@relay/web`.
-Native Bluetooth/radio transport is not implemented.
+Native Bluetooth/radio transport is not implemented in the React/web stack. The separate Swift stack is documented under `native/`.
 
 See the [frontend/API contract](services/api/README.md) for AWS deployment and
 demo requirements. Lambda/API Gateway deployment source is included; starting

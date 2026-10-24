@@ -1,0 +1,162 @@
+{
+  "type": "same-host Mac and iOS Simulator control; NOT physical wireless evidence",
+  "checks": [
+    "invalid UUID blocked in composer",
+    "Done dismissed software keyboard and retained draft",
+    "queued request survived simulator app restart",
+    "destination generated separate receipt",
+    "Reply selected original sender",
+    "reply delivery confirmed by separate receipt",
+    "networking stopped on both control apps"
+  ],
+  "simulator": {
+    "device_id": "REDACTED-ID-ee5abc667601",
+    "messages": [
+      {
+        "message": {
+          "created_at": "2026-10-24T01:46:35Z",
+          "destination_id": "REDACTED-ID-337a93bc8deb",
+          "expires_at": "2026-10-25T01:46:35Z",
+          "hop_count": 0,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-4243100fd0a1",
+          "message_type": "RESOURCE_REQUEST",
+          "origin_id": "REDACTED-ID-ee5abc667601",
+          "payload": {
+            "text": "SYNTHETIC UI-003: Message saved before the next encounter."
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": "REDACTED-ID-436549feb3b8"
+      },
+      {
+        "message": {
+          "created_at": "2026-10-24T01:49:56Z",
+          "destination_id": "REDACTED-ID-ee5abc667601",
+          "expires_at": "2026-10-25T01:49:56Z",
+          "hop_count": 1,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-ab80117362bc",
+          "message_type": "RESOURCE_REQUEST",
+          "origin_id": "REDACTED-ID-337a93bc8deb",
+          "payload": {
+            "text": "SYNTHETIC UI-003 reply: Received on the Mac."
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": null
+      },
+      {
+        "message": {
+          "created_at": "2026-10-24T01:49:01Z",
+          "destination_id": "REDACTED-ID-ee5abc667601",
+          "expires_at": "2026-10-25T01:49:01Z",
+          "hop_count": 1,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-436549feb3b8",
+          "message_type": "DELIVERY_RECEIPT",
+          "origin_id": "REDACTED-ID-337a93bc8deb",
+          "payload": {
+            "original_message_id": "REDACTED-ID-4243100fd0a1",
+            "text": "Final destination persisted request"
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": null
+      },
+      {
+        "message": {
+          "created_at": "2026-10-24T01:49:56Z",
+          "destination_id": "REDACTED-ID-337a93bc8deb",
+          "expires_at": "2026-10-25T01:49:56Z",
+          "hop_count": 0,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-cf230a8adc78",
+          "message_type": "DELIVERY_RECEIPT",
+          "origin_id": "REDACTED-ID-ee5abc667601",
+          "payload": {
+            "original_message_id": "REDACTED-ID-ab80117362bc",
+            "text": "Final destination persisted request"
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": null
+      }
+    ]
+  },
+  "mac": {
+    "device_id": "REDACTED-ID-337a93bc8deb",
+    "messages": [
+      {
+        "message": {
+          "created_at": "2026-10-24T01:46:35Z",
+          "destination_id": "REDACTED-ID-337a93bc8deb",
+          "expires_at": "2026-10-25T01:46:35Z",
+          "hop_count": 1,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-4243100fd0a1",
+          "message_type": "RESOURCE_REQUEST",
+          "origin_id": "REDACTED-ID-ee5abc667601",
+          "payload": {
+            "text": "SYNTHETIC UI-003: Message saved before the next encounter."
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": null
+      },
+      {
+        "message": {
+          "created_at": "2026-10-24T01:49:56Z",
+          "destination_id": "REDACTED-ID-ee5abc667601",
+          "expires_at": "2026-10-25T01:49:56Z",
+          "hop_count": 0,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-ab80117362bc",
+          "message_type": "RESOURCE_REQUEST",
+          "origin_id": "REDACTED-ID-337a93bc8deb",
+          "payload": {
+            "text": "SYNTHETIC UI-003 reply: Received on the Mac."
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": "REDACTED-ID-cf230a8adc78"
+      },
+      {
+        "message": {
+          "created_at": "2026-10-24T01:49:01Z",
+          "destination_id": "REDACTED-ID-ee5abc667601",
+          "expires_at": "2026-10-25T01:49:01Z",
+          "hop_count": 0,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-436549feb3b8",
+          "message_type": "DELIVERY_RECEIPT",
+          "origin_id": "REDACTED-ID-337a93bc8deb",
+          "payload": {
+            "original_message_id": "REDACTED-ID-4243100fd0a1",
+            "text": "Final destination persisted request"
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": null
+      },
+      {
+        "message": {
+          "created_at": "2026-10-24T01:49:56Z",
+          "destination_id": "REDACTED-ID-337a93bc8deb",
+          "expires_at": "2026-10-25T01:49:56Z",
+          "hop_count": 1,
+          "max_hops": 5,
+          "message_id": "REDACTED-ID-cf230a8adc78",
+          "message_type": "DELIVERY_RECEIPT",
+          "origin_id": "REDACTED-ID-ee5abc667601",
+          "payload": {
+            "original_message_id": "REDACTED-ID-ab80117362bc",
+            "text": "Final destination persisted request"
+          },
+          "protocol_version": 1
+        },
+        "final_receipt": null
+      }
+    ]
+  }
+}

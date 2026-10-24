@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-10-24T08:46:13.585803+00:00",
+  "account": "928489693154",
+  "region": "us-east-1",
+  "sts_request_id": "REDACTED-ID-1d33f17ce2bc",
+  "mode": "One direct read-only backend service call using existing server-side synthetic membership; not an HTTP/Cognito benchmark",
+  "item_count": 19,
+  "next_cursor_present": false,
+  "elapsed_seconds": 0.597,
+  "dynamodb_api_calls": {
+    "Query": 1,
+    "BatchGetItem": 1
+  },
+  "batch_get_denied": false,
+  "runtime_restart": false,
+  "iam_changes": false,
+  "new_ai_calls": 0,
+  "new_transcriptions": 0,
+  "writes": 0
+}

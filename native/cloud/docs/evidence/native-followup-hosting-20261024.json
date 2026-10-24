@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-10-24T07:03:57.850041+00:00",
+  "execution_role": {
+    "status": "ABSENT",
+    "code": "NoSuchEntity",
+    "request_id": "REDACTED-ID-8a5b74706584"
+  },
+  "http_api_inventory": {
+    "count": 0,
+    "has_more": false,
+    "request_id": "REDACTED-ID-b10a9a9e7088"
+  }
+}

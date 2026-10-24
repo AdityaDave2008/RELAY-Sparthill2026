@@ -1,0 +1,9 @@
+--prepared:/private/tmp/RELAY-mac-build/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/__preview.dylib
+--validated:/private/tmp/RELAY-mac-build/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/__preview.dylib
+--prepared:/private/tmp/RELAY-mac-build/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib
+--validated:/private/tmp/RELAY-mac-build/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib
+/tmp/RELAY-mac-build/Build/Products/Debug/RELAY-macOS.app: valid on disk
+/tmp/RELAY-mac-build/Build/Products/Debug/RELAY-macOS.app: satisfies its Designated Requirement
+Executable=/private/tmp/RELAY-mac-build/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS
+warning: Specifying ':' in the path is deprecated and will not work in a future release
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "https://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>com.apple.security.app-sandbox</key><true/><key>com.apple.security.get-task-allow</key><true/><key>com.apple.security.network.client</key><true/><key>com.apple.security.network.server</key><true/></dict></plist>

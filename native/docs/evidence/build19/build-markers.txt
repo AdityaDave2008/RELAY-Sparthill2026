@@ -1,0 +1,15 @@
+relay19-mac-build.txt
+** BUILD SUCCEEDED **
+
+relay19-sim-build.txt
+** BUILD SUCCEEDED **
+
+relay19-device-build.txt
+** BUILD SUCCEEDED **
+
+relay19-release.txt
+Build artifacts and logs: /tmp/RELAY-testflight.eagaTC
+** ARCHIVE SUCCEEDED **
+2026-10-24 07:56:47.973 xcodebuild[3249:8420150] Progress 100%: Uploaded package is processing.
+2026-10-24 07:56:48.086 xcodebuild[3249:8420150] Progress 100%: Upload succeeded.
+** EXPORT SUCCEEDED **

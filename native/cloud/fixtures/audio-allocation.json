@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "operation_id": "a0000000-0000-4000-8000-000000000002",
+  "transcription_id": "d0000000-0000-4000-8000-000000000001",
+  "incident_id": "synthetic-demo-01",
+  "content_type": "audio/wav",
+  "byte_length": 62464,
+  "sha256": "9d5ceb99bb4ab2f3375cf0d2bdcf3286f42fa1155bc3c87bcf3b94475b6f2271",
+  "language_code": "en-US"
+}

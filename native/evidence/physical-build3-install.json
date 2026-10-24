@@ -1,0 +1,33 @@
+{
+  "recorded_at": "2026-10-24T01:59:01.686684+00:00",
+  "phone_a_model": "iPhone 15 Pro Max",
+  "phone_a_os": "iOS 27.0.1",
+  "bundle_id": "org.relay.prototype.ios",
+  "version": "0.1.0",
+  "build": "3",
+  "device_id": "REDACTED-ID-85ca2bd297a6",
+  "identity_preserved": true,
+  "message_count_before": 0,
+  "message_count_after": 0,
+  "installation_succeeded": true,
+  "launch_succeeded": true,
+  "phone_b_status": "Installed and launched build 3",
+  "physical_offline_test": "NOT TESTED",
+  "phone_b": {
+    "model": "iPhone 16",
+    "os": "iOS 26.2",
+    "version": "0.1.0",
+    "build": "3",
+    "device_id": "REDACTED-ID-1684768e4451",
+    "identity_preserved": true,
+    "message_count_before": 0,
+    "message_count_after": 0,
+    "installation_succeeded": true,
+    "launch_succeeded": true,
+    "settings": {
+      "device_id": "REDACTED-ID-1684768e4451",
+      "role": "Relay B",
+      "force_route": "true"
+    }
+  }
+}

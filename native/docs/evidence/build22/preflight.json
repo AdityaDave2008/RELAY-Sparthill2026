@@ -1,0 +1,22 @@
+{
+  "scope": "Read-only account/endpoint/budget checks; no AI or physical wireless check",
+  "stage": "complete",
+  "endpoint": "https://relay.stepcheck.app",
+  "health": "ok",
+  "role": "dispatcher",
+  "cache_control": "no-store",
+  "authorized_shelters": 1,
+  "enrolled_receivers": 1,
+  "anonymous_status": 401,
+  "configured_caps": {
+    "requests": 100,
+    "transcriptions": 20,
+    "live_streams": 4
+  },
+  "used_allocations": {
+    "requests": 36,
+    "transcriptions": 12
+  },
+  "local_worker_processes_seen": 1,
+  "status": "PASS"
+}

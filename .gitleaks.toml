@@ -1,0 +1,17 @@
+title = "RELAY reviewed secret-scan exceptions"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "SHA-256 source checksums in recorded evidence, not authentication material"
+condition = "AND"
+paths = ['(?:^|/)(?:docs/evidence/.*/(?:build[0-9]+-)?source-manifest\.json|cloud/docs/evidence/preview-inventory-source\.json)$']
+regexTarget = "line"
+regexes = ['^\s*"[^"\n]+\.(?:swift|py)"\s*:\s*"[0-9a-f]{64}"\s*,?\s*$']
+
+[[allowlists]]
+description = "Literal localStorage key used by the existing coordinator UI"
+condition = "AND"
+paths = ['^apps/web/src/coordinator/Coordinator\.tsx$']
+regexTarget = "line"
+regexes = ['''REPLIED_KEY = 'relay\.coordinator\.replies\.v1'''']

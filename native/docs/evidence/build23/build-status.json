@@ -1,0 +1,14 @@
+{
+  "device": {
+    "build_succeeded": true
+  },
+  "sim": {
+    "build_succeeded": true
+  },
+  "mac": {
+    "build_succeeded": true
+  },
+  "testflight_uploaded": false,
+  "physical_iphone16_updated": false,
+  "mac_installed": false
+}

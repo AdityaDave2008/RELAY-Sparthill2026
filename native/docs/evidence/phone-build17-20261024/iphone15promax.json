@@ -1,0 +1,18 @@
+{
+  "phone": "iPhone 15 Pro Max",
+  "build": 17,
+  "install": "PASS",
+  "launch": "PASS",
+  "integrity": "ok",
+  "device_id_unchanged": true,
+  "messages_before": 38,
+  "messages_after": 39,
+  "all_original_message_bodies_preserved": true,
+  "existing_final_receipts_preserved": true,
+  "cloud_submissions_before": 23,
+  "all_original_cloud_submissions_preserved": true,
+  "requester_directory_cached": true,
+  "shelter_a_receiver_cached": true,
+  "one_use_session_file_absent": true,
+  "physical_no_router_test": "NOT TESTED"
+}

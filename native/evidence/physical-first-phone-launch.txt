@@ -1,0 +1,16 @@
+15:54:11  Acquired tunnel connection to device.
+15:54:11  Enabling developer disk image services.
+15:54:12  Acquired usage assertion.
+Launched application with org.relay.prototype.ios bundle identifier.
+
+15:54:16  Acquired tunnel connection to device.
+15:54:16  Enabling developer disk image services.
+15:54:16  Acquired usage assertion.
+3 files:
+Name               URL Resources        Size    Modification date
+----------------   ------------------   -----   -----------------
+relay.sqlite       Writable, Readable   4 KB    10/23/26, 3:54 PM
+relay.sqlite-shm   Writable, Readable   32 KB   10/23/26, 3:54 PM
+relay.sqlite-wal   Writable, Readable   81 KB   10/23/26, 3:54 PM
+
+2026-10-23T22:54:12Z [REDACTED-ID-85ca2bd297a6] APP_OPEN device=REDACTED-ID-85ca2bd297a6 os=Version 27.0.1 (Build 24A446) durable_store=/var/mobile/Containers/Data/Application/REDACTED-ID-fd366fec12b1/Library/Application Support/RELAY/relay.sqlite

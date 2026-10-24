@@ -1,0 +1,36 @@
+{
+  "audio_seconds" : 1.8240000000000001,
+  "durable_result" : "PASS",
+  "events" : [
+    {
+      "elapsed_ms" : 2145,
+      "partial" : true,
+      "text" : "Sheltering",
+      "type" : "transcript"
+    },
+    {
+      "elapsed_ms" : 2786,
+      "partial" : true,
+      "text" : "Sheltering needs",
+      "type" : "transcript"
+    },
+    {
+      "elapsed_ms" : 3309,
+      "partial" : false,
+      "text" : "Sheltering needs 2 water packs.",
+      "type" : "transcript"
+    },
+    {
+      "elapsed_ms" : 3857,
+      "partial" : null,
+      "text" : "Sheltering needs 2 water packs.",
+      "type" : "complete"
+    }
+  ],
+  "ready_ms" : 991,
+  "replay_without_new_AWS_stream" : "PASS",
+  "scope" : "Native Swift WebSocket client with synthetic WAV chunks; not microphone or physical wireless verification",
+  "status" : "PASS",
+  "transcript" : "Sheltering needs 2 water packs.",
+  "transcription_id" : "REDACTED-ID-9100359cfc3d"
+}

@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "finished_at": "2026-10-24T05:38:35.863525+00:00",
+  "audio_source": "macOS synthetic/TTS fixture, not a noisy human speech benchmark",
+  "spoken_sample": "Shelter A needs two water packs.",
+  "raw_transcript": "Sheltering needs 2 water packs.",
+  "review_action": "Agent corrected the shelter name against the known synthetic sample; no native review UI was tested.",
+  "reviewed_text": "Shelter A needs 2 water packs.",
+  "transcription_id": "REDACTED-ID-bae40cd8379c",
+  "result": {
+    "request_id": "REDACTED-ID-17d6b0083baf",
+    "schema_version": 1,
+    "revision": 1,
+    "submission": {
+      "schema_version": 1,
+      "operation_id": "REDACTED-ID-6b9e3a3620de",
+      "request_id": "REDACTED-ID-17d6b0083baf",
+      "incident_id": "synthetic-demo-01",
+      "destination_shelter_id": "shelter-a",
+      "origin_device_id": "REDACTED-ID-b579686f66d4",
+      "original_text": "Shelter A needs 2 water packs.",
+      "input_mode": "reviewed_transcript",
+      "transcription_id": "REDACTED-ID-bae40cd8379c",
+      "created_at": "2026-10-24T05:38:33.108638Z",
+      "expires_at": "2026-10-24T06:38:33.108638Z",
+      "revision": 1
+    },
+    "accepted_at": "2026-10-24T05:38:33.226821Z",
+    "cloud_state": "accepted",
+    "analysis_state": "ready_for_review",
+    "result": {
+      "status": "ready_for_review",
+      "proposal": {
+        "item_id": "water_packs",
+        "quantity": 2,
+        "unit": "pack",
+        "shelter_id": "shelter-a",
+        "negated": false,
+        "missing_fields": [],
+        "summary": "Shelter A needs 2 water packs."
+      },
+      "review_reasons": [],
+      "allocation_authorized": false
+    },
+    "analysis_attempts": 1,
+    "manual_retry_count": 0,
+    "error": null,
+    "provider_evidence": {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-3cf9478856b9",
+      "usage": {
+        "inputTokens": 486,
+        "outputTokens": 48,
+        "totalTokens": 534
+      },
+      "stop_reason": "end_turn"
+    },
+    "assignment_state": "not_implemented",
+    "fulfillment_state": "not_implemented"
+  }
+}

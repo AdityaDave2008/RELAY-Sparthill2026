@@ -1,0 +1,51 @@
+{
+  "mode": "Independent DynamoDB readback",
+  "requests": [
+    {
+      "request_id": "REDACTED-ID-9d0de59831f3",
+      "analysis_state": "ready_for_review",
+      "input_mode": "text",
+      "proposal": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 2,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs 2 water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "history_events": 3,
+      "history_status": "completed"
+    },
+    {
+      "request_id": "REDACTED-ID-49771301a6d3",
+      "analysis_state": "ready_for_review",
+      "input_mode": "reviewed_transcript",
+      "proposal": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 2,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs two water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "history_events": 3,
+      "history_status": "completed"
+    }
+  ],
+  "budget_counts": {
+    "requests": 15,
+    "transcriptions": 2
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "scope": "Live synthetic HTTPS/API check; no physical wireless or microphone test",
+  "started_at": "2026-10-24T16:10:49.688561+00:00",
+  "announcement_id": "REDACTED-ID-eec2792d2c62",
+  "publish_and_idempotent_retry_seconds": 1.27,
+  "both_distinct_resident_accounts_received_same_id": true,
+  "resident_publish_status": 403,
+  "withdrawal_visible_to_both_residents": true,
+  "active_ui_demo_announcements": [
+    {
+      "id": "REDACTED-ID-a82ea2f9709f",
+      "title": "DEMO ONLY \u00b7 Shelter A update"
+    }
+  ],
+  "status": "PASS"
+}

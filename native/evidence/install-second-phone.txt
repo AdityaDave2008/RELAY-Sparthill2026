@@ -1,0 +1,9 @@
+17:51:02  Enabling developer disk image services.
+17:51:02  Acquired usage assertion.
+App installed:
+• bundleID: org.relay.prototype.ios
+• installationURL: file:///private/var/containers/Bundle/Application/REDACTED-ID-b7ee7fd4c2dd/RELAY-iOS.app/
+• launchServicesIdentifier: unknown
+• databaseUUID: REDACTED-ID-a6272f251142
+• databaseSequenceNumber: 22460
+• options: 

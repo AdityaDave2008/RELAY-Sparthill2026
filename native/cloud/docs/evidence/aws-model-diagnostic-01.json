@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-24T05:30:58.625261+00:00",
+  "purpose": "Synthetic diagnostic of rejected model format",
+  "raw_output": "```json\n{\n  \"item_id\": \"water_packs\",\n  \"quantity\": 20,\n  \"unit\": \"pack\",\n  \"shelter_id\": \"shelter-a\",\n  \"negated\": false,\n  \"missing_fields\": [],\n  \"summary\": \"Request for 20 water packs for Shelter A.\"\n}\n```",
+  "provider_evidence": {
+    "provider": "aws",
+    "model_id": "amazon.nova-lite-v1:0",
+    "request_id": "REDACTED-ID-24af1830740e",
+    "usage": {
+      "inputTokens": 273,
+      "outputTokens": 75,
+      "totalTokens": 348
+    },
+    "stop_reason": "end_turn"
+  },
+  "validation": {
+    "status": "needs_review",
+    "proposal": null,
+    "review_reasons": [
+      "invalid_model_output"
+    ],
+    "allocation_authorized": false
+  }
+}

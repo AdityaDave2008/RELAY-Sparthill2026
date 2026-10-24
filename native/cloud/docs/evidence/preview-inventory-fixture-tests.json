@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-10-24T08:04:06.366362+00:00",
+  "finished_at": "2026-10-24T08:04:12.471925+00:00",
+  "status": "PASS",
+  "exit_code": 0,
+  "source_base": "8c207e736d269b02d52d888b8de12ac360ed1db7",
+  "branch": "feature/cloud-inventory-preview",
+  "test_mode": "local fixtures and SDK wire stubs, not live AWS",
+  "live_aws_calls": 0,
+  "paid_ai_calls": 0,
+  "runtime_restarts": 0,
+  "tests_passed": 60
+}

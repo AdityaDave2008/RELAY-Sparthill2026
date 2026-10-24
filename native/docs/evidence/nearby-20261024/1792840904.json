@@ -1,0 +1,56 @@
+{
+  "request_id": "REDACTED-ID-0ac5b204e3a8",
+  "time": 1792840904.381367,
+  "scope": "Two native iPhone simulators and native Mac on one host; app-level encounter separation, not physical radio separation",
+  "devices": {
+    "C": {
+      "device_id": "REDACTED-ID-337a93bc8deb",
+      "messages": [],
+      "cloud_records": [],
+      "logs": []
+    },
+    "A": {
+      "device_id": "REDACTED-ID-ee5abc667601",
+      "messages": [
+        {
+          "id": "REDACTED-ID-0ac5b204e3a8",
+          "type": "RESOURCE_REQUEST",
+          "origin": "REDACTED-ID-ee5abc667601",
+          "destination": "REDACTED-ID-337a93bc8deb",
+          "hop_count": 0,
+          "final_receipt": null
+        }
+      ],
+      "cloud_records": [
+        {
+          "state": "queued",
+          "nearby_state": "relay_saved",
+          "cloud_accepted": false,
+          "problem": null
+        }
+      ],
+      "logs": [
+        "2026-10-24T11:21:16Z [REDACTED-ID-ee5abc667601] TRANSFER_ATTEMPT id=REDACTED-ID-0ac5b204e3a8 peer=REDACTED-ID-3fa5296dc94b hops=1 pending_retry=false",
+        "2026-10-24T11:21:16Z [REDACTED-ID-ee5abc667601] STORAGE_ACK_RECEIVED id=REDACTED-ID-0ac5b204e3a8 kind=RELAY_STORED peer=REDACTED-ID-3fa5296dc94b ack_latency_ms=40"
+      ]
+    },
+    "B": {
+      "device_id": "REDACTED-ID-3fa5296dc94b",
+      "messages": [
+        {
+          "id": "REDACTED-ID-0ac5b204e3a8",
+          "type": "RESOURCE_REQUEST",
+          "origin": "REDACTED-ID-ee5abc667601",
+          "destination": "REDACTED-ID-337a93bc8deb",
+          "hop_count": 1,
+          "final_receipt": null
+        }
+      ],
+      "cloud_records": [],
+      "logs": [
+        "2026-10-24T11:21:16Z [REDACTED-ID-3fa5296dc94b] PERSISTED id=REDACTED-ID-0ac5b204e3a8 peer=REDACTED-ID-ee5abc667601 hops=1",
+        "2026-10-24T11:21:16Z [REDACTED-ID-3fa5296dc94b] STORAGE_ACK_SENT id=REDACTED-ID-0ac5b204e3a8 kind=RELAY_STORED"
+      ]
+    }
+  }
+}

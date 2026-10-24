@@ -1,0 +1,37 @@
+.build/
+build/
+.swiftpm/
+*.xcuserstate
+xcuserdata/
+.DS_Store
+
+# Local runtime data, credentials, signing material, and build products
+DerivedData/
+*.xcarchive/
+*.ipa
+*.sqlite
+*.sqlite-*
+*.db
+*.p12
+*.p8
+*.pem
+*.key
+*.mobileprovision
+.env
+.env.*
+!.env.example
+.aws/
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+cdk.out/
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# One-use authentication files and runtime manifests must never be committed.
+*.private.*
+developer-session.json
+aws-test-tokens.json
+created-resources.json

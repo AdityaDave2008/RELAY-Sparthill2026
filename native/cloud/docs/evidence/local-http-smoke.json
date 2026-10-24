@@ -1,0 +1,242 @@
+{
+  "started_at": "2026-10-24T05:01:42.209480+00:00",
+  "base_url": "http://127.0.0.1:8787",
+  "checks": {
+    "authentication_and_directory": "PASS",
+    "idempotency_and_authorization": "PASS",
+    "text_pipeline": "PASS",
+    "missing_quantity_negation_invalid_shelter": "PASS",
+    "audio_to_reviewed_request": "PASS",
+    "real_bedrock": "NOT TESTED",
+    "real_transcribe": "NOT TESTED"
+  },
+  "requests": [
+    {
+      "request_id": "REDACTED-ID-4e1196069c36",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-423914bb6cf4",
+        "request_id": "REDACTED-ID-4e1196069c36",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-dfb84702c227",
+        "original_text": "SYNTHETIC: Shelter A needs 20 water packs.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:01:42.257940Z",
+        "expires_at": "2026-10-24T06:01:42.257940Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:01:42.259352Z",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 20,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Synthetic fixture proposal; no AWS inference occurred."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "fixture-not-aws",
+        "model_id": "fixture",
+        "request_id": null,
+        "usage": {}
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    },
+    {
+      "request_id": "REDACTED-ID-a634d42284c5",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-835d6224528b",
+        "request_id": "REDACTED-ID-a634d42284c5",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-52dfbd8fddf9",
+        "original_text": "Shelter A needs water packs.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:01:44.281469Z",
+        "expires_at": "2026-10-24T06:01:44.281469Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:01:44.282950Z",
+      "cloud_state": "accepted",
+      "analysis_state": "needs_review",
+      "result": {
+        "status": "needs_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": null,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [
+            "quantity"
+          ],
+          "summary": "Synthetic fixture proposal; no AWS inference occurred."
+        },
+        "review_reasons": [
+          "missing_quantity"
+        ],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "fixture-not-aws",
+        "model_id": "fixture",
+        "request_id": null,
+        "usage": {}
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    },
+    {
+      "request_id": "REDACTED-ID-a6dc52490bc3",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-76ffdfd315d2",
+        "request_id": "REDACTED-ID-a6dc52490bc3",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-339cb9fc5181",
+        "original_text": "Do not send 20 water packs to Shelter A.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:01:46.292906Z",
+        "expires_at": "2026-10-24T06:01:46.292906Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:01:46.297049Z",
+      "cloud_state": "accepted",
+      "analysis_state": "needs_review",
+      "result": {
+        "status": "needs_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 20,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Synthetic fixture proposal; no AWS inference occurred."
+        },
+        "review_reasons": [
+          "negation_requires_review"
+        ],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "fixture-not-aws",
+        "model_id": "fixture",
+        "request_id": null,
+        "usage": {}
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    },
+    {
+      "request_id": "REDACTED-ID-f40d59af3156",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-c02fc6d368ac",
+        "request_id": "REDACTED-ID-f40d59af3156",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-95de07099b98",
+        "original_text": "Shelter A needs 2 water packs.",
+        "input_mode": "reviewed_transcript",
+        "transcription_id": "REDACTED-ID-b365f7ee209d",
+        "created_at": "2026-10-24T05:01:48.335074Z",
+        "expires_at": "2026-10-24T06:01:48.335074Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:01:48.339583Z",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 2,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Synthetic fixture proposal; no AWS inference occurred."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "fixture-not-aws",
+        "model_id": "fixture",
+        "request_id": null,
+        "usage": {}
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    }
+  ],
+  "transcriptions": [
+    {
+      "schema_version": 1,
+      "transcription_id": "REDACTED-ID-b365f7ee209d",
+      "incident_id": "synthetic-demo-01",
+      "content_type": "audio/wav",
+      "byte_length": 62464,
+      "sha256": "9d5ceb99bb4ab2f3375cf0d2bdcf3286f42fa1155bc3c87bcf3b94475b6f2271",
+      "language_code": "en-US",
+      "status": "completed",
+      "created_at": 1792818106.310627,
+      "upload_expires_at": 1792818406.310627,
+      "transcript": "Shelter A needs 2 water packs.",
+      "error": null,
+      "provider_evidence": {
+        "provider": "fixture-not-aws",
+        "job_name": "fixture-REDACTED-ID-b365f7ee209d",
+        "request_id": null,
+        "poll_request_id": null
+      },
+      "start_count": 1,
+      "started_at": 1792818106.317594,
+      "duration_seconds": 1.824,
+      "sample_rate": 16000,
+      "upload": null
+    }
+  ],
+  "native_app_integration": "NOT TESTED",
+  "mode": "local-test",
+  "storage": "sqlite",
+  "audio_source": "Caller-provided fixture; label synthetic/TTS when applicable. Not a noisy-speech benchmark.",
+  "status": "PASS",
+  "finished_at": "2026-10-24T05:01:50.356338+00:00"
+}

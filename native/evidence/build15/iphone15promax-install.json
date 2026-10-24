@@ -1,0 +1,16 @@
+{
+  "device": "iphone15promax",
+  "build": "15",
+  "install": "PASS",
+  "launch": "BLOCKED: device locked; operator asked to unlock/open",
+  "integrity": "ok",
+  "identity_preserved": true,
+  "messages_before": 33,
+  "messages_after": 33,
+  "all_old_messages_and_receipts_preserved": true,
+  "shelters_preserved": true,
+  "prior_cloud_requests": 20,
+  "all_prior_cloud_submissions_preserved": true,
+  "physical_wireless": "NOT TESTED",
+  "network_conditions": "Uncontrolled install session"
+}

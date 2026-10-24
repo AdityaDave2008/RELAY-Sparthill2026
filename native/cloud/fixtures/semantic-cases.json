@@ -1,0 +1,18 @@
+[
+  {
+    "text": "Shelter A needs 20 water packs.",
+    "expected": "ready_for_review"
+  },
+  {
+    "text": "Shelter A needs water packs.",
+    "expected": "needs_review"
+  },
+  {
+    "text": "Do not send 20 water packs to Shelter A.",
+    "expected": "needs_review"
+  },
+  {
+    "text": "Shelter B needs 20 water packs.",
+    "expected": "needs_review"
+  }
+]

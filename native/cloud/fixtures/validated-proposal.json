@@ -1,0 +1,14 @@
+{
+  "status": "ready_for_review",
+  "proposal": {
+    "item_id": "water_packs",
+    "quantity": 20,
+    "unit": "pack",
+    "shelter_id": "shelter-a",
+    "negated": false,
+    "missing_fields": [],
+    "summary": "Shelter A requests 20 water packs."
+  },
+  "review_reasons": [],
+  "allocation_authorized": false
+}

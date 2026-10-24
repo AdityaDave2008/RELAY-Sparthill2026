@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-10-24T08:47:51.028570+00:00",
+  "status": "PASS",
+  "tests_passed": 67,
+  "duration_seconds": 5.24,
+  "warning": "Existing Starlette TestClient deprecation warning",
+  "command": "python -m pytest cloud/tests -q",
+  "test_mode": "local fixtures and SDK wire stubs",
+  "new_ai_calls": 0,
+  "new_transcription_jobs": 0,
+  "runtime_restart": false,
+  "iam_changes": false
+}

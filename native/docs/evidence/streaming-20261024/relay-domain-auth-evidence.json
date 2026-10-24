@@ -1,0 +1,27 @@
+{
+  "requester0": {
+    "role": "requester",
+    "cache_control": "no-store",
+    "x_cache": "Miss from cloudfront",
+    "correct_subject": true
+  },
+  "requester1": {
+    "role": "requester",
+    "cache_control": "no-store",
+    "x_cache": "Miss from cloudfront",
+    "correct_subject": true
+  },
+  "dispatcher0": {
+    "role": "dispatcher",
+    "cache_control": "no-store",
+    "x_cache": "Miss from cloudfront",
+    "correct_subject": true
+  },
+  "dispatcher1": {
+    "role": "dispatcher",
+    "cache_control": "no-store",
+    "x_cache": "Miss from cloudfront",
+    "correct_subject": true
+  },
+  "unauthenticated_status": 401
+}

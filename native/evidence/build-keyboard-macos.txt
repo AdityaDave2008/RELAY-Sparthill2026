@@ -1,0 +1,666 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project RELAY/RELAY.xcodeproj -scheme RELAY-macOS -configuration Debug -destination platform=macOS,arch=arm64 -derivedDataPath /tmp/RELAY-mac-keyboard CODE_SIGN_IDENTITY=- build
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = -
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  RELAY: /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY @ local
+
+note: Using codesigning identity override: -
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (3 targets)
+    Target 'RELAY-macOS' in project 'RELAY'
+        ➜ Explicit dependency on target 'RelayCore' in project 'RELAY'
+    Target 'RelayCore' in project 'RELAY'
+        ➜ Explicit dependency on target 'RelayCore' in project 'RELAY'
+    Target 'RelayCore' in project 'RELAY' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: c0cc77493418e6a394e149fd34646041
+Build description path: /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/XCBuildData/c0cc77493418e6a394e149fd34646041.xcbuilddata
+CreateBuildDirectory /tmp/RELAY-mac-keyboard/Build/Products
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-create-build-directory /tmp/RELAY-mac-keyboard/Build/Products
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -o /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache
+
+CreateBuildDirectory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-create-build-directory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex
+
+CreateBuildDirectory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-create-build-directory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-create-build-directory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+CreateBuildDirectory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/EagerLinkingTBDs/Debug
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-create-build-directory /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/EagerLinkingTBDs/Debug
+
+CreateBuildDirectory /tmp/RELAY-mac-keyboard/Build/Products/Debug
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-create-build-directory /tmp/RELAY-mac-keyboard/Build/Products/Debug
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-8a2a98ea85b31cd6e4c14d1dfa620956-VFS/all-product-headers.yaml
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-8a2a98ea85b31cd6e4c14d1dfa620956-VFS/all-product-headers.yaml
+
+CreateBuildDirectory /tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-create-build-directory /tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.DependencyStaticMetadataFileList (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.modulemap (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.modulemap
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.DependencyMetadataFileList (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.DependencyMetadataFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftFileList (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.LinkFileList (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.LinkFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_const_extract_protocols.json (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_const_extract_protocols.json
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftConstValuesFileList (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-OutputFileMap.json (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-OutputFileMap.json
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.hmap (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.hmap
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.DependencyStaticMetadataFileList (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.DependencyMetadataFileList (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.DependencyMetadataFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-project-headers.hmap (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-project-headers.hmap
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-own-target-headers.hmap (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-own-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-generated-files.hmap (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-generated-files.hmap
+
+Copy /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/GeneratedModuleMaps/RelayCore.modulemap /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.modulemap (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.modulemap /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/GeneratedModuleMaps
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-all-target-headers.hmap (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-all-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-all-non-framework-target-headers.hmap (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-DebugDylibPath-normal-arm64.txt (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-DebugDylibPath-normal-arm64.txt
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-DebugDylibInstallName-normal-arm64.txt (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-DebugDylibInstallName-normal-arm64.txt
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_const_extract_protocols.json (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_const_extract_protocols.json
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftFileList (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftConstValuesFileList (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.LinkFileList (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.LinkFileList
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS-OutputFileMap.json (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS-OutputFileMap.json
+
+WriteAuxiliaryFile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/Entitlements.plist (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    write-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/Entitlements.plist
+
+MkDir /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /bin/mkdir -p /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents
+
+MkDir /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /bin/mkdir -p /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS
+
+MkDir /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /bin/mkdir -p /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources
+
+MkDir /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /bin/mkdir -p /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app
+
+SwiftDriver RelayCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RelayCore -Onone -enforce-exclusivity\=checked @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -target arm64-apple-macos14.0 -g -module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -suppress-warnings -index-store-path /tmp/RELAY-mac-keyboard/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/RELAY-mac-keyboard/Build/Products/Debug -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /tmp/RELAY-mac-keyboard/Build/Products/Debug -F /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j11 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache -output-file-map /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -sdk-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Session.modulevalidation -package-name relay -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_const_extract_protocols.json -Xcc -I/tmp/RELAY-mac-keyboard/Build/Products/Debug/include -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources-normal/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-Swift.h -working-directory /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/SwiftShims-A5DD83ZXKEH6USU6FQDXX7B8M.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdarg-2983HMI87QUULF8D75325UILA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stddef-8KTRAV04QEDVIO9856BAE0OE2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ptrauth-S0VOI801N4S2C6PJH754LMFP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ptrcheck-7XWLZT8JJYPHNIHP7TNLXIQCE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_AvailabilityInternal-5GT7AR9ZEL2TM3O7Q125GWVT1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_SwiftConcurrencyShims-9BD6KMN86IYGTI04YU3YUWSL3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_float-DZ81AV1SZY2N0IDD42CRH9X1T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdbool-6V62TH7QMW0KJYHUS37GZ1CK8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_DarwinFoundation1-AKD92H19LN4Q6VAV3VUUZH8Z9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/SQLite3-5M9W4HA5BN5M5BK8IQJPI27Z4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_DarwinFoundation2-1AXC08AU87DDNTTVPF0PN9BAQ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_limits-9AERPWJGOO3RZN9CVUP4FU6UB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdint-E38Y1O7LAFUAAR0I8BEUQET9P.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/sys_types-SU3857TKWGY74VX1TLXNWHDL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdatomic-3GN0PC95JZVUGHXY2WEOVAI5L.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/libDER-BBZM3J9UY95FUB7SRULZDMD67.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_DarwinFoundation3-9ZZVG81JSWEEJ88YKALPGKUOO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_inttypes-7BYMJNG3WJ06WK0JOVB83HTIF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Darwin-D3Z9DGGAGWPM841UF70YR7XMF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/MachO-6Q7VVC7PMJ7LA3AP2Z4AG4XO7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/libkern-338YF688KI2MA07J0N912LZG4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/launch-5XR7BYO4INA3S4GMJIQSVVZHB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ObjectiveC-4ARRLCSOULPHI297YKJA033R3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/os_object-1AJNIXRDOXD418EVF6CGC7OQB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/os_workgroup-7VOBBFZIRBAF3KA4JNCYQ7X0K.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Dispatch-1JEPF4UW8IULXKWU5RCBR1NQB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/dnssd-8F8L12CVAO2IWHRA8ZLQ8UGRG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/XPC-CK2N0LVJD0VJKK7SOZXO0SU2I.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreFoundation-94OA2AEQ2D80DDQRZJAOROBCR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/os-3CPA42HPTMY4RMNEMZBQ0R1VR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/IOKit-2CXHAHGZU0UCGKDACNO0EH81Y.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CFNetwork-1N9JR3E21VU1LCF99PPC1K2CK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Security-EL8CAJ3I5LIXOCWQLGG5QWMOO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/DiskArbitration-20CHQXVJ78D0UXKZTA25X2SUO.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreServices-3UY2BCBTUX3GGYX6BL9QIKYLS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Foundation-1HEIM7X0GKF71VUGK2K68RT64.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Network-42RWAVSHYVGGORS3HI46EWMWR.pcm
+
+SwiftCompile normal arm64 Compiling\ Store.swift /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/Store.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftCompile normal arm64 /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/Store.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ RelayCore (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+EmitSwiftModule normal arm64 (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ Engine.swift /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/Engine.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftCompile normal arm64 /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/Engine.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ NetworkTransport.swift /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/NetworkTransport.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+SwiftCompile normal arm64 /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/NetworkTransport.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    
+
+SwiftCompile normal arm64 Compiling\ Protocol.swift /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/Protocol.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftCompile normal arm64 /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Sources/RelayCore/Protocol.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for RelayCore (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftDriver\ Compilation\ Requirements RelayCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RelayCore -Onone -enforce-exclusivity\=checked @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -target arm64-apple-macos14.0 -g -module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -suppress-warnings -index-store-path /tmp/RELAY-mac-keyboard/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/RELAY-mac-keyboard/Build/Products/Debug -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /tmp/RELAY-mac-keyboard/Build/Products/Debug -F /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j11 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache -output-file-map /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -sdk-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Session.modulevalidation -package-name relay -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_const_extract_protocols.json -Xcc -I/tmp/RELAY-mac-keyboard/Build/Products/Debug/include -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources-normal/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-Swift.h -working-directory /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/GeneratedModuleMaps/RelayCore-Swift.h /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-Swift.h (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-swiftHeaderTool -arch arm64 /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-Swift.h -o /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/GeneratedModuleMaps/RelayCore-Swift.h
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/arm64-apple-macos.abi.json /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.abi.json (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.abi.json /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/arm64-apple-macos.swiftmodule /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftmodule (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftmodule /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/arm64-apple-macos.swiftdoc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftdoc (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftdoc /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftsourceinfo (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftsourceinfo /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+ProcessProductPackaging /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Config/macOS.entitlements /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.app.xcent (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.app-sandbox" = 1;
+    "com.apple.security.get-task-allow" = 1;
+    "com.apple.security.network.client" = 1;
+    "com.apple.security.network.server" = 1;
+}
+    
+    builtin-productPackagingUtility /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Config/macOS.entitlements -entitlements -format xml -o /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.app.xcent
+
+ProcessProductPackagingDER /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.app.xcent /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.app.xcent.der (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /usr/bin/derq query -f xml -i /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.app.xcent -o /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.app.xcent.der --raw
+
+GenerateAssetSymbols /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/App/Assets.xcassets (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/App/Assets.xcassets --compile /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources --output-format human-readable-text --notices --warnings --export-dependency-info /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_dependencies --output-partial-info-plist /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_generated_info.plist --app-icon AppIcon --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 14.0 --platform macosx --bundle-identifier org.relay.prototype.macos --generate-swift-asset-symbol-extensions NO --generate-swift-asset-symbols /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols.swift --generate-objc-asset-symbols /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols.h --generate-asset-symbol-index /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/* com.apple.actool.compilation-results */
+/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols-Index.plist
+/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols.h
+/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols.swift
+
+
+MkDir /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/unthinned (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /bin/mkdir -p /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/unthinned
+
+MkDir /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/thinned (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /bin/mkdir -p /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/thinned
+
+CompileAssetCatalogVariant thinned /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/App/Assets.xcassets (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/App/Assets.xcassets --compile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_dependencies_thinned --output-partial-info-plist /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --enable-on-demand-resources NO --development-region en --target-device mac --minimum-deployment-target 14.0 --platform macosx
+/* com.apple.actool.compilation-results */
+/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_generated_info.plist_thinned
+/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/thinned/AppIcon.icns
+/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/thinned/Assets.car
+
+
+SwiftDriver RELAY-macOS normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RELAY_macOS -Onone -enforce-exclusivity\=checked @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -target arm64-apple-macos14.0 -g -module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/RELAY-mac-keyboard/Index.noindex/DataStore -swift-version 5 -I /tmp/RELAY-mac-keyboard/Build/Products/Debug -F /tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -F /tmp/RELAY-mac-keyboard/Build/Products/Debug -c -j11 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache -output-file-map /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -sdk-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-generated-files.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-own-target-headers.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-8a2a98ea85b31cd6e4c14d1dfa620956-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-project-headers.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Products/Debug/include -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources-normal/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS-Swift.h -working-directory /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY -experimental-emit-module-separately -disable-cmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_AvailabilityInternal-4QZVQ9FKBVMNLW981OHB68HI1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ptrcheck-1YPXWRLX5N0FYMTOK2YJYQMC9.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stddef-6ZVSPEECAUSL9ZJFKQ4IY5E44.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/SwiftShims-CSOPDBUTGQ3IHC1X2ZE6YTHVW.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/DeveloperToolsSupport-725YIDCR7W3SYBTYRKHG7V4BP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ptrauth-2FACVVYO55PNYV17R20P7VBN2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_SwiftConcurrencyShims-BHM6OQYXJNU6R6EX9TYUMBGLG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_float-4OEJMNVRU15RNPA4LKQ0GU1EP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdarg-2APNTUJD21999N0AP4RP4N12V.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdbool-3OWQO5YVHX2P9N7HP8HEQYO7A.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_DarwinFoundation1-9HMJY3JL72SF7H4R0DR54PX6Y.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_DarwinFoundation2-BVVWZYULL3H4HVUUO2S9262EF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_limits-A4ZQY54SHRQRJHRR86MGR637J.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/SQLite3-9AKTL4MOO9PHVXDWVRXBHXSJJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdint-5KG2B24UOAHH5TZRC306WBYUD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/sys_types-C61XWTAI2QOIDSZX5ER41IOZL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_tgmath-6M6CZHR1I5FUL8ADN5CXEBWA6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_DarwinFoundation3-DX26LWJBNB3A4YX1EHS16AR72.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_stdatomic-3CHYNIIRJA1MYTITMOXB3A6N4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/libDER-6PQXL7SKEP4Q38AY2S0DWWRKF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_intrinsics-13NHFJRNUAOLXW5FSQ74AW86E.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/OpenGL-EYIRGJKDWC6NHHOISRCMO8395.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/_Builtin_inttypes-DBUS42FHCXMJEXIR7T0PUNY11.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Darwin-28PTMAWKN9JC5C2BTXN0L7EGF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/simd-1KN0Y0XPGR389NH3LUZA0YFEJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/MachO-2QZ4OP2ER2MGQ4XQ2NI8HSHOL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/libkern-H06N77SNIZI5SMCJG0YYIDW6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/launch-8KE2PNJU43THNS6AORPZYDSBX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CUPS-EOC4UKCTW13FGLGQ2Z0702FGB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ObjectiveC-53W7JO1G8F88962ZLCSFOIBYD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Spatial-34HZ1BB6D6V6O806T5V2J5ZD1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/os_object-CHYA8FLKZS8TFOR9BG0U9URIR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/os_workgroup-6A7GHMCTRQEKEAKDDS751D6AP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Dispatch-33OUIQ5IWU6XG2UUMOPZ1FMSG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/XPC-5US2RFLFKTUV3843MQKC70A2U.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/dnssd-37M8NLZHV42015QZ3FE2OV3FL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreFoundation-8KOGW8Y9I9E97VAD7JS0Q11PQ.pcm
+
+SwiftDriverJobDiscovery normal arm64 Compiling Engine.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftDriverJobDiscovery normal arm64 Compiling Store.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/os-YKACEC8A0V1BOUBAFMT4OD5C.pcm
+
+SwiftDriverJobDiscovery normal arm64 Compiling Protocol.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Security-C1C0H322PJRTLICAG424K8JM5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/IOKit-6LGD3WWA06F470VYBVPWY9GQ5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ColorSync-3RC4JWHSOVRPU7RTA2INHTRT1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CFNetwork-8GFMBLD8PC6B9O253RMJKSU42.pcm
+
+SwiftDriverJobDiscovery normal arm64 Compiling NetworkTransport.swift (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+
+SwiftDriver\ Compilation RelayCore normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RelayCore -Onone -enforce-exclusivity\=checked @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftFileList -DSWIFT_PACKAGE -DDEBUG -DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE -DXcode -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -target arm64-apple-macos14.0 -g -module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -suppress-warnings -index-store-path /tmp/RELAY-mac-keyboard/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/RELAY-mac-keyboard/Build/Products/Debug -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F /tmp/RELAY-mac-keyboard/Build/Products/Debug -F /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -c -j11 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache -output-file-map /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -sdk-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Session.modulevalidation -package-name relay -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_const_extract_protocols.json -Xcc -I/tmp/RELAY-mac-keyboard/Build/Products/Debug/include -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources-normal/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/DerivedSources -Xcc -DSWIFT_PACKAGE -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-Swift.h -working-directory /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj -experimental-emit-module-separately -disable-cmo
+
+Ld /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.o normal (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -r -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -O0 -w -L/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -L/tmp/RELAY-mac-keyboard/Build/Products/Debug -L/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib -F/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/tmp/RELAY-mac-keyboard/Build/Products/Debug -iframework /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks -filelist /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.LinkFileList -nostdlib -Xlinker -object_path_lto -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftmodule @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-linker-args.resp -o /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.o
+
+ExtractAppIntentsMetadata (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name RelayCore --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk --xcode-version 17B100 --platform-family macOS --deployment-target 14.0 --bundle-identifier relay.RelayCore --output /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.appintents --target-triple arm64-apple-macos14.0 --binary-file /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.o --dependency-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore_dependency_info.dat --stringsdata-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftFileList --metadata-file-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.DependencyMetadataFileList --static-metadata-file-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/RelayCore.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.SwiftConstValuesFileList --force --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-23 18:11:06.123 appintentsmetadataprocessor[92961:7231705] Starting appintentsmetadataprocessor export
+2026-10-23 18:11:06.239 appintentsmetadataprocessor[92961:7231705] Extracted no relevant App Intents symbols, skipping writing output
+
+LinkAssetCatalog /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/App/Assets.xcassets (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-linkAssetCatalog --thinned /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/thinned --thinned-dependencies /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_generated_info.plist_thinned --unthinned /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_output/unthinned --unthinned-dependencies /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_generated_info.plist_unthinned --output /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources --plist-output /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_generated_info.plist
+note: Emplaced /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources/AppIcon.icns (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+note: Emplaced /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources/Assets.car (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/DiskArbitration-AS0IXJ8I33FD71TTH4564IIV5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreGraphics-5Y6CMR42KRLHAPI55IKP12C5A.pcm
+
+RegisterExecutionPolicyException /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.o (in target 'RelayCore' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Package.swift')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-RegisterExecutionPolicyException /tmp/RELAY-mac-keyboard/Build/Products/Debug/RelayCore.o
+
+ProcessInfoPlistFile /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Info.plist /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Config/macOS-Info.plist (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-infoPlistUtility /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/Config/macOS-Info.plist -producttype com.apple.product-type.application -genpkginfo /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/PkgInfo -expandbuildsettings -platform macosx -additionalcontentfile /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/assetcatalog_generated_info.plist -o /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Info.plist
+
+Ld /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/__preview.dylib normal (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -Os -L/tmp/RELAY-mac-keyboard/Build/Products/Debug -F/tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -F/tmp/RELAY-mac-keyboard/Build/Products/Debug -install_name @rpath/RELAY-macOS.debug.dylib -Xlinker -dependency_info -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_dependency_info.dat -Xlinker -no_adhoc_codesign -o /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/__preview.dylib
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreServices-AI7IZLI0IC8PUJG3PYFZY30VT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ImageIO-9JD055DAZJ4K8UZ36OMGET02Q.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreText-BJBTGWJZGGACA6ZQTF78XQCCT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Foundation-DJBEJZT6N1WMYUEJON7B9K20M.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/ApplicationServices-25747VIGND7S5K05LGV244RNE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Accessibility-499D5E73WNPU7RKA0DR4P8SCB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/UniformTypeIdentifiers-45MH099R0YUJCIWH3BRFSGW4L.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/IOSurface-DFKYAJBPSCI9G18IG37YLO46A.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/DataDetection-AIQ1BOL9A3O4IL92R681K2AP7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Symbols-20UN469PXNBHXC7O3FDI88K2.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Network-6GLBUKJOVSPD47T8VK94X5H7B.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreTransferable-AND4PV5V5NXHFTJA132CSXN5U.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreData-39UHLEPO8LY3BIAYDR2ZL0ZIX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/OSLog-7TOY6CXUEQXQODII7JH7TBGNT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Metal-3534S6KW1BEA8BUFNECHXEN37.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreVideo-B4SQ89R3QQGHX6P9EQUF0RLQK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/CoreImage-4PHTKNZ5HVPP3RZH8QV3XY29X.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/QuartzCore-90OC02ZTCMWI5V4DAB9NXPXMZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/SwiftUICore-6H6LOWFYCRYSUPUHWJB6BWJ9I.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/AppKit-D81OMQT2YPGH65EXKOIUVGMQ6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /tmp/RELAY-mac-keyboard/ModuleCache.noindex/SwiftUI-1FR1HFM398C9BMDNBUGMDFL1O.pcm
+
+SwiftCompile normal arm64 Compiling\ RelayApp.swift /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/App/RelayApp.swift (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+SwiftCompile normal arm64 /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/App/RelayApp.swift (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ RELAY_macOS (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+EmitSwiftModule normal arm64 (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    
+
+SwiftCompile normal arm64 Compiling\ GeneratedAssetSymbols.swift /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+SwiftCompile normal arm64 /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for RELAY_macOS (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+SwiftDriver\ Compilation\ Requirements RELAY-macOS normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RELAY_macOS -Onone -enforce-exclusivity\=checked @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -target arm64-apple-macos14.0 -g -module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/RELAY-mac-keyboard/Index.noindex/DataStore -swift-version 5 -I /tmp/RELAY-mac-keyboard/Build/Products/Debug -F /tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -F /tmp/RELAY-mac-keyboard/Build/Products/Debug -c -j11 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache -output-file-map /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -sdk-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-generated-files.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-own-target-headers.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-8a2a98ea85b31cd6e4c14d1dfa620956-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-project-headers.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Products/Debug/include -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources-normal/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS-Swift.h -working-directory /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/RELAY_macOS-Swift.h /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS-Swift.h (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-swiftHeaderTool -arch arm64 /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS-Swift.h -o /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/RELAY_macOS-Swift.h
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/arm64-apple-macos.swiftmodule /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftmodule (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftmodule /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/arm64-apple-macos.swiftdoc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftdoc (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftdoc /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/arm64-apple-macos.abi.json /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.abi.json (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.abi.json /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftsourceinfo (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-unsigned-binaries -strip-deterministic -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip -resolve-src-symlinks -rename /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftsourceinfo /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY_macOS.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+SwiftDriverJobDiscovery normal arm64 Compiling GeneratedAssetSymbols.swift (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+SwiftDriverJobDiscovery normal arm64 Compiling RelayApp.swift (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+SwiftDriver\ Compilation RELAY-macOS normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RELAY_macOS -Onone -enforce-exclusivity\=checked @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -target arm64-apple-macos14.0 -g -module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -Xfrontend -serialize-debugging-options -index-store-path /tmp/RELAY-mac-keyboard/Index.noindex/DataStore -swift-version 5 -I /tmp/RELAY-mac-keyboard/Build/Products/Debug -F /tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -F /tmp/RELAY-mac-keyboard/Build/Products/Debug -c -j11 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/RELAY-mac-keyboard/SDKStatCaches.noindex/macosx26.1-25B74-3ae1261907bdadc328169391a47051a6.sdkstatcache -output-file-map /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -sdk-module-cache-path /tmp/RELAY-mac-keyboard/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/RELAY-mac-keyboard/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-generated-files.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-own-target-headers.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-8a2a98ea85b31cd6e4c14d1dfa620956-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-project-headers.hmap -Xcc -I/tmp/RELAY-mac-keyboard/Build/Products/Debug/include -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources-normal/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources/arm64 -Xcc -I/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/DerivedSources -emit-objc-header -emit-objc-header-path /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS-Swift.h -working-directory /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY -experimental-emit-module-separately -disable-cmo
+
+Ld /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib normal (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -Os -L/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -L/tmp/RELAY-mac-keyboard/Build/Products/Debug -F/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/EagerLinkingTBDs/Debug -F/tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -F/tmp/RELAY-mac-keyboard/Build/Products/Debug -filelist /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.LinkFileList -install_name @rpath/RELAY-macOS.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_lto.o -rdynamic -Xlinker -dependency_info -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS.swiftmodule @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY_macOS-linker-args.resp -Wl,-no_warn_duplicate_libraries -lsqlite3 -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -Xlinker -no_adhoc_codesign -o /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib -Xlinker -add_ast_path -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore.swiftmodule @/tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RelayCore.build/Objects-normal/arm64/RelayCore-linker-args.resp
+
+ConstructStubExecutorLinkFileList /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-ExecutorLinkFileList-normal-arm64.txt (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    construct-stub-executor-link-file-list /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+
+Ld /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS normal (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk -Os -L/tmp/RELAY-mac-keyboard/Build/Products/Debug -F/tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -F/tmp/RELAY-mac-keyboard/Build/Products/Debug -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker /tmp/RELAY-mac-keyboard/Build/Products/Debug/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/../Frameworks -rdynamic -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS-ExecutorLinkFileList-normal-arm64.txt /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib -Xlinker -no_adhoc_codesign -o /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS
+
+CopySwiftLibs /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib --scan-folder /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Frameworks --scan-folder /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/PlugIns --scan-folder /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Library/SystemExtensions --scan-folder /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Extensions --platform macosx --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+ExtractAppIntentsMetadata (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name RELAY_macOS --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk --xcode-version 17B100 --platform-family macOS --deployment-target 14.0 --bundle-identifier org.relay.prototype.macos --output /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/Resources --target-triple arm64-apple-macos14.0 --binary-file /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS --dependency-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS_dependency_info.dat --stringsdata-file /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftFileList --metadata-file-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.DependencyMetadataFileList --static-metadata-file-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/Objects-normal/arm64/RELAY-macOS.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-23 18:11:11.231 appintentsmetadataprocessor[92996:7231873] Starting appintentsmetadataprocessor export
+2026-10-23 18:11:11.232 appintentsmetadataprocessor[92996:7231873] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CodeSign /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/RELAY-macOS.debug.dylib
+
+CodeSign /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/__preview.dylib (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app/Contents/MacOS/__preview.dylib
+
+CodeSign /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /tmp/RELAY-mac-keyboard/Build/Intermediates.noindex/RELAY.build/Debug/RELAY-macOS.build/RELAY-macOS.app.xcent --timestamp\=none --generate-entitlement-der /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app
+
+RegisterExecutionPolicyException /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-RegisterExecutionPolicyException /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app
+
+Validate /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    builtin-validationUtility /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+RegisterWithLaunchServices /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app
+
+Touch /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+    cd /Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY
+    /usr/bin/touch -c /tmp/RELAY-mac-keyboard/Build/Products/Debug/RELAY-macOS.app
+
+note: Disabling hardened runtime with ad-hoc codesigning. (in target 'RELAY-macOS' from project 'RELAY' at path '/Users/RELAY_DEVELOPER/Documents/dreamerv3/RELAY/RELAY.xcodeproj')
+** BUILD SUCCEEDED **
+

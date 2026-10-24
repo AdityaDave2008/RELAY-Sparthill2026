@@ -1,0 +1,150 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: RELAY cloud MVP; dedicated execution role must already exist. No IAM or existing-resource mutations.
+Parameters:
+  ExecutionRoleArn:
+    Type: String
+    AllowedPattern: 'arn:aws:iam::928489693154:role/relay-cloud-mvp-execution'
+    Description: Organizer-created dedicated role; never WSParticipantRole.
+  CodeBucket:
+    Type: String
+    Default: relay-artifacts-928489693154-use1
+  CodeKey:
+    Type: String
+    AllowedPattern: 'cloud-mvp-v1/deploy/[A-Za-z0-9._/-]+\.zip'
+  CognitoClientId:
+    Type: String
+  BackendSettingsJson:
+    Type: String
+    Description: Non-secret AWS-mode config with real enrolled subjects; aws_profile null. No credentials/tokens.
+Resources:
+  ApiLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/relay-cloud-mvp-api
+      RetentionInDays: 3
+  WorkerLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: /aws/lambda/relay-cloud-mvp-worker
+      RetentionInDays: 3
+  Worker:
+    Type: AWS::Lambda::Function
+    DependsOn: WorkerLogGroup
+    Properties:
+      FunctionName: relay-cloud-mvp-worker
+      Runtime: python3.13
+      Architectures: [arm64]
+      Handler: relay_backend.lambda_handlers.worker
+      Role: !Ref ExecutionRoleArn
+      Code: {S3Bucket: !Ref CodeBucket, S3Key: !Ref CodeKey}
+      MemorySize: 512
+      Timeout: 90
+      ReservedConcurrentExecutions: 2
+      Environment:
+        Variables:
+          RELAY_SETTINGS_JSON: !Ref BackendSettingsJson
+      Tags: [{Key: Project, Value: RELAY}, {Key: Component, Value: cloud-mvp}]
+  WorkerAsyncConfig:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName: !Ref Worker
+      Qualifier: '$LATEST'
+      MaximumEventAgeInSeconds: 300
+      MaximumRetryAttempts: 0
+  ApiFunction:
+    Type: AWS::Lambda::Function
+    DependsOn: ApiLogGroup
+    Properties:
+      FunctionName: relay-cloud-mvp-api
+      Runtime: python3.13
+      Architectures: [arm64]
+      Handler: relay_backend.lambda_handlers.api
+      Role: !Ref ExecutionRoleArn
+      Code: {S3Bucket: !Ref CodeBucket, S3Key: !Ref CodeKey}
+      MemorySize: 512
+      Timeout: 60
+      ReservedConcurrentExecutions: 2
+      Environment:
+        Variables:
+          RELAY_SETTINGS_JSON: !Ref BackendSettingsJson
+          RELAY_WORKER_FUNCTION: !Ref Worker
+      Tags: [{Key: Project, Value: RELAY}, {Key: Component, Value: cloud-mvp}]
+  HttpApi:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: relay-cloud-mvp
+      ProtocolType: HTTP
+      Tags: {Project: RELAY, Component: cloud-mvp}
+  Integration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref HttpApi
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !GetAtt ApiFunction.Arn
+      PayloadFormatVersion: '2.0'
+      TimeoutInMillis: 29000
+  Authorizer:
+    Type: AWS::ApiGatewayV2::Authorizer
+    Properties:
+      ApiId: !Ref HttpApi
+      Name: relay-cognito
+      AuthorizerType: JWT
+      IdentitySource: ['$request.header.Authorization']
+      JwtConfiguration:
+        Audience: [!Ref CognitoClientId]
+        Issuer: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_f7wyKUgiY
+  HealthRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref HttpApi
+      RouteKey: GET /v1/health
+      Target: !Sub integrations/${Integration}
+      AuthorizationType: NONE
+  AuthenticatedRoutes:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref HttpApi
+      RouteKey: 'ANY /{proxy+}'
+      Target: !Sub integrations/${Integration}
+      AuthorizationType: JWT
+      AuthorizerId: !Ref Authorizer
+  DefaultStage:
+    Type: AWS::ApiGatewayV2::Stage
+    Properties:
+      ApiId: !Ref HttpApi
+      StageName: '$default'
+      AutoDeploy: true
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 10
+        ThrottlingRateLimit: 5
+  ApiPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref ApiFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*/*
+  RecoverySchedule:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: relay-cloud-mvp-recovery
+      ScheduleExpression: rate(1 minute)
+      State: ENABLED
+      Targets:
+        - Id: Worker
+          Arn: !GetAtt Worker.Arn
+          RetryPolicy: {MaximumEventAgeInSeconds: 300, MaximumRetryAttempts: 0}
+  SchedulePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref Worker
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceAccount: !Ref AWS::AccountId
+      SourceArn: !GetAtt RecoverySchedule.Arn
+Outputs:
+  BaseUrl:
+    Value: !GetAtt HttpApi.ApiEndpoint
+  HostingStatus:
+    Value: Run independent HTTP smoke tests after deployment; stack creation alone does not verify AWS pipelines.

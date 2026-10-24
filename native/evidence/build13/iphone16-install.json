@@ -1,0 +1,16 @@
+{
+  "device": "iphone16",
+  "bundle": "org.relay.prototype.ios",
+  "build": "13",
+  "install": "PASS",
+  "launch": "PASS after operator unlocked",
+  "integrity": "ok",
+  "identity_preserved": true,
+  "messages_before": 32,
+  "messages_after": 32,
+  "prior_final_receipts": 4,
+  "all_old_messages_and_receipts_preserved": true,
+  "shelters_preserved": true,
+  "network_conditions": "Uncontrolled install session; no no-router claim",
+  "physical_wireless": "NOT TESTED"
+}

@@ -1,0 +1,11 @@
+{
+  "scope": "Synthetic iOS Simulator profile; actual Keychain persistence verified separately through native relaunch UI",
+  "profile_markers_absent_from_sqlite_and_wal": true,
+  "first_run_flags_completed": true,
+  "medical_fields_in_onboarding_metadata": false,
+  "checked_files": [
+    "relay.sqlite-wal",
+    "relay.sqlite-shm",
+    "relay.sqlite"
+  ]
+}

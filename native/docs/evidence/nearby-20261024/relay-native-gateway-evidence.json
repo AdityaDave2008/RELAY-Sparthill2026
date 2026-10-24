@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "request_id": "REDACTED-ID-0e448db07b2a",
+  "scope": "Native CryptoKit signature/encryption with Python fixture-auth API; not physical wireless or live AWS verification",
+  "gateway_ingestion": "PASS",
+  "direct_upload_dedup": "PASS",
+  "original_owner_preserved": "PASS",
+  "foreign_account_read_denied": "PASS"
+}

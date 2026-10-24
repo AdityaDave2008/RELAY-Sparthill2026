@@ -1,0 +1,21 @@
+{
+  "phone": "iPhone 15 Pro Max",
+  "installed_build": 23,
+  "previous_setup": {
+    "guideSeen": true,
+    "profileOffered": true
+  },
+  "final_setup": {
+    "guideSeen": false,
+    "profileOffered": false
+  },
+  "messages_before": 53,
+  "messages_after": 53,
+  "message_bodies_preserved": true,
+  "prior_receipts_preserved": true,
+  "cloud_submissions_preserved": true,
+  "device_id_preserved": true,
+  "device_keys_preserved": true,
+  "same_demo_session_import_consumed": true,
+  "sqlite_integrity": "ok"
+}

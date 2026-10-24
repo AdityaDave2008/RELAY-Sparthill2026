@@ -1,0 +1,14 @@
+Physical setup inspection: 2026-10-23T22:45:34.832753+00:00
+Device: iPhone 15 Pro Max (iPhone16,2)
+OS: 27.0.1 (24A446)
+Developer Mode: disabled
+Developer disk services available: False
+Pairing: paired; transport: USB/wired.
+Xcode account: Personal Team available; 0 provisioned devices shown.
+Signed generic iOS build: blocked because team has no registered devices/profile.
+Mac RELAY role set to Receiver C, networking stopped.
+No physical radio acceptance tests run. Second iPhone not yet observed.
+Explicit physical-device build attempt: timed out because Developer Mode is disabled (Xcode confirmed this exact reason).
+User reports slow internet and concern about a software update. No update/download started by the agent; which update is requested is not yet identified. Existing Xcode installation compatibility will be checked after Developer Mode is enabled.
+
+User clarified the pending download is an iPhone software update. Current phone is already on iOS 27.0.1; RELAY deployment minimum is iOS 17. No phone update is required by the observed build error. Next action remains enabling Developer Mode, restarting/unlocking, then retrying signing/install with existing tools.

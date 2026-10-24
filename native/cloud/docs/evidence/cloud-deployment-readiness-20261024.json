@@ -1,0 +1,125 @@
+{
+  "started_at": "2026-10-24T06:42:56.560516+00:00",
+  "prior_stack_failure_events": [
+    {
+      "Timestamp": "2026-10-24 02:16:51.660000+00:00",
+      "LogicalResourceId": "relay-public",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "ROLLBACK_COMPLETE",
+      "ResourceStatusReason": null,
+      "EventId": "REDACTED-ID-c68ffee31176"
+    },
+    {
+      "Timestamp": "2026-10-24 02:16:46.825000+00:00",
+      "LogicalResourceId": "relay-public",
+      "ResourceType": "AWS::CloudFormation::Stack",
+      "ResourceStatus": "ROLLBACK_IN_PROGRESS",
+      "ResourceStatusReason": "The following resource(s) failed to create: [WebBucket, ApiRole, WorkerRole]. Rollback requested by user.",
+      "EventId": "REDACTED-ID-82b6b40d15d9"
+    },
+    {
+      "Timestamp": "2026-10-24 02:16:46.498000+00:00",
+      "LogicalResourceId": "WebBucket",
+      "ResourceType": "AWS::S3::Bucket",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Resource creation cancelled",
+      "EventId": "WebBucket-CREATE_FAILED-2026-10-24T02:16:46.498Z"
+    },
+    {
+      "Timestamp": "2026-10-24 02:16:46.367000+00:00",
+      "LogicalResourceId": "ApiRole",
+      "ResourceType": "AWS::IAM::Role",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Underlying denial: iam:CreateRole has no identity-based Allow; surfaced through UnauthorizedTaggingOperation.",
+      "EventId": "ApiRole-CREATE_FAILED-2026-10-24T02:16:46.367Z",
+      "safe_iam_request_id": "REDACTED-ID-302f1d60e360"
+    },
+    {
+      "Timestamp": "2026-10-24 02:16:46.247000+00:00",
+      "LogicalResourceId": "WorkerRole",
+      "ResourceType": "AWS::IAM::Role",
+      "ResourceStatus": "CREATE_FAILED",
+      "ResourceStatusReason": "Underlying denial: iam:CreateRole has no identity-based Allow; surfaced through UnauthorizedTaggingOperation.",
+      "EventId": "WorkerRole-CREATE_FAILED-2026-10-24T02:16:46.247Z",
+      "safe_iam_request_id": "REDACTED-ID-5a43f8c5549b"
+    }
+  ],
+  "table": {
+    "TableName": "relay-messages",
+    "TableArn": "arn:aws:dynamodb:us-east-1:928489693154:table/relay-messages",
+    "TableStatus": "ACTIVE",
+    "KeySchema": [
+      {
+        "AttributeName": "pk",
+        "KeyType": "HASH"
+      },
+      {
+        "AttributeName": "sk",
+        "KeyType": "RANGE"
+      }
+    ],
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "pk",
+        "AttributeType": "S"
+      },
+      {
+        "AttributeName": "sk",
+        "AttributeType": "S"
+      }
+    ],
+    "BillingModeSummary": {
+      "BillingMode": "PAY_PER_REQUEST",
+      "LastUpdateToPayPerRequestDateTime": "2026-10-23 18:50:49.610000-07:00"
+    }
+  },
+  "table_request_id": "3JQL77E6OPQK711MQCUP1D1273VV4KQNSO5AEMVJF66Q9ASUAAJG",
+  "private_artifacts": {
+    "public_access_block": {
+      "BlockPublicAcls": true,
+      "IgnorePublicAcls": true,
+      "BlockPublicPolicy": true,
+      "RestrictPublicBuckets": true
+    },
+    "encryption": {
+      "Rules": [
+        {
+          "ApplyServerSideEncryptionByDefault": {
+            "SSEAlgorithm": "AES256"
+          },
+          "BucketKeyEnabled": false,
+          "BlockedEncryptionTypes": {
+            "EncryptionType": [
+              "SSE-C"
+            ]
+          }
+        }
+      ]
+    },
+    "request_ids": [
+      "XQH58XAKMDTC5PRY",
+      "XQH8EEPCGVD9BWZY"
+    ]
+  },
+  "model_availability": {
+    "modelId": "amazon.nova-lite-v1",
+    "agreementAvailability": {
+      "status": "AVAILABLE"
+    },
+    "authorizationStatus": "AUTHORIZED",
+    "entitlementAvailability": "AVAILABLE",
+    "regionAvailability": "AVAILABLE"
+  },
+  "model_availability_request_id": "REDACTED-ID-b0571f3ee747",
+  "fresh_cognito_login": {
+    "status": "PASS",
+    "actor": "test-requester-a",
+    "initial_challenge": "SOFTWARE_TOKEN_MFA",
+    "initiate_request_id": "REDACTED-ID-efc4658d9328",
+    "authentication_request_id": "REDACTED-ID-6f113a3ec4d7",
+    "token_type": "Bearer",
+    "expires_in_seconds": 3600,
+    "tokens": "kept private; not included"
+  },
+  "finished_at": "2026-10-24T06:42:59.883743+00:00"
+}

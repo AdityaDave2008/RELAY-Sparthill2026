@@ -1,0 +1,28 @@
+{
+  "observed_at": "2026-10-24T06:51:48.926911+00:00",
+  "purpose": "Native task requested ordinary refresh of existing requester-A and dispatcher-A sessions",
+  "account": "928489693154",
+  "region": "us-east-1",
+  "users": [
+    {
+      "actor": "test-requester-a",
+      "status": "PASS",
+      "challenge": "SOFTWARE_TOKEN_MFA",
+      "initiate_request_id": "REDACTED-ID-4847571767ec",
+      "authentication_request_id": "REDACTED-ID-3a17948f06e3",
+      "expires_in_seconds": 3600
+    },
+    {
+      "actor": "test-dispatcher-a",
+      "status": "PASS",
+      "challenge": "SOFTWARE_TOKEN_MFA",
+      "initiate_request_id": "REDACTED-ID-0d01a158658e",
+      "authentication_request_id": "REDACTED-ID-2126c642d042",
+      "expires_in_seconds": 3600
+    }
+  ],
+  "mfa_settings_changed": false,
+  "new_accounts_created": false,
+  "finished_at": "2026-10-24T06:51:50.548526+00:00",
+  "status": "PASS"
+}

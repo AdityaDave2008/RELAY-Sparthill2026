@@ -1,0 +1,20 @@
+{
+  "api_base_url": "http://127.0.0.1:8787",
+  "hosting": "Mac loopback; real AWS services; not phone reachable",
+  "region": "us-east-1",
+  "user_pool_id": "us-east-1_f7wyKUgiY",
+  "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_f7wyKUgiY",
+  "client_id": "dfulb5lau8283nlgil7ddu36i",
+  "login_base_url": "https://relay-mvp-928489693154.auth.us-east-1.amazoncognito.com",
+  "callback_uri": "relay://oauth/callback",
+  "logout_uri": "relay://oauth/signout",
+  "oauth_flow": "authorization_code",
+  "pkce_method": "S256",
+  "scopes": [
+    "openid",
+    "email"
+  ],
+  "schema_version": 1,
+  "contains_credentials": false,
+  "native_pkce_verified": false
+}

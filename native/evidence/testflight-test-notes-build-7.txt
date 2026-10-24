@@ -1,0 +1,7 @@
+Build 0.1.0 (7) — shelter removal and clearer import.
+
+Shelters: open an entry and Remove shelter. Existing requests, queued messages and receipts remain saved; queued delivery continues. Expand Removed shelters to Restore. Restart and confirm the removed/restored state persists.
+
+On the receiving phone, open its shelter and Share shelter code to the sending phone. Copy only affects the source clipboard. On the sending phone, Shelters → Import shelter → paste the complete RELAY-SHELTER-1: code → check the name and receiving-device preview → Import. Connect is not required for setup. Help only offers destinations on another device. Wrapped codes are supported; truncated codes must fail. Reimporting the same code must not duplicate the entry.
+
+Use synthetic data only. This build does not add cloud/AI integration or authenticated staff roles. For transfer tests, keep both apps foreground, allow Local Network access, and follow the recorded radio-isolation plan. Installation and software tests do not verify an infrastructure-independent wireless path.

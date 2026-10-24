@@ -1,0 +1,219 @@
+{
+  "observed_at": "2026-10-24T07:02:28.963938+00:00",
+  "account": "928489693154",
+  "region": "us-east-1",
+  "sts_request_id": "REDACTED-ID-a51510f0d4d2",
+  "verification": "Read-only follow-up of native-task-reported IDs; no new inference or transcription",
+  "requests": [
+    {
+      "request_id": "REDACTED-ID-17dabe7a94c2",
+      "status": "PASS",
+      "ddb_request_id": "OO08NUA99S41E64L2HT2UF5P23VV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "input_mode": "text",
+      "transcription_id": null,
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 2,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs two water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-09e49a0cc007",
+        "usage": {
+          "inputTokens": 511,
+          "outputTokens": 47,
+          "totalTokens": 558
+        },
+        "stop_reason": "end_turn"
+      },
+      "progress_fields": {
+        "revision": 1,
+        "assignment_state": "not_implemented",
+        "fulfillment_state": "not_implemented"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-9d0de59831f3",
+      "status": "PASS",
+      "ddb_request_id": "KR033D4HRPLP6L3TRMHCMNRQMVVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "input_mode": "text",
+      "transcription_id": null,
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 2,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs 2 water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-05fe868015fb",
+        "usage": {
+          "inputTokens": 511,
+          "outputTokens": 48,
+          "totalTokens": 559
+        },
+        "stop_reason": "end_turn"
+      },
+      "progress_fields": {
+        "revision": 1,
+        "assignment_state": "not_implemented",
+        "fulfillment_state": "not_implemented"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-49771301a6d3",
+      "status": "PASS",
+      "ddb_request_id": "PVFA98M6EA7A033U86AE5QM753VV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "input_mode": "reviewed_transcript",
+      "transcription_id": "REDACTED-ID-299dd023b84b",
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 2,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs two water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-7ba62c87168d",
+        "usage": {
+          "inputTokens": 511,
+          "outputTokens": 47,
+          "totalTokens": 558
+        },
+        "stop_reason": "end_turn"
+      },
+      "progress_fields": {
+        "revision": 1,
+        "assignment_state": "not_implemented",
+        "fulfillment_state": "not_implemented"
+      }
+    }
+  ],
+  "counters": {
+    "requests": {
+      "count": 15,
+      "request_id": "GUVVAIS1JIGLAUJ4EKCO6O71GNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    },
+    "transcriptions": {
+      "count": 2,
+      "request_id": "UMBB8059DT060ED90T1029BFUVVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  },
+  "transcription": {
+    "id": "REDACTED-ID-299dd023b84b",
+    "status": "completed",
+    "duration_seconds": 1.824,
+    "provider_evidence": {
+      "provider": "aws",
+      "job_name": "relay-mvp-REDACTED-ID-299dd023b84b",
+      "request_id": "REDACTED-ID-77f73abddf87",
+      "poll_request_id": "REDACTED-ID-244413f9474c"
+    },
+    "ddb_request_id": "FLB0PRUJ08NMMOAGTQP71SKH33VV4KQNSO5AEMVJF66Q9ASUAAJG",
+    "job_status": "COMPLETED",
+    "job_request_id": "REDACTED-ID-573cbd5e1f8f"
+  },
+  "history_readback_at": "2026-10-24T07:04:40.561669+00:00",
+  "histories": [
+    {
+      "request_id": "REDACTED-ID-9d0de59831f3",
+      "status": "PASS",
+      "ddb_request_id": "6JDKRLUUKCNNLC3ELDB8QM0H1RVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "revision": 3,
+      "reported_progress_status": "completed",
+      "resource_allocation_verified": false,
+      "event_count": 3,
+      "unique_event_id_count": 3,
+      "events": [
+        {
+          "event_id": "REDACTED-ID-f9ec39d9f395",
+          "revision": 1,
+          "author_role": "dispatcher",
+          "status": "accepted",
+          "created_at": "2026-10-24T06:52:50.025729+00:00"
+        },
+        {
+          "event_id": "REDACTED-ID-3a799b3e9687",
+          "revision": 2,
+          "author_role": "dispatcher",
+          "status": "in_progress",
+          "created_at": "2026-10-24T06:52:50.820549+00:00"
+        },
+        {
+          "event_id": "REDACTED-ID-34b05d56edac",
+          "revision": 3,
+          "author_role": "dispatcher",
+          "status": "completed",
+          "created_at": "2026-10-24T06:52:51.674556+00:00"
+        }
+      ]
+    },
+    {
+      "request_id": "REDACTED-ID-49771301a6d3",
+      "status": "PASS",
+      "ddb_request_id": "PVQ3FSAFFN1N7KOV39F3NPQRVJVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "revision": 3,
+      "reported_progress_status": "completed",
+      "resource_allocation_verified": false,
+      "event_count": 3,
+      "unique_event_id_count": 3,
+      "events": [
+        {
+          "event_id": "REDACTED-ID-1b6bc75daf78",
+          "revision": 1,
+          "author_role": "dispatcher",
+          "status": "accepted",
+          "created_at": "2026-10-24T06:56:30.231261+00:00"
+        },
+        {
+          "event_id": "REDACTED-ID-f40e87f6316b",
+          "revision": 2,
+          "author_role": "dispatcher",
+          "status": "in_progress",
+          "created_at": "2026-10-24T06:56:31.274769+00:00"
+        },
+        {
+          "event_id": "REDACTED-ID-6748d4070a9b",
+          "revision": 3,
+          "author_role": "dispatcher",
+          "status": "completed",
+          "created_at": "2026-10-24T06:56:32.326065+00:00"
+        }
+      ]
+    }
+  ]
+}

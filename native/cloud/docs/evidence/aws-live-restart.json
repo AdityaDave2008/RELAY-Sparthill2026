@@ -1,0 +1,63 @@
+{
+  "mode": "aws",
+  "storage": "dynamodb",
+  "started_at": "2026-10-24T05:39:00.222688+00:00",
+  "request_id": "REDACTED-ID-0659055efa73",
+  "status": "PASS",
+  "api_process_crash_replay": "PASS",
+  "separate_worker_recovery": "PASS",
+  "logical_request_count": 1,
+  "result": {
+    "request_id": "REDACTED-ID-0659055efa73",
+    "schema_version": 1,
+    "revision": 1,
+    "submission": {
+      "schema_version": 1,
+      "operation_id": "REDACTED-ID-8db972d85a68",
+      "request_id": "REDACTED-ID-0659055efa73",
+      "incident_id": "synthetic-demo-01",
+      "destination_shelter_id": "shelter-a",
+      "origin_device_id": "REDACTED-ID-a7ceda34ee7f",
+      "original_text": "Shelter A needs 7 blankets.",
+      "input_mode": "text",
+      "transcription_id": null,
+      "created_at": "2026-10-24T05:39:01.294085Z",
+      "expires_at": "2026-10-24T06:39:01.294085Z",
+      "revision": 1
+    },
+    "accepted_at": "2026-10-24T05:39:02.126600Z",
+    "cloud_state": "accepted",
+    "analysis_state": "ready_for_review",
+    "result": {
+      "status": "ready_for_review",
+      "proposal": {
+        "item_id": "blankets",
+        "quantity": 7,
+        "unit": "piece",
+        "shelter_id": "shelter-a",
+        "negated": false,
+        "missing_fields": [],
+        "summary": "Shelter A needs 7 blankets."
+      },
+      "review_reasons": [],
+      "allocation_authorized": false
+    },
+    "analysis_attempts": 1,
+    "manual_retry_count": 0,
+    "error": null,
+    "provider_evidence": {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-cf5a8948bdc0",
+      "usage": {
+        "inputTokens": 485,
+        "outputTokens": 45,
+        "totalTokens": 530
+      },
+      "stop_reason": "end_turn"
+    },
+    "assignment_state": "not_implemented",
+    "fulfillment_state": "not_implemented"
+  },
+  "finished_at": "2026-10-24T05:39:08.083402+00:00"
+}

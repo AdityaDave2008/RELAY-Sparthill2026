@@ -1,0 +1,9 @@
+Observed simulator UI check; not physical-device or radio evidence.
+Recorded UTC: 2026-10-24T01:12:45.439986+00:00
+Simulator: iPhone 17 Pro, iOS 26.1
+Version: 0.1.0 (2)
+Destination field: entered synthetic UUID REDACTED-ID-39d3159fe171; displayed software keyboard; tapped navigation Done. AX keyboard keys and Done disappeared, destination remained. PASS.
+Multiline message field: entered synthetic keyboard-dismissal text; displayed software keyboard; tapped navigation Done. AX removed element 8 (Done) and 36-73 (toolbar/predictions/keys); text remained. PASS.
+Navigation Done accessibility identifier: dismissKeyboardFromNavigation. Keyboard accessory toolbar did not expose a Done button in this simulator; navigation control is the verified dismissal path.
+No message was sent for this UI test. Networking stayed stopped.
+Screenshot after dismissal: keyboard-dismissed-simulator.png

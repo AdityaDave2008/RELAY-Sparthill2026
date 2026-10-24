@@ -1,0 +1,14 @@
+{
+  "iPhone 15": {
+    "build_number": "22",
+    "version": "0.1.0",
+    "installation_succeeded": true,
+    "launch_succeeded": true
+  },
+  "iPhone 16": {
+    "build_number": "22",
+    "version": "0.1.0",
+    "installation_succeeded": true,
+    "launch_succeeded": true
+  }
+}

@@ -1,0 +1,61 @@
+$ date -u
+Fri Oct 23 22:25:07 UTC 2026
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		26.6.2
+BuildVersion:		25G83
+$ sysctl -n hw.model machdep.cpu.brand_string
+Mac15,6
+Apple M3 Pro
+$ xcodebuild -version
+Xcode 26.1.1
+Build version 17B100
+$ xcrun swift --version
+swift-driver version: 1.127.14.1 Apple Swift version 6.2.1 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+Target: arm64-apple-macosx26.0
+$ xcodebuild -showsdks
+DriverKit SDKs:
+	DriverKit 25.1                	-sdk driverkit25.1
+
+iOS SDKs:
+	iOS 26.1                      	-sdk iphoneos26.1
+
+iOS Simulator SDKs:
+	Simulator - iOS 26.1          	-sdk iphonesimulator26.1
+
+macOS SDKs:
+	macOS 26.1                    	-sdk macosx26.1
+	macOS 26.1                    	-sdk macosx26.1
+
+tvOS SDKs:
+	tvOS 26.1                     	-sdk appletvos26.1
+
+tvOS Simulator SDKs:
+	Simulator - tvOS 26.1         	-sdk appletvsimulator26.1
+
+visionOS SDKs:
+	visionOS 26.1                 	-sdk xros26.1
+
+visionOS Simulator SDKs:
+	Simulator - visionOS 26.1     	-sdk xrsimulator26.1
+
+watchOS SDKs:
+	watchOS 26.1                  	-sdk watchos26.1
+
+watchOS Simulator SDKs:
+	Simulator - watchOS 26.1      	-sdk watchsimulator26.1
+
+$ xcrun simctl list devices available
+== Devices ==
+-- iOS 26.1 --
+    iPhone 17 Pro (REDACTED-ID-14a8441b471f) (Shutdown) 
+    iPhone 17 Pro Max (REDACTED-ID-f16d3f44a0c7) (Shutdown) 
+    iPhone Air (REDACTED-ID-a06e552e2dc9) (Shutdown) 
+    iPhone 17 (REDACTED-ID-e17d1c199981) (Shutdown) 
+    iPhone 16e (REDACTED-ID-7480fe1e689a) (Shutdown) 
+    iPad Pro 13-inch (M5) (REDACTED-ID-0e632caa8dde) (Shutdown) 
+    iPad Pro 11-inch (M5) (REDACTED-ID-41fd0ef2c75b) (Shutdown) 
+    iPad mini (A17 Pro) (REDACTED-ID-0ed7dc41a543) (Shutdown) 
+    iPad (A16) (REDACTED-ID-157b607a0d09) (Shutdown) 
+    iPad Air 13-inch (M3) (REDACTED-ID-1c114a4e4887) (Shutdown) 
+    iPad Air 11-inch (M3) (REDACTED-ID-b828b3c555ec) (Shutdown) 

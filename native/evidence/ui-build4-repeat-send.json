@@ -1,0 +1,44 @@
+{
+  "recorded_at": "2026-10-24T02:23:11.199231+00:00",
+  "environment": "iPhone 17 Pro / iOS 26.1 Simulator; software UI test only",
+  "build": "4",
+  "checks": [
+    "First send kept chat, input, and software keyboard visible",
+    "Second message typed without reopening composer; second send succeeded",
+    "Done dismissed editing without removing composer",
+    "Both messages survived app restart",
+    "New chat remained visible and selected existing peer without duplicate thread",
+    "macOS back navigation returned to persistent New chat control"
+  ],
+  "networking": "paused throughout repeat-send check",
+  "messages": [
+    {
+      "created_at": "2026-10-24T02:14:51Z",
+      "destination_id": "REDACTED-ID-337a93bc8deb",
+      "expires_at": "2026-10-25T02:14:51Z",
+      "hop_count": 0,
+      "max_hops": 5,
+      "message_id": "REDACTED-ID-f7469dd7cd44",
+      "message_type": "RESOURCE_REQUEST",
+      "origin_id": "REDACTED-ID-ee5abc667601",
+      "payload": {
+        "text": "SYNTHETIC CHAT-004: First consecutive message."
+      },
+      "protocol_version": 1
+    },
+    {
+      "created_at": "2026-10-24T02:15:04Z",
+      "destination_id": "REDACTED-ID-337a93bc8deb",
+      "expires_at": "2026-10-25T02:15:04Z",
+      "hop_count": 0,
+      "max_hops": 5,
+      "message_id": "REDACTED-ID-19e103d04ad2",
+      "message_type": "RESOURCE_REQUEST",
+      "origin_id": "REDACTED-ID-ee5abc667601",
+      "payload": {
+        "text": "SYNTHETIC CHAT-004: Second message, same chat."
+      },
+      "protocol_version": 1
+    }
+  ]
+}

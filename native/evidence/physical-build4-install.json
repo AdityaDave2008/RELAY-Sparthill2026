@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-10-24T02:21:31.890014+00:00",
+  "build": "4",
+  "version": "0.1.0",
+  "bundle_id": "org.relay.prototype.ios",
+  "physical_offline_acceptance": "NOT VERIFIED \u2014 network conditions not documented",
+  "a": {
+    "version": "0.1.0",
+    "build": "4",
+    "device_id": "REDACTED-ID-85ca2bd297a6",
+    "identity_preserved": true,
+    "messages_before": 9,
+    "messages_after": 9,
+    "existing_message_ids_and_content_preserved": true,
+    "launch_succeeded": true
+  },
+  "b": {
+    "version": "0.1.0",
+    "build": "4",
+    "device_id": "REDACTED-ID-1684768e4451",
+    "identity_preserved": true,
+    "messages_before": 10,
+    "messages_after": 10,
+    "existing_message_ids_and_content_preserved": true,
+    "launch_succeeded": true
+  }
+}

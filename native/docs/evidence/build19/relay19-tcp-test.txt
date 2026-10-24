@@ -1,0 +1,128 @@
+2026-10-24T14:57:38.328615+00:00 REAL TCP LOOPBACK CONTROL ONLY — not a physical wireless test; all nodes on one Mac
+2026-10-24T14:57:38.730720+00:00 C {"event":"2026-10-24T14:57:38Z [REDACTED-ID-a87dcfb54d7f] TRANSPORT_STARTED includePeerToPeer=true cellular=prohibited path=UNVERIFIED plaintext=true discovery=false"}
+2026-10-24T14:57:38.730785+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] TRANSPORT_STARTED includePeerToPeer=true cellular=prohibited path=UNVERIFIED plaintext=true discovery=false"}
+2026-10-24T14:57:38.730826+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] TRANSPORT_STARTED includePeerToPeer=true cellular=prohibited path=UNVERIFIED plaintext=true discovery=false"}
+2026-10-24T14:57:38.731198+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] LISTENER ready"}
+2026-10-24T14:57:38.731214+00:00 C {"event":"2026-10-24T14:57:38Z [REDACTED-ID-a87dcfb54d7f] LISTENER ready"}
+2026-10-24T14:57:38.733670+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] LISTENER ready"}
+2026-10-24T14:57:38.737872+00:00 IDENTITIES {"A": "REDACTED-ID-e3b81101eca8", "B": "REDACTED-ID-3e0e250398e5", "C": "REDACTED-ID-a87dcfb54d7f"}
+2026-10-24T14:57:38.738854+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] LOCALLY_SAVED id=REDACTED-ID-cfef83a77ca4 destination=REDACTED-ID-a87dcfb54d7f"}
+2026-10-24T14:57:38.738885+00:00 ORIGINAL_MESSAGE_ID REDACTED-ID-cfef83a77ca4
+2026-10-24T14:57:38.739636+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] PATH session=REDACTED-ID-8c7b002e57c2 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=nil remote=Optional(127.0.0.1:64334); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.739813+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] CONNECTION_STATE session=REDACTED-ID-8c7b002e57c2 endpoint=127.0.0.1:64334 state=preparing"}
+2026-10-24T14:57:38.739972+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] CONNECTION_STATE session=REDACTED-ID-8c7b002e57c2 endpoint=127.0.0.1:64334 state=ready"}
+2026-10-24T14:57:38.740127+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] PATH session=REDACTED-ID-8c7b002e57c2 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:55005) remote=Optional(127.0.0.1:64334); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.740264+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] CONNECTION_READY session=REDACTED-ID-8c7b002e57c2"}
+2026-10-24T14:57:38.740431+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-533ecd3a76ed status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64334) remote=Optional(127.0.0.1:55005); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.740599+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-533ecd3a76ed endpoint=127.0.0.1:55005 state=preparing"}
+2026-10-24T14:57:38.740754+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-533ecd3a76ed endpoint=127.0.0.1:55005 state=ready"}
+2026-10-24T14:57:38.741028+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-533ecd3a76ed status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64334) remote=Optional(127.0.0.1:55005); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.741197+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] CONNECTION_READY session=REDACTED-ID-533ecd3a76ed"}
+2026-10-24T14:57:38.741769+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] HELLO peer=REDACTED-ID-3e0e250398e5 role=Relay B identity=UNAUTHENTICATED"}
+2026-10-24T14:57:38.741793+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] HELLO peer=REDACTED-ID-e3b81101eca8 role=Sender A identity=UNAUTHENTICATED"}
+2026-10-24T14:57:38.742054+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] INVENTORY peer=REDACTED-ID-3e0e250398e5 count=0"}
+2026-10-24T14:57:38.742089+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] INVENTORY peer=REDACTED-ID-e3b81101eca8 count=1"}
+2026-10-24T14:57:38.742317+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] TRANSFER_ATTEMPT id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-3e0e250398e5 hops=1 pending_retry=false"}
+2026-10-24T14:57:38.742473+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] FAULT_INJECTION partial_frame id=REDACTED-ID-cfef83a77ca4 bytes=218"}
+2026-10-24T14:57:38.742656+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] DISCONNECTED session=REDACTED-ID-8c7b002e57c2 unacked=[\"REDACTED-ID-cfef83a77ca4\"] queued_for_retry"}
+2026-10-24T14:57:38.742839+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] STREAM_END session=REDACTED-ID-533ecd3a76ed partial=true error=nil"}
+2026-10-24T14:57:38.742972+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] PARTIAL_FRAME_DISCARDED session=REDACTED-ID-533ecd3a76ed"}
+2026-10-24T14:57:38.743106+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] DISCONNECTED session=REDACTED-ID-533ecd3a76ed unacked=[] queued_for_retry"}
+2026-10-24T14:57:38.842438+00:00 PASS control interruption: no destination insert or false ACK
+2026-10-24T14:57:38.844131+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] PATH session=REDACTED-ID-e3b3fe2e1634 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:55005) remote=Optional(127.0.0.1:64334); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.844404+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-ccefc27f0f60 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64334) remote=Optional(127.0.0.1:55006); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.844940+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-ccefc27f0f60 endpoint=127.0.0.1:55006 state=preparing"}
+2026-10-24T14:57:38.844994+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] CONNECTION_STATE session=REDACTED-ID-e3b3fe2e1634 endpoint=127.0.0.1:64334 state=preparing"}
+2026-10-24T14:57:38.845310+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-ccefc27f0f60 endpoint=127.0.0.1:55006 state=ready"}
+2026-10-24T14:57:38.845371+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] CONNECTION_STATE session=REDACTED-ID-e3b3fe2e1634 endpoint=127.0.0.1:64334 state=ready"}
+2026-10-24T14:57:38.845679+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-ccefc27f0f60 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64334) remote=Optional(127.0.0.1:55006); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.845931+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] PATH session=REDACTED-ID-e3b3fe2e1634 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:55006) remote=Optional(127.0.0.1:64334); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:38.846037+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] CONNECTION_READY session=REDACTED-ID-ccefc27f0f60"}
+2026-10-24T14:57:38.846282+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] CONNECTION_READY session=REDACTED-ID-e3b3fe2e1634"}
+2026-10-24T14:57:38.846899+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] HELLO peer=REDACTED-ID-3e0e250398e5 role=Relay B identity=UNAUTHENTICATED"}
+2026-10-24T14:57:38.847073+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] HELLO peer=REDACTED-ID-e3b81101eca8 role=Sender A identity=UNAUTHENTICATED"}
+2026-10-24T14:57:38.847703+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] INVENTORY peer=REDACTED-ID-e3b81101eca8 count=1"}
+2026-10-24T14:57:38.847742+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] INVENTORY peer=REDACTED-ID-3e0e250398e5 count=0"}
+2026-10-24T14:57:38.848377+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] TRANSFER_ATTEMPT id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-3e0e250398e5 hops=1 pending_retry=true"}
+2026-10-24T14:57:38.849711+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] PERSISTED id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-e3b81101eca8 hops=1"}
+2026-10-24T14:57:38.850088+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] STORAGE_ACK_SENT id=REDACTED-ID-cfef83a77ca4 kind=RELAY_STORED"}
+2026-10-24T14:57:38.850628+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] STORAGE_ACK_RECEIVED id=REDACTED-ID-cfef83a77ca4 kind=RELAY_STORED peer=REDACTED-ID-3e0e250398e5 ack_latency_ms=2"}
+2026-10-24T14:57:38.951843+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] FORCED_DUPLICATE_TEST id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-3e0e250398e5"}
+2026-10-24T14:57:38.952799+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] DUPLICATE_SUPPRESSED id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-e3b81101eca8 hops=1"}
+2026-10-24T14:57:38.953121+00:00 B {"event":"2026-10-24T14:57:38Z [REDACTED-ID-3e0e250398e5] STORAGE_ACK_SENT id=REDACTED-ID-cfef83a77ca4 kind=RELAY_STORED"}
+2026-10-24T14:57:38.953376+00:00 A {"event":"2026-10-24T14:57:38Z [REDACTED-ID-e3b81101eca8] STORAGE_ACK_RECEIVED id=REDACTED-ID-cfef83a77ca4 kind=RELAY_STORED peer=REDACTED-ID-3e0e250398e5 ack_latency_ms=2"}
+2026-10-24T14:57:39.055022+00:00 PASS control A->B and duplicate suppression
+2026-10-24T14:57:39.056247+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] DISCONNECTED session=REDACTED-ID-e3b3fe2e1634 unacked=[] queued_for_retry"}
+2026-10-24T14:57:39.056735+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] TRANSPORT_STOPPED"}
+2026-10-24T14:57:39.056804+00:00 B deliberate SIGKILL after durable acceptance
+2026-10-24T14:57:39.056937+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] STREAM_END session=REDACTED-ID-ccefc27f0f60 partial=false error=nil"}
+2026-10-24T14:57:39.076986+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] TRANSPORT_STARTED includePeerToPeer=true cellular=prohibited path=UNVERIFIED plaintext=true discovery=false"}
+2026-10-24T14:57:39.080684+00:00 PASS actual B SIGKILL/restart: same device ID and message recovered from SQLite WAL
+2026-10-24T14:57:39.080798+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] LISTENER ready"}
+2026-10-24T14:57:39.081630+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-34d5eeea0cc3 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=nil remote=Optional(127.0.0.1:64335); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.081895+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-34d5eeea0cc3 endpoint=127.0.0.1:64335 state=preparing"}
+2026-10-24T14:57:39.082239+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-34d5eeea0cc3 endpoint=127.0.0.1:64335 state=ready"}
+2026-10-24T14:57:39.082416+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] PATH session=REDACTED-ID-6a07213808e3 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64335) remote=Optional(127.0.0.1:55007); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.082543+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-34d5eeea0cc3 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:55007) remote=Optional(127.0.0.1:64335); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.082637+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] CONNECTION_STATE session=REDACTED-ID-6a07213808e3 endpoint=127.0.0.1:55007 state=preparing"}
+2026-10-24T14:57:39.082892+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] CONNECTION_STATE session=REDACTED-ID-6a07213808e3 endpoint=127.0.0.1:55007 state=ready"}
+2026-10-24T14:57:39.082976+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] CONNECTION_READY session=REDACTED-ID-34d5eeea0cc3"}
+2026-10-24T14:57:39.083101+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] PATH session=REDACTED-ID-6a07213808e3 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64335) remote=Optional(127.0.0.1:55007); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.083346+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] CONNECTION_READY session=REDACTED-ID-6a07213808e3"}
+2026-10-24T14:57:39.084022+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] HELLO peer=REDACTED-ID-3e0e250398e5 role=Relay B identity=UNAUTHENTICATED"}
+2026-10-24T14:57:39.084156+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] HELLO peer=REDACTED-ID-a87dcfb54d7f role=Receiver C identity=UNAUTHENTICATED"}
+2026-10-24T14:57:39.084637+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] INVENTORY peer=REDACTED-ID-a87dcfb54d7f count=0"}
+2026-10-24T14:57:39.084658+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] INVENTORY peer=REDACTED-ID-3e0e250398e5 count=1"}
+2026-10-24T14:57:39.085026+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] TRANSFER_ATTEMPT id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-a87dcfb54d7f hops=2 pending_retry=false"}
+2026-10-24T14:57:39.085753+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] PERSISTED id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-3e0e250398e5 hops=2"}
+2026-10-24T14:57:39.085931+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] RECEIPT_CREATED id=REDACTED-ID-94fe320a8b4c original=REDACTED-ID-cfef83a77ca4"}
+2026-10-24T14:57:39.086157+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] STORAGE_ACK_SENT id=REDACTED-ID-cfef83a77ca4 kind=DESTINATION_STORED"}
+2026-10-24T14:57:39.086523+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] TRANSFER_ATTEMPT id=REDACTED-ID-94fe320a8b4c peer=REDACTED-ID-3e0e250398e5 hops=1 pending_retry=false"}
+2026-10-24T14:57:39.086651+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] STORAGE_ACK_RECEIVED id=REDACTED-ID-cfef83a77ca4 kind=DESTINATION_STORED peer=REDACTED-ID-a87dcfb54d7f ack_latency_ms=1"}
+2026-10-24T14:57:39.087098+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] PERSISTED id=REDACTED-ID-94fe320a8b4c peer=REDACTED-ID-a87dcfb54d7f hops=1"}
+2026-10-24T14:57:39.087325+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] STORAGE_ACK_SENT id=REDACTED-ID-94fe320a8b4c kind=RELAY_STORED"}
+2026-10-24T14:57:39.087618+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] STORAGE_ACK_RECEIVED id=REDACTED-ID-94fe320a8b4c kind=RELAY_STORED peer=REDACTED-ID-3e0e250398e5 ack_latency_ms=1"}
+2026-10-24T14:57:39.185474+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] FORCED_DUPLICATE_TEST id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-a87dcfb54d7f"}
+2026-10-24T14:57:39.186608+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] DUPLICATE_SUPPRESSED id=REDACTED-ID-cfef83a77ca4 peer=REDACTED-ID-3e0e250398e5 hops=2"}
+2026-10-24T14:57:39.186984+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] STORAGE_ACK_SENT id=REDACTED-ID-cfef83a77ca4 kind=DESTINATION_STORED"}
+2026-10-24T14:57:39.187344+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] STORAGE_ACK_RECEIVED id=REDACTED-ID-cfef83a77ca4 kind=DESTINATION_STORED peer=REDACTED-ID-a87dcfb54d7f ack_latency_ms=2"}
+2026-10-24T14:57:39.287589+00:00 PASS separate B->C encounter; one request, one receipt; A disconnected
+2026-10-24T14:57:39.288465+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] DISCONNECTED session=REDACTED-ID-6a07213808e3 unacked=[] queued_for_retry"}
+2026-10-24T14:57:39.288904+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] TRANSPORT_STOPPED"}
+2026-10-24T14:57:39.289497+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] STREAM_END session=REDACTED-ID-34d5eeea0cc3 partial=false error=nil"}
+2026-10-24T14:57:39.289911+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] DISCONNECTED session=REDACTED-ID-34d5eeea0cc3 unacked=[] queued_for_retry"}
+2026-10-24T14:57:39.290246+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] TRANSPORT_STOPPED"}
+2026-10-24T14:57:39.310058+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] TRANSPORT_STARTED includePeerToPeer=true cellular=prohibited path=UNVERIFIED plaintext=true discovery=false"}
+2026-10-24T14:57:39.314437+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] LISTENER ready"}
+2026-10-24T14:57:39.314487+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] TRANSPORT_STARTED includePeerToPeer=true cellular=prohibited path=UNVERIFIED plaintext=true discovery=false"}
+2026-10-24T14:57:39.315328+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] LISTENER ready"}
+2026-10-24T14:57:39.420190+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-d5eaab8182b2 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=nil remote=Optional(127.0.0.1:64338); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.420552+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-d5eaab8182b2 endpoint=127.0.0.1:64338 state=preparing"}
+2026-10-24T14:57:39.420635+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] PATH session=REDACTED-ID-4cd36a04f10d status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64338) remote=Optional(127.0.0.1:55010); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.420832+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] CONNECTION_STATE session=REDACTED-ID-4cd36a04f10d endpoint=127.0.0.1:55010 state=preparing"}
+2026-10-24T14:57:39.420871+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] CONNECTION_STATE session=REDACTED-ID-d5eaab8182b2 endpoint=127.0.0.1:64338 state=ready"}
+2026-10-24T14:57:39.421015+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] CONNECTION_STATE session=REDACTED-ID-4cd36a04f10d endpoint=127.0.0.1:55010 state=ready"}
+2026-10-24T14:57:39.421120+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] PATH session=REDACTED-ID-d5eaab8182b2 status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:55010) remote=Optional(127.0.0.1:64338); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.421232+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] PATH session=REDACTED-ID-4cd36a04f10d status=satisfied interfaces=[lo0:loopback] wifi=false cellular=false expensive=false local=Optional(127.0.0.1:64338) remote=Optional(127.0.0.1:55010); infrastructure_independence=UNVERIFIED"}
+2026-10-24T14:57:39.421340+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] CONNECTION_READY session=REDACTED-ID-d5eaab8182b2"}
+2026-10-24T14:57:39.421466+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] CONNECTION_READY session=REDACTED-ID-4cd36a04f10d"}
+2026-10-24T14:57:39.422134+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] HELLO peer=REDACTED-ID-3e0e250398e5 role=Relay B identity=UNAUTHENTICATED"}
+2026-10-24T14:57:39.422197+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] HELLO peer=REDACTED-ID-e3b81101eca8 role=Sender A identity=UNAUTHENTICATED"}
+2026-10-24T14:57:39.422542+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] INVENTORY peer=REDACTED-ID-3e0e250398e5 count=2"}
+2026-10-24T14:57:39.422556+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] INVENTORY peer=REDACTED-ID-e3b81101eca8 count=1"}
+2026-10-24T14:57:39.423185+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] TRANSFER_ATTEMPT id=REDACTED-ID-94fe320a8b4c peer=REDACTED-ID-e3b81101eca8 hops=2 pending_retry=false"}
+2026-10-24T14:57:39.423860+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] PERSISTED id=REDACTED-ID-94fe320a8b4c peer=REDACTED-ID-3e0e250398e5 hops=2"}
+2026-10-24T14:57:39.424031+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] FINAL_RECEIPT_RECOGNIZED id=REDACTED-ID-94fe320a8b4c original=REDACTED-ID-cfef83a77ca4"}
+2026-10-24T14:57:39.424365+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] STORAGE_ACK_SENT id=REDACTED-ID-94fe320a8b4c kind=DESTINATION_STORED"}
+2026-10-24T14:57:39.424738+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] STORAGE_ACK_RECEIVED id=REDACTED-ID-94fe320a8b4c kind=DESTINATION_STORED peer=REDACTED-ID-e3b81101eca8 ack_latency_ms=1"}
+2026-10-24T14:57:39.524475+00:00 PASS C->B->A receipt across second actual B process restart
+2026-10-24T14:57:39.524947+00:00 A FINAL_SNAPSHOT {"connected": ["REDACTED-ID-3e0e250398e5"], "device_id": "REDACTED-ID-e3b81101eca8", "messages": [{"accepted_by": ["REDACTED-ID-3e0e250398e5"], "attempts": 3, "destination": "REDACTED-ID-a87dcfb54d7f", "final_receipt": "REDACTED-ID-94fe320a8b4c", "hops": 0, "id": "REDACTED-ID-cfef83a77ca4", "origin": "REDACTED-ID-e3b81101eca8", "original": "", "status": "Final destination receipt received", "type": "RESOURCE_REQUEST"}, {"accepted_by": [], "attempts": 0, "destination": "REDACTED-ID-e3b81101eca8", "final_receipt": "", "hops": 2, "id": "REDACTED-ID-94fe320a8b4c", "origin": "REDACTED-ID-a87dcfb54d7f", "original": "REDACTED-ID-cfef83a77ca4", "status": "Receipt persisted locally", "type": "DELIVERY_RECEIPT"}], "ok": true, "port": 64338, "request": "REDACTED-ID-d0e428025144"}
+2026-10-24T14:57:39.525282+00:00 B FINAL_SNAPSHOT {"connected": ["REDACTED-ID-e3b81101eca8"], "device_id": "REDACTED-ID-3e0e250398e5", "messages": [{"accepted_by": ["REDACTED-ID-a87dcfb54d7f"], "attempts": 2, "destination": "REDACTED-ID-a87dcfb54d7f", "final_receipt": "", "hops": 1, "id": "REDACTED-ID-cfef83a77ca4", "origin": "REDACTED-ID-e3b81101eca8", "original": "", "status": "Destination storage ACK \u2014 awaiting return receipt", "type": "RESOURCE_REQUEST"}, {"accepted_by": ["REDACTED-ID-e3b81101eca8"], "attempts": 1, "destination": "REDACTED-ID-e3b81101eca8", "final_receipt": "", "hops": 1, "id": "REDACTED-ID-94fe320a8b4c", "origin": "REDACTED-ID-a87dcfb54d7f", "original": "REDACTED-ID-cfef83a77ca4", "status": "Receipt accepted by its recipient (storage ACK)", "type": "DELIVERY_RECEIPT"}], "ok": true, "port": 64337, "request": "REDACTED-ID-17a248fd7b1e"}
+2026-10-24T14:57:39.525579+00:00 C FINAL_SNAPSHOT {"connected": [], "device_id": "REDACTED-ID-a87dcfb54d7f", "messages": [{"accepted_by": [], "attempts": 0, "destination": "REDACTED-ID-a87dcfb54d7f", "final_receipt": "", "hops": 2, "id": "REDACTED-ID-cfef83a77ca4", "origin": "REDACTED-ID-e3b81101eca8", "original": "", "status": "Received at final destination", "type": "RESOURCE_REQUEST"}, {"accepted_by": ["REDACTED-ID-3e0e250398e5"], "attempts": 1, "destination": "REDACTED-ID-e3b81101eca8", "final_receipt": "", "hops": 0, "id": "REDACTED-ID-94fe320a8b4c", "origin": "REDACTED-ID-a87dcfb54d7f", "original": "REDACTED-ID-cfef83a77ca4", "status": "Receipt accepted by relay \u2014 queued for onward forwarding", "type": "DELIVERY_RECEIPT"}], "ok": true, "port": 0, "request": "REDACTED-ID-8ad0d184ccc4"}
+2026-10-24T14:57:39.525593+00:00 PASS all TCP controls. Physical A–E = NOT TESTED. Infrastructure-independent wireless path = NOT VERIFIED.
+2026-10-24T14:57:39.526039+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] DISCONNECTED session=REDACTED-ID-4cd36a04f10d unacked=[] queued_for_retry"}
+2026-10-24T14:57:39.526293+00:00 A {"event":"2026-10-24T14:57:39Z [REDACTED-ID-e3b81101eca8] TRANSPORT_STOPPED"}
+2026-10-24T14:57:39.526347+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] STREAM_END session=REDACTED-ID-d5eaab8182b2 partial=false error=nil"}
+2026-10-24T14:57:39.526540+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] DISCONNECTED session=REDACTED-ID-d5eaab8182b2 unacked=[] queued_for_retry"}
+2026-10-24T14:57:39.530924+00:00 C {"event":"2026-10-24T14:57:39Z [REDACTED-ID-a87dcfb54d7f] TRANSPORT_STOPPED"}
+2026-10-24T14:57:39.535120+00:00 B {"event":"2026-10-24T14:57:39Z [REDACTED-ID-3e0e250398e5] TRANSPORT_STOPPED"}

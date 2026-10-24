@@ -1,0 +1,17 @@
+{
+  "phone": "iPhone 15 Pro Max",
+  "app_build": 22,
+  "fresh_account_authenticated": true,
+  "private_session_consumed": true,
+  "cached_shelters": 1,
+  "cached_shelter_receiver": true,
+  "new_account_requests": 0,
+  "before_messages": 53,
+  "after_messages": 53,
+  "old_message_bodies_preserved": true,
+  "prior_receipts_preserved": true,
+  "old_cloud_submissions_preserved": true,
+  "device_id_preserved": true,
+  "device_keys_preserved": true,
+  "sqlite_integrity": "ok"
+}

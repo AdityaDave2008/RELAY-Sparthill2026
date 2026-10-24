@@ -1,0 +1,18 @@
+{
+  "scope": "Live HTTPS shelter metadata published through Mac UI and viewed in iOS Simulator",
+  "synthetic_coordinate_distance_displayed_km": 1.1,
+  "simulator_location": [
+    1.23456,
+    2.34567
+  ],
+  "shelter_test_details": {
+    "address": "SYNTHETIC TEST \u00b7 Fictional Demo Hall",
+    "instructions": "DEMO ONLY: At the fictional shelter, use the east entrance and check in with the coordinator. These are test coordinates, not a real shelter or travel instruction.",
+    "latitude": 1.23456,
+    "longitude": 2.35567,
+    "revision": 1,
+    "updated_at": "2026-10-24T16:11:43.309322Z"
+  },
+  "test_coordinates_and_instructions_cleared_after_verification": true,
+  "cleared_revision": 2
+}

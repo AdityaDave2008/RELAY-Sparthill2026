@@ -1,0 +1,262 @@
+Building for debugging...
+[0/32] /tmp/relay21-swift-build/arm64-apple-macosx/debug/RELAYPackageTests.derived/runner.swift
+[1/32] Write sources
+[9/32] Write RelayCloudCheck-entitlement.plist
+[10/32] Write RelayWorkflowCheck-entitlement.plist
+[10/32] Write RelayNearbyCheck-entitlement.plist
+[11/32] Write RelayLab-entitlement.plist
+[12/32] Write RelaySpeechCheck-entitlement.plist
+[14/32] Write swift-version--58304C5D6DBC2206.txt
+[16/47] Compiling RelayCore NetworkTransport.swift
+[17/47] Compiling RelayCore Protocol.swift
+[18/47] Compiling RelayCore ResidentDetails.swift
+[19/47] Compiling RelayCore CloudProtocol.swift
+[20/47] Compiling RelayCore CognitoLogin.swift
+[21/47] Compiling RelayCore SealedDelivery.swift
+[22/47] Compiling RelayCore RequestWorkflow.swift
+[23/47] Compiling RelayCore RequestUpdates.swift
+[24/47] Compiling RelayCore SpeechStream.swift
+[25/47] Compiling RelayCore Announcements.swift
+[26/47] Compiling RelayCore CloudHTTP.swift
+[27/47] Compiling RelayCore Shelters.swift
+[28/47] Emitting module RelayCore
+[29/47] Compiling RelayCore Conversations.swift
+[30/47] Compiling RelayCore Engine.swift
+[31/48] Compiling RelayCore Store.swift
+[32/69] Emitting module RelaySpeechCheck
+[33/69] Emitting module RelayNearbyCheck
+[34/69] Compiling RelayNearbyCheck main.swift
+[34/69] Write Objects.LinkFileList
+[36/69] Emitting module RelayLab
+[37/69] Compiling RelayLab main.swift
+[37/69] Write Objects.LinkFileList
+[39/69] Compiling RelaySpeechCheck main.swift
+[39/69] Write Objects.LinkFileList
+[40/69] Linking RelayNearbyCheck
+[41/69] Linking RelayLab
+[42/69] Applying RelayNearbyCheck
+[43/69] Applying RelayLab
+[45/69] Compiling RelayCloudCheck main.swift
+[46/69] Emitting module RelayCloudCheck
+[46/69] Write Objects.LinkFileList
+[47/69] Linking RelaySpeechCheck
+[48/69] Applying RelaySpeechCheck
+[49/69] Linking RelayCloudCheck
+[50/69] Applying RelayCloudCheck
+[52/69] Compiling RelayWorkflowCheck main.swift
+[53/69] Emitting module RelayWorkflowCheck
+[53/69] Write Objects.LinkFileList
+[54/69] Linking RelayWorkflowCheck
+[55/69] Applying RelayWorkflowCheck
+[57/69] Emitting module RelayCoreTests
+[58/69] Compiling RelayCoreTests ConversationTests.swift
+[59/69] Compiling RelayCoreTests SpeechStreamTests.swift
+[60/69] Compiling RelayCoreTests ResidentDetailsTests.swift
+[61/69] Compiling RelayCoreTests AnnouncementTests.swift
+[62/69] Compiling RelayCoreTests PeerNameTests.swift
+[63/69] Compiling RelayCoreTests SealedDeliveryTests.swift
+[64/69] Compiling RelayCoreTests CloudIntegrationTests.swift
+[65/69] Compiling RelayCoreTests RequestWorkflowTests.swift
+[66/69] Compiling RelayCoreTests RelayCoreTests.swift
+[67/69] Compiling RelayCoreTests ShelterTests.swift
+[68/71] Emitting module RELAYPackageTests
+[69/71] Compiling RELAYPackageTests runner.swift
+[69/71] Write Objects.LinkFileList
+[70/71] Linking RELAYPackageTests
+Build complete! (16.05s)
+Test Suite 'All tests' started at 2026-10-24 09:41:31.910.
+Test Suite 'RELAYPackageTests.xctest' started at 2026-10-24 09:41:31.913.
+Test Suite 'AnnouncementTests' started at 2026-10-24 09:41:31.913.
+Test Case '-[RelayCoreTests.AnnouncementTests testCachedFeedSurvivesRestartAndIsAccountScoped]' started.
+Test Case '-[RelayCoreTests.AnnouncementTests testCachedFeedSurvivesRestartAndIsAccountScoped]' passed (0.022 seconds).
+Test Case '-[RelayCoreTests.AnnouncementTests testDistanceHandlesSamePointDatelineAndNoCoordinates]' started.
+Test Case '-[RelayCoreTests.AnnouncementTests testDistanceHandlesSamePointDatelineAndNoCoordinates]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.AnnouncementTests testLegacyDirectoryDecodesWithoutDetailsAndNewFieldsRoundTrip]' started.
+Test Case '-[RelayCoreTests.AnnouncementTests testLegacyDirectoryDecodesWithoutDetailsAndNewFieldsRoundTrip]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.AnnouncementTests testNewRequestNeedsLocationOrLandmarkWithoutChangingHistoricalPayloads]' started.
+Test Case '-[RelayCoreTests.AnnouncementTests testNewRequestNeedsLocationOrLandmarkWithoutChangingHistoricalPayloads]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.AnnouncementTests testPublishingCommandRetainsExactIDAndContentForRetry]' started.
+Test Case '-[RelayCoreTests.AnnouncementTests testPublishingCommandRetainsExactIDAndContentForRetry]' passed (0.000 seconds).
+Test Suite 'AnnouncementTests' passed at 2026-10-24 09:41:31.937.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.023 (0.024) seconds
+Test Suite 'CloudIntegrationTests' started at 2026-10-24 09:41:31.937.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testAtomicCloudIntentSurvivesRestartAndPreservesLocalIdentity]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testAtomicCloudIntentSurvivesRestartAndPreservesLocalIdentity]' passed (0.011 seconds).
+Test Case '-[RelayCoreTests.CloudIntegrationTests testCarrierCannotUploadUnderItsOwnIdentityAndContentCannotChange]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testCarrierCannotUploadUnderItsOwnIdentityAndContentCannotChange]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.CloudIntegrationTests testEndpointRejectsInsecureAndCredentialBearingAddresses]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testEndpointRejectsInsecureAndCredentialBearingAddresses]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.CloudIntegrationTests testInterruptedCloudAttemptPreservesExactSubmission]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testInterruptedCloudAttemptPreservesExactSubmission]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.CloudIntegrationTests testInvalidCloudIntentRollsBackMessageAndKeepsDraft]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testInvalidCloudIntentRollsBackMessageAndKeepsDraft]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.CloudIntegrationTests testLegacyDraftDecodeAndCloudTimestampVariants]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testLegacyDraftDecodeAndCloudTimestampVariants]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.CloudIntegrationTests testLocalRequestRepliesStayOutOfChatsAndDeduplicate]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testLocalRequestRepliesStayOutOfChatsAndDeduplicate]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.CloudIntegrationTests testPKCECallbackRejectsWrongStateHostAndDuplicates]' started.
+Test Case '-[RelayCoreTests.CloudIntegrationTests testPKCECallbackRejectsWrongStateHostAndDuplicates]' passed (0.001 seconds).
+Test Suite 'CloudIntegrationTests' passed at 2026-10-24 09:41:31.956.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.018 (0.019) seconds
+Test Suite 'ConversationTests' started at 2026-10-24 09:41:31.956.
+Test Case '-[RelayCoreTests.ConversationTests testCarriedTrafficCannotLeakIntoPersonalConversation]' started.
+Test Case '-[RelayCoreTests.ConversationTests testCarriedTrafficCannotLeakIntoPersonalConversation]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ConversationTests testIncomingAndOutgoingShareOneChronologicalConversation]' started.
+Test Case '-[RelayCoreTests.ConversationTests testIncomingAndOutgoingShareOneChronologicalConversation]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ConversationTests testPeersRemainSeparateAndLatestConversationComesFirst]' started.
+Test Case '-[RelayCoreTests.ConversationTests testPeersRemainSeparateAndLatestConversationComesFirst]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ConversationTests testReceiptUpdatesOriginalWithoutCreatingChatBubble]' started.
+Test Case '-[RelayCoreTests.ConversationTests testReceiptUpdatesOriginalWithoutCreatingChatBubble]' passed (0.000 seconds).
+Test Suite 'ConversationTests' passed at 2026-10-24 09:41:31.957.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'PeerNameTests' started at 2026-10-24 09:41:31.957.
+Test Case '-[RelayCoreTests.PeerNameTests testLegacyStoreMigrationRetainsMessagesIdentityAndPeerNamesAcrossRestart]' started.
+Test Case '-[RelayCoreTests.PeerNameTests testLegacyStoreMigrationRetainsMessagesIdentityAndPeerNamesAcrossRestart]' passed (0.009 seconds).
+Test Case '-[RelayCoreTests.PeerNameTests testNameBoundsAndControlCharacters]' started.
+Test Case '-[RelayCoreTests.PeerNameTests testNameBoundsAndControlCharacters]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.PeerNameTests testNamedHelloAndLegacyHelloAreCompatible]' started.
+Test Case '-[RelayCoreTests.PeerNameTests testNamedHelloAndLegacyHelloAreCompatible]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.PeerNameTests testSameNamesAndRenameNeverChangeRoutingOrExposeRelayCopiesInChats]' started.
+Test Case '-[RelayCoreTests.PeerNameTests testSameNamesAndRenameNeverChangeRoutingOrExposeRelayCopiesInChats]' passed (0.010 seconds).
+Test Suite 'PeerNameTests' passed at 2026-10-24 09:41:31.978.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.020 (0.021) seconds
+Test Suite 'RelayCoreTests' started at 2026-10-24 09:41:31.978.
+Test Case '-[RelayCoreTests.RelayCoreTests testDroppedAckRetriedAfterReconnectDespiteInventory]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testDroppedAckRetriedAfterReconnectDespiteInventory]' passed (0.003 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testDuplicatesDoNotRepeatActionOrReceiptAndCollisionRejected]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testDuplicatesDoNotRepeatActionOrReceiptAndCollisionRejected]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testDurableIdentityMessagesAndAcknowledgementsAfterRestart]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testDurableIdentityMessagesAndAcknowledgementsAfterRestart]' passed (0.011 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testExpirationAndHopBoundary]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testExpirationAndHopBoundary]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testExpiredMessagesNeverOffered]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testExpiredMessagesNeverOffered]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testFramingFragmentationAndCoalescing]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testFramingFragmentationAndCoalescing]' passed (0.007 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testInventoryOnlyOffersMissingAndDoesNotIncreaseHopOnRetries]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testInventoryOnlyOffersMissingAndDoesNotIncreaseHopOnRetries]' passed (0.003 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testJSONRoundTripAndWireNames]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testJSONRoundTripAndWireNames]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testMalformedFramesAndVersionRejected]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testMalformedFramesAndVersionRejected]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testPartialFrameDisconnectAndRepeatedRetry]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testPartialFrameDisconnectAndRepeatedRetry]' passed (0.028 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testPersistenceFailureSendsNoAcknowledgement]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testPersistenceFailureSendsNoAcknowledgement]' passed (0.039 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testReceiptCannotMarkWrongDestinationAsDelivered]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testReceiptCannotMarkWrongDestinationAsDelivered]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testReceiptStateSurvivesSenderRestartAndDuplicateReceipt]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testReceiptStateSurvivesSenderRestartAndDuplicateReceipt]' passed (0.009 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testRetryWithoutDisconnectAfterMissingAck]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testRetryWithoutDisconnectAfterMissingAck]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testRouteBlockAndUnsolicitedAck]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testRouteBlockAndUnsolicitedAck]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testShorterDuplicateRouteUpdatesHopsButPreservesFinalState]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testShorterDuplicateRouteUpdatesHopsButPreservesFinalState]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.RelayCoreTests testThreeDeviceCarryRestartReturnReceipt]' started.
+Test Case '-[RelayCoreTests.RelayCoreTests testThreeDeviceCarryRestartReturnReceipt]' passed (0.017 seconds).
+Test Suite 'RelayCoreTests' passed at 2026-10-24 09:41:32.106.
+	 Executed 17 tests, with 0 failures (0 unexpected) in 0.128 (0.129) seconds
+Test Suite 'RequestWorkflowTests' started at 2026-10-24 09:41:32.106.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testEditedTextCannotReuseOldInterpretation]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testEditedTextCannotReuseOldInterpretation]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testEndpointMigrationRejectsConflictingContentAtomically]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testEndpointMigrationRejectsConflictingContentAtomically]' passed (0.003 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testEndpointMigrationRetainsRequestsDraftAudioAndPendingInventoryWithoutOverwritingNewerState]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testEndpointMigrationRetainsRequestsDraftAudioAndPendingInventoryWithoutOverwritingNewerState]' passed (0.009 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testExactReplayDoesNotDuplicateAndChangedContentIsRejected]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testExactReplayDoesNotDuplicateAndChangedContentIsRejected]' passed (0.004 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testInvalidCloudSubmissionDoesNotClearDraft]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testInvalidCloudSubmissionDoesNotClearDraft]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testInventoryOperationPersistsAcrossLostResponse]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testInventoryOperationPersistsAcrossLostResponse]' passed (0.003 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLateSnapshotKeepsNewerReplyAndPendingOperation]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLateSnapshotKeepsNewerReplyAndPendingOperation]' passed (0.010 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLegacyDraftAndFieldsDecodeWithoutNewKeys]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLegacyDraftAndFieldsDecodeWithoutNewKeys]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLegacyWholeSecondCacheAcceptsFractionalServerTimestampButNotChangedContent]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLegacyWholeSecondCacheAcceptsFractionalServerTimestampButNotChangedContent]' passed (0.007 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLocationAndStructuredRequestSurviveRestartWithoutPlaintextPeerCopy]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLocationAndStructuredRequestSurviveRestartWithoutPlaintextPeerCopy]' passed (0.010 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLocationBoundsAndUnknownCounts]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testLocationBoundsAndUnknownCounts]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.RequestWorkflowTests testMedicineUrgencyAndUnitsSurviveDraftRestart]' started.
+Test Case '-[RelayCoreTests.RequestWorkflowTests testMedicineUrgencyAndUnitsSurviveDraftRestart]' passed (0.001 seconds).
+Test Suite 'RequestWorkflowTests' passed at 2026-10-24 09:41:32.157.
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.049 (0.050) seconds
+Test Suite 'ResidentDetailsTests' started at 2026-10-24 09:41:32.157.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testAllPersonalFieldsAreOptional]' started.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testAllPersonalFieldsAreOptional]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ResidentDetailsTests testBloodGroupAndNoteBoundsPreserveUnknownInsteadOfGuessing]' started.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testBloodGroupAndNoteBoundsPreserveUnknownInsteadOfGuessing]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ResidentDetailsTests testDecimalCommaWorksOnlyWhenChosenLocaleUsesIt]' started.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testDecimalCommaWorksOnlyWhenChosenLocaleUsesIt]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ResidentDetailsTests testFirstRunFlagsPersistPerAccountAcrossRestartWithoutProfileData]' started.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testFirstRunFlagsPersistPerAccountAcrossRestartWithoutProfileData]' passed (0.007 seconds).
+Test Case '-[RelayCoreTests.ResidentDetailsTests testNumericInputRejectsNonfiniteUnitsSuffixAndOutOfRangeValues]' started.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testNumericInputRejectsNonfiniteUnitsSuffixAndOutOfRangeValues]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ResidentDetailsTests testSelfReportedFieldsRoundTripWithoutDroppingNotes]' started.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testSelfReportedFieldsRoundTripWithoutDroppingNotes]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ResidentDetailsTests testSupplyEmojiDoesNotChangeProtocolIdentifiersOrTitles]' started.
+Test Case '-[RelayCoreTests.ResidentDetailsTests testSupplyEmojiDoesNotChangeProtocolIdentifiersOrTitles]' passed (0.000 seconds).
+Test Suite 'ResidentDetailsTests' passed at 2026-10-24 09:41:32.165.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.008 (0.008) seconds
+Test Suite 'SealedDeliveryTests' started at 2026-10-24 09:41:32.165.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testEncryptedCarryRestartAndSignedReturnReceipt]' started.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testEncryptedCarryRestartAndSignedReturnReceipt]' passed (0.025 seconds).
+Test Case '-[RelayCoreTests.SealedDeliveryTests testForgedPlainReceiptCannotMarkEncryptedRequestDelivered]' started.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testForgedPlainReceiptCannotMarkEncryptedRequestDelivered]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.SealedDeliveryTests testKeyMaterialSurvivesRestartAndInvalidFileIsNeverOverwritten]' started.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testKeyMaterialSurvivesRestartAndInvalidFileIsNeverOverwritten]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.SealedDeliveryTests testLateCloudWriteCannotRegressVerifiedNearbyDelivery]' started.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testLateCloudWriteCannotRegressVerifiedNearbyDelivery]' passed (0.004 seconds).
+Test Case '-[RelayCoreTests.SealedDeliveryTests testOversizedNearbyCopyRollsBackCloudQueueAndKeepsDraft]' started.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testOversizedNearbyCopyRollsBackCloudQueueAndKeepsDraft]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.SealedDeliveryTests testSealingProtectsTextAndLocationAndBindsRoute]' started.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testSealingProtectsTextAndLocationAndBindsRoute]' passed (0.003 seconds).
+Test Case '-[RelayCoreTests.SealedDeliveryTests testUnreadableRecipientNeverPersistsOrCreatesSuccessReceipt]' started.
+Test Case '-[RelayCoreTests.SealedDeliveryTests testUnreadableRecipientNeverPersistsOrCreatesSuccessReceipt]' passed (0.002 seconds).
+Test Suite 'SealedDeliveryTests' passed at 2026-10-24 09:41:32.206.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.040 (0.041) seconds
+Test Suite 'ShelterTests' started at 2026-10-24 09:41:32.206.
+Test Case '-[RelayCoreTests.ShelterTests testDirectoryCodeRoundTripAndConflictingRedirectionRejected]' started.
+Test Case '-[RelayCoreTests.ShelterTests testDirectoryCodeRoundTripAndConflictingRedirectionRejected]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testDraftRecoveryAndAtomicIdempotentSubmission]' started.
+Test Case '-[RelayCoreTests.ShelterTests testDraftRecoveryAndAtomicIdempotentSubmission]' passed (0.012 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testFailedSubmissionRetainsDraftAndDoesNotCreateMessage]' started.
+Test Case '-[RelayCoreTests.ShelterTests testFailedSubmissionRetainsDraftAndDoesNotCreateMessage]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testRemovalIsReversibleAcrossRestartAndPreservesRequestsAndReceipts]' started.
+Test Case '-[RelayCoreTests.ShelterTests testRemovalIsReversibleAcrossRestartAndPreservesRequestsAndReceipts]' passed (0.008 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testRemovedShelterCannotBeRedirectedByImport]' started.
+Test Case '-[RelayCoreTests.ShelterTests testRemovedShelterCannotBeRedirectedByImport]' passed (0.001 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testShelterRequestCarryRestartRetryReceiptAndInboxIsolation]' started.
+Test Case '-[RelayCoreTests.ShelterTests testShelterRequestCarryRestartRetryReceiptAndInboxIsolation]' passed (0.024 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testStoreFailureRollsBackSubmitAndKeepsDraft]' started.
+Test Case '-[RelayCoreTests.ShelterTests testStoreFailureRollsBackSubmitAndKeepsDraft]' passed (0.006 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testStructuredPayloadIsPreservedByLegacyJSONCodecAndBoundToDestination]' started.
+Test Case '-[RelayCoreTests.ShelterTests testStructuredPayloadIsPreservedByLegacyJSONCodecAndBoundToDestination]' passed (0.002 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testVersionTwoUpgradePreservesOldIdentityMessagesReceiptsAndPeers]' started.
+Test Case '-[RelayCoreTests.ShelterTests testVersionTwoUpgradePreservesOldIdentityMessagesReceiptsAndPeers]' passed (0.010 seconds).
+Test Case '-[RelayCoreTests.ShelterTests testWrappedSharedCodeImportsButTruncatedAndForeignTextFail]' started.
+Test Case '-[RelayCoreTests.ShelterTests testWrappedSharedCodeImportsButTruncatedAndForeignTextFail]' passed (0.000 seconds).
+Test Suite 'ShelterTests' passed at 2026-10-24 09:41:32.271.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.064 (0.065) seconds
+Test Suite 'SpeechStreamTests' started at 2026-10-24 09:41:32.271.
+Test Case '-[RelayCoreTests.SpeechStreamTests testExistingAudioJobStillDecodesAndStreamingRetainsItsID]' started.
+Test Case '-[RelayCoreTests.SpeechStreamTests testExistingAudioJobStillDecodesAndStreamingRetainsItsID]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.SpeechStreamTests testInvalidAndOversizedTranscriptIsRejected]' started.
+Test Case '-[RelayCoreTests.SpeechStreamTests testInvalidAndOversizedTranscriptIsRejected]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.SpeechStreamTests testPartialSegmentsReplaceAndDoNotRegressAfterFinalization]' started.
+Test Case '-[RelayCoreTests.SpeechStreamTests testPartialSegmentsReplaceAndDoNotRegressAfterFinalization]' passed (0.000 seconds).
+Test Case '-[RelayCoreTests.SpeechStreamTests testPCMFileRoundTripAndTruncation]' started.
+Test Case '-[RelayCoreTests.SpeechStreamTests testPCMFileRoundTripAndTruncation]' passed (0.001 seconds).
+Test Suite 'SpeechStreamTests' passed at 2026-10-24 09:41:32.272.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.002) seconds
+Test Suite 'RELAYPackageTests.xctest' passed at 2026-10-24 09:41:32.272.
+	 Executed 78 tests, with 0 failures (0 unexpected) in 0.353 (0.359) seconds
+Test Suite 'All tests' passed at 2026-10-24 09:41:32.272.
+	 Executed 78 tests, with 0 failures (0 unexpected) in 0.353 (0.362) seconds
+◇ Test run started.
+↳ Testing Library Version: 1400
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

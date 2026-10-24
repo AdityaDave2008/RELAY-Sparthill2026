@@ -1,0 +1,465 @@
+{
+  "started_at": "2026-10-24T06:41:30.384077+00:00",
+  "audited_region": "us-east-1",
+  "configured_profile_region": "us-east-1",
+  "identity": {
+    "status": "PASS",
+    "account": "928489693154",
+    "arn": "arn:aws:sts::928489693154:assumed-role/WSParticipantRole/Participant",
+    "request_id": "REDACTED-ID-e810c3ce7cf5"
+  },
+  "test_limits": {
+    "requests": {
+      "count": 12,
+      "request_id": "PU2OO79CNI6P41K7JOFTT1ATUBVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    },
+    "transcriptions": {
+      "count": 1,
+      "request_id": "4TPBPM392JJ3Q7G5AAPE89G67JVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  },
+  "api_gateway": {
+    "http_websocket_api_total": 0,
+    "related_http_apis": [],
+    "rest_api_total": 0,
+    "related_rest_apis": []
+  },
+  "cloudformation": {
+    "exact_stack": {
+      "status": "ABSENT",
+      "code": "ValidationError",
+      "request_id": "REDACTED-ID-540fc5e6dd27",
+      "message": "Stack with id relay-cloud-mvp does not exist"
+    },
+    "active_related_stacks": [
+      {
+        "request_id": "REDACTED-ID-ed3f478c9dd4",
+        "stack": {
+          "StackName": "relay-bedrock-metrics",
+          "StackId": "arn:aws:cloudformation:us-east-1:928489693154:stack/relay-bedrock-metrics/REDACTED-ID-2eae19fcdc75",
+          "StackStatus": "CREATE_COMPLETE",
+          "CreationTime": "2026-10-24 03:41:21.871000+00:00",
+          "LastUpdatedTime": null,
+          "RoleARN": null,
+          "Tags": [
+            {
+              "Key": "Project",
+              "Value": "RELAY-hackathon"
+            }
+          ],
+          "Parameters": [],
+          "Outputs": []
+        },
+        "resources": [
+          {
+            "LogicalResourceId": "Dashboard",
+            "PhysicalResourceId": "RELAY-Bedrock",
+            "ResourceType": "AWS::CloudWatch::Dashboard",
+            "ResourceStatus": "CREATE_COMPLETE"
+          }
+        ]
+      },
+      {
+        "request_id": "REDACTED-ID-edda4a4654fb",
+        "stack": {
+          "StackName": "relay-public",
+          "StackId": "arn:aws:cloudformation:us-east-1:928489693154:stack/relay-public/REDACTED-ID-ee0229ef5d15",
+          "StackStatus": "ROLLBACK_COMPLETE",
+          "CreationTime": "2026-10-24 02:16:29.272000+00:00",
+          "LastUpdatedTime": null,
+          "RoleARN": null,
+          "Tags": [
+            {
+              "Key": "Project",
+              "Value": "RELAY"
+            }
+          ],
+          "Parameters": [
+            {
+              "ParameterKey": "CognitoClientId",
+              "ParameterValue": "63gjrcdlap598pmu9ho7sstr38"
+            }
+          ],
+          "Outputs": []
+        },
+        "resources": [
+          {
+            "LogicalResourceId": "ApiCachePolicy",
+            "PhysicalResourceId": "REDACTED-ID-8bd5ba320527",
+            "ResourceType": "AWS::CloudFront::CachePolicy",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "ApiLogs",
+            "PhysicalResourceId": "/aws/lambda/relay-public-api",
+            "ResourceType": "AWS::Logs::LogGroup",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "ApiOriginPolicy",
+            "PhysicalResourceId": "REDACTED-ID-6cd2882de67d",
+            "ResourceType": "AWS::CloudFront::OriginRequestPolicy",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "ApiPathRewrite",
+            "PhysicalResourceId": "arn:aws:cloudfront::928489693154:function/relay-public-api-path",
+            "ResourceType": "AWS::CloudFront::Function",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "ApiRole",
+            "PhysicalResourceId": "relay-public-ApiRole-rl604gI8GOJg",
+            "ResourceType": "AWS::IAM::Role",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "BedrockDashboard",
+            "PhysicalResourceId": "relay-public-bedrock",
+            "ResourceType": "AWS::CloudWatch::Dashboard",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "HttpApi",
+            "PhysicalResourceId": "t9xj4xi8k4",
+            "ResourceType": "AWS::ApiGatewayV2::Api",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "WebBucket",
+            "PhysicalResourceId": "relay-public-webbucket-twmcadnxx1le",
+            "ResourceType": "AWS::S3::Bucket",
+            "ResourceStatus": "DELETE_SKIPPED"
+          },
+          {
+            "LogicalResourceId": "WebCachePolicy",
+            "PhysicalResourceId": "REDACTED-ID-b7a2c3ce499a",
+            "ResourceType": "AWS::CloudFront::CachePolicy",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "WebOriginAccess",
+            "PhysicalResourceId": "E1KA5RJ0J8KVJQ",
+            "ResourceType": "AWS::CloudFront::OriginAccessControl",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "WorkerLogs",
+            "PhysicalResourceId": "/aws/lambda/relay-public-classifier",
+            "ResourceType": "AWS::Logs::LogGroup",
+            "ResourceStatus": "DELETE_COMPLETE"
+          },
+          {
+            "LogicalResourceId": "WorkerRole",
+            "PhysicalResourceId": "relay-public-WorkerRole-Hq3kwYaLxTKk",
+            "ResourceType": "AWS::IAM::Role",
+            "ResourceStatus": "DELETE_COMPLETE"
+          }
+        ]
+      }
+    ],
+    "inventory_total": 2
+  },
+  "lambda": {
+    "function_inventory_total": 1,
+    "related_functions": [
+      {
+        "name": "relay-cloud-mvp-api",
+        "status": "ABSENT",
+        "code": "ResourceNotFoundException",
+        "request_id": "REDACTED-ID-f3482a55caa2",
+        "message": "Function not found: arn:aws:lambda:us-east-1:928489693154:function:relay-cloud-mvp-api"
+      },
+      {
+        "name": "relay-cloud-mvp-worker",
+        "status": "ABSENT",
+        "code": "ResourceNotFoundException",
+        "request_id": "REDACTED-ID-11d9b654415d",
+        "message": "Function not found: arn:aws:lambda:us-east-1:928489693154:function:relay-cloud-mvp-worker"
+      }
+    ],
+    "worker_schedule": {
+      "status": "ABSENT",
+      "code": "ResourceNotFoundException",
+      "request_id": "REDACTED-ID-7b315c579f3c",
+      "message": "Rule relay-cloud-mvp-recovery does not exist on EventBus default."
+    }
+  },
+  "iam": {
+    "execution_role": {
+      "status": "ABSENT",
+      "code": "NoSuchEntity",
+      "request_id": "REDACTED-ID-49136be0ec81",
+      "message": "The role with name relay-cloud-mvp-execution cannot be found."
+    },
+    "participant_role": {
+      "status": "PASS",
+      "request_id": "REDACTED-ID-9911c361606b",
+      "role": {
+        "RoleName": "WSParticipantRole",
+        "Arn": "arn:aws:iam::928489693154:role/WSParticipantRole",
+        "CreateDate": "2026-10-14 16:11:28+00:00",
+        "PermissionsBoundary": null,
+        "MaxSessionDuration": 43200
+      },
+      "inline_policies": [],
+      "attached_policies": [
+        {
+          "arn": "arn:aws:iam::928489693154:policy/ws-default-policy",
+          "name": "ws-default-policy",
+          "version": "v1",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Sid": "AllowIamReadOnly",
+                "Effect": "Allow",
+                "Action": [
+                  "iam:List*",
+                  "iam:Get*",
+                  "iam:Generate*",
+                  "sts:GetCallerIdentity"
+                ],
+                "Resource": [
+                  "*"
+                ]
+              },
+              {
+                "Sid": "AllowCreateSLR",
+                "Effect": "Allow",
+                "Action": [
+                  "iam:CreateServiceLinkedRole"
+                ],
+                "Resource": [
+                  "arn:aws:iam::*:role/aws-service-role/*"
+                ]
+              },
+              {
+                "Sid": "AllowIamPassRole",
+                "Effect": "Allow",
+                "Action": [
+                  "iam:PassRole"
+                ],
+                "Resource": [
+                  "arn:aws:iam::928489693154:role/WSParticipantRole"
+                ]
+              },
+              {
+                "Sid": "DenyAllOutsideAllowedRegions",
+                "Effect": "Deny",
+                "NotAction": [
+                  "iam:*",
+                  "sts:*",
+                  "s3:*",
+                  "ds:*",
+                  "artifact:Get",
+                  "artifact:DownloadAgreement",
+                  "lightsail:*",
+                  "networkmanager:*",
+                  "braket:*",
+                  "quicksight:*",
+                  "cloudfront:*",
+                  "route53:*",
+                  "route53-recovery-cluster:*",
+                  "route53-recovery-control-config:*",
+                  "route53-recovery-readiness:*",
+                  "servicediscovery:*",
+                  "waf:*",
+                  "waf-regional:*",
+                  "wafv2:*",
+                  "cloudwatch:DescribeAlarms",
+                  "cloudwatch:PutMetricAlarm",
+                  "cloudwatch:DeleteAlarms",
+                  "cloudwatch:GetMetricStatistics",
+                  "elasticloadbalancing:DescribeLoadBalancers",
+                  "ec2:Describe*",
+                  "ecr:GetDownloadUrlForLayer",
+                  "ecr:BatchGetImage",
+                  "ecr:BatchCheckLayerAvailability",
+                  "ecr:GetAuthorizationToken",
+                  "globalaccelerator:*",
+                  "acm:List*",
+                  "acm:Describe*",
+                  "cloudformation:List*",
+                  "cloudformation:Describe*",
+                  "kms:Describe*",
+                  "kms:ReEncrypt*",
+                  "kms:GenerateDataKey*",
+                  "kms:Get*",
+                  "kms:List*",
+                  "kms:CreateGrant",
+                  "kms:RevokeGrant",
+                  "ssm:List*",
+                  "directconnect:*",
+                  "interconnect:*",
+                  "sso:List*",
+                  "sso:Describe*",
+                  "sso:Get*",
+                  "bedrock:Invoke*"
+                ],
+                "Resource": [
+                  "*"
+                ],
+                "Condition": {
+                  "StringNotEquals": {
+                    "aws:RequestedRegion": [
+                      "us-east-1"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "request_id": "REDACTED-ID-529e7133d1aa"
+        },
+        {
+          "arn": "arn:aws:iam::aws:policy/PowerUserAccess",
+          "name": "PowerUserAccess",
+          "version": "v12",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "NotAction": [
+                  "iam:*",
+                  "organizations:*",
+                  "account:*"
+                ],
+                "Resource": "*"
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "account:GetAccountInformation",
+                  "account:GetGovCloudAccountInformation",
+                  "account:GetPrimaryEmail",
+                  "account:ListRegions",
+                  "iam:CreateServiceLinkedRole",
+                  "iam:DeleteServiceLinkedRole",
+                  "iam:ListRoles",
+                  "organizations:DescribeEffectivePolicy",
+                  "organizations:DescribeOrganization"
+                ],
+                "Resource": "*"
+              }
+            ]
+          },
+          "request_id": "REDACTED-ID-e110a9867e24"
+        }
+      ],
+      "lambda_service_trusted": false
+    },
+    "passrole_simulation": {
+      "status": "DENIED",
+      "code": "AccessDenied",
+      "request_id": "REDACTED-ID-33b45bc411af",
+      "message": "User: arn:aws:sts::928489693154:assumed-role/WSParticipantRole/Participant is not authorized to perform: iam:SimulatePrincipalPolicy on resource: arn:aws:iam::928489693154:role/WSParticipantRole because no identity-based policy allows the iam:SimulatePrincipalPolicy action"
+    }
+  },
+  "cognito": {
+    "client": {
+      "UserPoolId": "us-east-1_f7wyKUgiY",
+      "ClientName": "RELAY-Cloud-MVP-Native",
+      "ClientId": "dfulb5lau8283nlgil7ddu36i",
+      "AllowedOAuthFlowsUserPoolClient": true,
+      "AllowedOAuthFlows": [
+        "code"
+      ],
+      "AllowedOAuthScopes": [
+        "email",
+        "openid"
+      ],
+      "CallbackURLs": [
+        "http://localhost:8400/callback",
+        "relay://oauth/callback"
+      ],
+      "LogoutURLs": [
+        "http://localhost:8400/signout",
+        "relay://oauth/signout"
+      ],
+      "SupportedIdentityProviders": [
+        "COGNITO"
+      ],
+      "ExplicitAuthFlows": [
+        "ALLOW_REFRESH_TOKEN_AUTH",
+        "ALLOW_USER_PASSWORD_AUTH",
+        "ALLOW_USER_SRP_AUTH"
+      ],
+      "AccessTokenValidity": 60,
+      "IdTokenValidity": 60,
+      "RefreshTokenValidity": 1,
+      "TokenValidityUnits": {
+        "AccessToken": "minutes",
+        "IdToken": "minutes",
+        "RefreshToken": "days"
+      },
+      "EnableTokenRevocation": true,
+      "has_client_secret": false
+    },
+    "client_request_id": "REDACTED-ID-d6c6dbb2c4f2",
+    "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_f7wyKUgiY",
+    "domain": {
+      "UserPoolId": "us-east-1_f7wyKUgiY",
+      "AWSAccountId": "928489693154",
+      "Domain": "relay-mvp-928489693154",
+      "S3Bucket": "aws-cognito-prod-iad-assets",
+      "CloudFrontDistribution": "d3oia8etllorh5.cloudfront.net",
+      "Version": "20261024052916",
+      "Status": "ACTIVE",
+      "ManagedLoginVersion": 1
+    },
+    "domain_request_id": "REDACTED-ID-a5dc43dc54b0",
+    "mfa": {
+      "SoftwareTokenMfaConfiguration": {
+        "Enabled": true
+      },
+      "MfaConfiguration": "ON"
+    },
+    "mfa_request_id": "REDACTED-ID-bbcd2d53939d",
+    "self_signup_disabled": true,
+    "users": [
+      {
+        "actor": "test-requester-a",
+        "enabled": true,
+        "status": "CONFIRMED",
+        "mfa": [
+          "SOFTWARE_TOKEN_MFA"
+        ],
+        "preferred_mfa": "SOFTWARE_TOKEN_MFA",
+        "request_id": "REDACTED-ID-354de342b615"
+      },
+      {
+        "actor": "test-requester-b",
+        "enabled": true,
+        "status": "CONFIRMED",
+        "mfa": [
+          "SOFTWARE_TOKEN_MFA"
+        ],
+        "preferred_mfa": "SOFTWARE_TOKEN_MFA",
+        "request_id": "REDACTED-ID-ac320f8d9128"
+      },
+      {
+        "actor": "test-dispatcher-a",
+        "enabled": true,
+        "status": "CONFIRMED",
+        "mfa": [
+          "SOFTWARE_TOKEN_MFA"
+        ],
+        "preferred_mfa": "SOFTWARE_TOKEN_MFA",
+        "request_id": "REDACTED-ID-ae8c62ad6838"
+      },
+      {
+        "actor": "test-dispatcher-b",
+        "enabled": true,
+        "status": "CONFIRMED",
+        "mfa": [
+          "SOFTWARE_TOKEN_MFA"
+        ],
+        "preferred_mfa": "SOFTWARE_TOKEN_MFA",
+        "request_id": "REDACTED-ID-c1f0cce5a7a7"
+      }
+    ]
+  },
+  "finished_at": "2026-10-24T06:41:33.163381+00:00"
+}

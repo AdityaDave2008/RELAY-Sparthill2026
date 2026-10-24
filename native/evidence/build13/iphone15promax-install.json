@@ -1,0 +1,15 @@
+{
+  "device": "iphone15promax",
+  "bundle": "org.relay.prototype.ios",
+  "build": "13",
+  "install": "PASS",
+  "launch": "PASS",
+  "integrity": "ok",
+  "identity_preserved": true,
+  "messages_before": 32,
+  "messages_after": 32,
+  "all_old_messages_and_receipts_preserved": true,
+  "shelters_preserved": true,
+  "network_conditions": "Not isolated: installation only",
+  "physical_wireless": "NOT TESTED"
+}

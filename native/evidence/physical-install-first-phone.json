@@ -1,0 +1,18 @@
+{
+  "timestamp_utc": "2026-10-23T22:53:13.409944+00:00",
+  "model": "iPhone 15 Pro Max",
+  "os": "27.0.1",
+  "developer_mode": "enabled",
+  "ddi_available": true,
+  "signed_build": "PASS \u2014 Xcode 26.1.1 with existing iOS 26.1 SDK; no update",
+  "install": "PASS \u2014 devicectl confirmed org.relay.prototype.ios installed",
+  "local_signature_verification": "PASS \u2014 valid on disk, satisfies designated requirement",
+  "signing_input_app_identifier_matches_profile": true,
+  "connected_device_in_profile": true,
+  "profile_expires_utc": "2026-10-30T22:50:54Z",
+  "initial_launch": "BLOCKED \u2014 iOS Security denial: invalid signature, inadequate entitlements, or profile not explicitly trusted; awaiting user developer-profile trust",
+  "wireless_acceptance": "NOT TESTED",
+  "launch_retry": "PASS \u2014 devicectl launched app at 2026-10-23 22:54:12 UTC after user completed developer-profile trust",
+  "persistent_device_id": "REDACTED-ID-85ca2bd297a6",
+  "sqlite_store": "Verified relay.sqlite, WAL and SHM on physical phone; APP_OPEN logged; 0 messages"
+}

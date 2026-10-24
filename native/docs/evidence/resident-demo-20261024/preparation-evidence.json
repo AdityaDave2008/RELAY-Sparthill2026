@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "new_resident_account": true,
+  "role": "requester",
+  "existing_memberships_preserved": 10,
+  "current_memberships": 11,
+  "mfa_enabled": true,
+  "emails_sent": 0,
+  "requests_created": 0,
+  "resident_history_count": 0,
+  "authorized_shelters": 1,
+  "receiver_cached_available": true,
+  "api_pid": 30322,
+  "worker_and_tunnel_untouched": true,
+  "secrets_printed": false
+}

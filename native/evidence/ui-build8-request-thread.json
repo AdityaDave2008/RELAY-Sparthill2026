@@ -1,0 +1,18 @@
+{
+  "platform": "native macOS",
+  "build": "8",
+  "cloud_empty_endpoint_sign_in_disabled": "PASS",
+  "insecure_endpoint_rejected_with_readable_error": "PASS",
+  "request_reply_composer_and_progress": "PASS",
+  "synthetic_reply_locally_queued": "PASS",
+  "composer_cleared_and_reusable": "PASS",
+  "Done_focus_dismissal": "PASS",
+  "visual_layout": "Inspected Mac request-thread screenshot; content fits and scrolls",
+  "old_messages_preserved": 22,
+  "new_message_count": 23,
+  "reply_message_ids": [
+    "REDACTED-ID-2a06d64bf7eb"
+  ],
+  "physical_wireless": "NOT TESTED",
+  "native_cloud_login": "NOT TESTED; no hosted endpoint"
+}

@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-10-24T02:39:51.889826+00:00",
+  "test_kind": "Same-host Mac and iOS Simulator UI/Bonjour control; not physical wireless",
+  "mac_device_id": "REDACTED-ID-337a93bc8deb",
+  "simulator_device_id": "REDACTED-ID-ee5abc667601",
+  "checks": {
+    "Mac Edit name to RELAY Mac saved": "PASS",
+    "Mac quit/relaunch retains name and UUID": "PASS",
+    "Simulator learns RELAY Mac through hello": "PASS",
+    "Active Mac rename to RELAY MacBook reconnects and updates existing simulator chat": "PASS",
+    "Mac learns Simulator E816 name": "PASS",
+    "Forwarding row collapsed/expanded shows metadata without payload preview": "PASS",
+    "Mac and simulator paused after control": "PASS",
+    "Simulator persisted learned peer name after process restart": "PASS"
+  },
+  "physical_wireless_path": "NOT VERIFIED"
+}

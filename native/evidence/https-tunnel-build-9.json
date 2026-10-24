@@ -1,0 +1,56 @@
+{
+  "time_utc": "2026-10-24T07:32:05.607735+00:00",
+  "endpoint": "https://resumes-investigated-striking-mba.trycloudflare.com",
+  "network": "Internet available; Cloudflare QUIC tunnel to Mac loopback8788; not an offline test",
+  "checks": [
+    {
+      "path": "/v1/health",
+      "authentication": "none",
+      "status": 200,
+      "expected": 200,
+      "result": "PASS"
+    },
+    {
+      "path": "/v1/me",
+      "authentication": "none",
+      "status": 401,
+      "expected": 401,
+      "result": "PASS"
+    },
+    {
+      "path": "/v1/me",
+      "authentication": "invalid",
+      "status": 401,
+      "expected": 401,
+      "result": "PASS"
+    },
+    {
+      "path": "/v1/me",
+      "authentication": "existing requester-A",
+      "status": 200,
+      "expected": 200,
+      "result": "PASS"
+    },
+    {
+      "path": "/v1/requests/REDACTED-ID-9d0de59831f3",
+      "authentication": "existing requester-A",
+      "status": 200,
+      "expected": 200,
+      "result": "PASS",
+      "analysis_state": "ready_for_review"
+    },
+    {
+      "path": "/demo-identities.private.json",
+      "authentication": "none",
+      "status": 404,
+      "expected": 404,
+      "result": "PASS"
+    },
+    {
+      "check": "OpenAPI public server",
+      "result": "PASS"
+    }
+  ],
+  "native_app_UI": "NOT TESTED",
+  "inventory_movement": "NOT IMPLEMENTED"
+}

@@ -1,0 +1,16 @@
+{
+  "analysis_state" : "ready_for_review",
+  "directory" : "PASS",
+  "dispatcher_progress" : "completed",
+  "durable_cloud_intent" : "PASS",
+  "event_replay_count" : 3,
+  "input_mode" : "reviewed_transcript",
+  "lost_response_replay" : "PASS",
+  "mode" : "aws",
+  "native_PKCE" : "NOT TESTED by this CLI",
+  "physical_wireless" : "NOT TESTED",
+  "profile" : "PASS",
+  "proposal_allocation_authorized" : false,
+  "request_id" : "REDACTED-ID-49771301a6d3",
+  "test" : "Swift URLSession to Python API"
+}

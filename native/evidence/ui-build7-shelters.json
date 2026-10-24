@@ -1,0 +1,16 @@
+{
+  "build": "0.1.0 (7)",
+  "platform": "macOS native shared SwiftUI interface",
+  "networking": "paused",
+  "synthetic_shelter_id": "REDACTED-ID-13bbcb690629",
+  "remove_confirmation": "PASS",
+  "remove_hides_from_active_directory": "PASS",
+  "removed_section_restore": "PASS",
+  "import_button_opens_import_mode": "PASS",
+  "valid_code_preview": "PASS",
+  "self_receiver_warning": "PASS",
+  "same_code_import_single_logical_entry": "PASS",
+  "visual_layout": "Inspected native Mac screenshot; controls and text fit.",
+  "ios_simulator": "Build, launch and home screenshot passed. UI action automation failed with noWindowsAvailable; Mac UI control used for interactions.",
+  "physical_ui_interactions": "NOT TESTED; installation and launch only"
+}

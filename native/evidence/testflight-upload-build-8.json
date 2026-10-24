@@ -1,0 +1,14 @@
+{
+  "build": "0.1.0 (8)",
+  "bundle_id": "com.nikilthalapaneni.relay",
+  "upload": "PASS",
+  "uploaded_at": "2026-10-23T23:58:54-07:00",
+  "archive": "PASS",
+  "processing": "Complete",
+  "external_group": "Build 2 Waiting for Review; not replaced",
+  "native_app_endpoint": "Not configured; no hosted backend exists",
+  "internal_distribution": "RELAY Development: Testing",
+  "what_to_test": "Saved; Apple Saved confirmation observed",
+  "apple_build_id": "REDACTED-ID-0892e3bff0b8",
+  "checked_at": "2026-10-24T00:07:42.809486-07:00"
+}

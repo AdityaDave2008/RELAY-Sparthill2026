@@ -1,0 +1,177 @@
+{
+  "started_at": "2026-10-24T07:33:56.347122+00:00",
+  "public_url": "https://resumes-investigated-striking-mba.trycloudflare.com",
+  "hosting": "Temporary Cloudflare quick tunnel to Mac loopback API, not AWS Lambda/API Gateway",
+  "origin": "http://127.0.0.1:8788",
+  "local_tunnel_hostname_match": true,
+  "account": "928489693154",
+  "sts_request_id": "REDACTED-ID-9c73ccf3590e",
+  "counters_before": {
+    "requests": {
+      "count": 15,
+      "request_id": "U51QB88339H3647BR35N4J35PNVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    },
+    "transcriptions": {
+      "count": 2,
+      "request_id": "M2K77VPQDEFG8GS4H0G35UVDO7VV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  },
+  "checks": [
+    {
+      "check": "public_health",
+      "method": "GET",
+      "path": "/v1/health",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bd769cc7b83-SJC"
+    },
+    {
+      "check": "missing_token_rejected",
+      "method": "GET",
+      "path": "/v1/me",
+      "expected_status": 401,
+      "actual_status": 401,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bd9fed07b83-SJC"
+    },
+    {
+      "check": "invalid_token_rejected",
+      "method": "GET",
+      "path": "/v1/me",
+      "expected_status": 401,
+      "actual_status": 401,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bdb9a197b83-SJC"
+    },
+    {
+      "check": "requester_a_profile",
+      "method": "GET",
+      "path": "/v1/me",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bdc0b097b83-SJC"
+    },
+    {
+      "check": "requester_a_directory",
+      "method": "GET",
+      "path": "/v1/shelters",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bdc8c197b83-SJC"
+    },
+    {
+      "check": "existing_persisted_request_read",
+      "method": "GET",
+      "path": "/v1/requests/REDACTED-ID-9d0de59831f3",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bddaeae7b83-SJC"
+    },
+    {
+      "check": "existing_history_read",
+      "method": "GET",
+      "path": "/v1/requests/REDACTED-ID-9d0de59831f3/history",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74be13e707b83-SJC"
+    },
+    {
+      "check": "fresh_requester_b_profile",
+      "method": "GET",
+      "path": "/v1/me",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74be9aff37b83-SJC"
+    },
+    {
+      "check": "requester_b_directory",
+      "method": "GET",
+      "path": "/v1/shelters",
+      "expected_status": 200,
+      "actual_status": 200,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bea38f37b83-SJC"
+    },
+    {
+      "check": "valid_other_user_cannot_read_request",
+      "method": "GET",
+      "path": "/v1/requests/REDACTED-ID-9d0de59831f3",
+      "expected_status": 404,
+      "actual_status": 404,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74beaea287b83-SJC"
+    },
+    {
+      "check": "valid_other_user_cannot_read_history",
+      "method": "GET",
+      "path": "/v1/requests/REDACTED-ID-9d0de59831f3/history",
+      "expected_status": 404,
+      "actual_status": 404,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bec3cfe7b83-SJC"
+    },
+    {
+      "check": "requester_cannot_use_dispatcher_inbox",
+      "method": "GET",
+      "path": "/v1/requests?view=shelter&shelter_id=shelter-a",
+      "expected_status": 403,
+      "actual_status": 403,
+      "status": "PASS",
+      "cloudflare_ray": "a4f74bed9fb37b83-SJC"
+    }
+  ],
+  "new_api_write_requests": 0,
+  "new_bedrock_calls": 0,
+  "new_transcribe_jobs": 0,
+  "shared_config_or_worker_changes": false,
+  "shared_token_file_changes": false,
+  "existing_request": {
+    "request_id": "REDACTED-ID-9d0de59831f3",
+    "cloud_state": "accepted",
+    "analysis_state": "ready_for_review",
+    "provider_evidence": {
+      "provider": "aws",
+      "model_id": "amazon.nova-lite-v1:0",
+      "request_id": "REDACTED-ID-05fe868015fb",
+      "usage": {
+        "inputTokens": 511,
+        "outputTokens": 48,
+        "totalTokens": 559
+      },
+      "stop_reason": "end_turn"
+    }
+  },
+  "existing_history": {
+    "revision": 3,
+    "reported_status": "completed",
+    "event_count": 3,
+    "resource_allocation_verified": false
+  },
+  "fresh_mfa_logins": [
+    {
+      "actor": "test-requester-b",
+      "challenge": "SOFTWARE_TOKEN_MFA",
+      "status": "PASS",
+      "initiate_request_id": "REDACTED-ID-c16857ddc76f",
+      "authentication_request_id": "REDACTED-ID-b7b8ccd31d06"
+    }
+  ],
+  "status": "PASS",
+  "counters_after": {
+    "requests": {
+      "count": 15,
+      "request_id": "HQHUUDTS05TFCL0V37KLR1LUURVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    },
+    "transcriptions": {
+      "count": 2,
+      "request_id": "4HL2SFGKI8JLJCPQN0NONSACRJVV4KQNSO5AEMVJF66Q9ASUAAJG"
+    }
+  },
+  "finished_at": "2026-10-24T07:34:00.865883+00:00"
+}

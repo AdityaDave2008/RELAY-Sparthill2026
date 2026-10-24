@@ -1,0 +1,23 @@
+{
+  "authentication" : "Fixture tokens",
+  "available_after_reserve" : 18,
+  "durable_outbox" : "PASS",
+  "fulfillment_replay" : "PASS",
+  "interpretation_id" : "REDACTED-ID-e609b75bb2be",
+  "location_round_trip" : "PASS: synthetic0,0",
+  "mode" : "local-test",
+  "native_UI" : "NOT TESTED",
+  "on_hand_after_fulfill" : 18,
+  "physical_wireless" : "NOT TESTED",
+  "preview_before_send" : "PASS",
+  "preview_reused_on_send" : "PASS",
+  "request_id" : "REDACTED-ID-6274434c66ab",
+  "request_replay" : "PASS",
+  "requester_status" : "completed",
+  "reservation_replay" : "PASS",
+  "status" : "PASS",
+  "stock_before_reservation" : 20,
+  "synthetic_consumption_returned" : 2,
+  "synthetic_stock_added" : 20,
+  "transcription_id" : "REDACTED-ID-0762bfd2d07a"
+}

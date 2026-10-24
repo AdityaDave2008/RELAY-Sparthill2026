@@ -1,0 +1,94 @@
+{
+  "request_id": "REDACTED-ID-0ac5b204e3a8",
+  "time": 1792841020.988866,
+  "scope": "Two native iPhone simulators and native Mac on one host; app-level encounter separation, not physical radio separation",
+  "devices": {
+    "C": {
+      "device_id": "REDACTED-ID-337a93bc8deb",
+      "messages": [
+        {
+          "id": "REDACTED-ID-0ac5b204e3a8",
+          "type": "RESOURCE_REQUEST",
+          "origin": "REDACTED-ID-ee5abc667601",
+          "destination": "REDACTED-ID-337a93bc8deb",
+          "hop_count": 2,
+          "final_receipt": null
+        },
+        {
+          "id": "REDACTED-ID-0b5f91e4b72a",
+          "type": "DELIVERY_RECEIPT",
+          "origin": "REDACTED-ID-337a93bc8deb",
+          "destination": "REDACTED-ID-ee5abc667601",
+          "hop_count": 0,
+          "final_receipt": null
+        }
+      ],
+      "cloud_records": [
+        {
+          "state": "accepted",
+          "nearby_state": "received",
+          "cloud_accepted": true,
+          "problem": null
+        }
+      ],
+      "logs": [
+        "2026-10-24T11:21:55Z [REDACTED-ID-337a93bc8deb] PERSISTED id=REDACTED-ID-0ac5b204e3a8 peer=REDACTED-ID-3fa5296dc94b hops=2",
+        "2026-10-24T11:21:55Z [REDACTED-ID-337a93bc8deb] RECEIPT_CREATED id=REDACTED-ID-0b5f91e4b72a original=REDACTED-ID-0ac5b204e3a8",
+        "2026-10-24T11:21:55Z [REDACTED-ID-337a93bc8deb] STORAGE_ACK_SENT id=REDACTED-ID-0ac5b204e3a8 kind=DESTINATION_STORED"
+      ]
+    },
+    "A": {
+      "device_id": "REDACTED-ID-ee5abc667601",
+      "messages": [
+        {
+          "id": "REDACTED-ID-0ac5b204e3a8",
+          "type": "RESOURCE_REQUEST",
+          "origin": "REDACTED-ID-ee5abc667601",
+          "destination": "REDACTED-ID-337a93bc8deb",
+          "hop_count": 0,
+          "final_receipt": null
+        }
+      ],
+      "cloud_records": [
+        {
+          "state": "queued",
+          "nearby_state": "relay_saved",
+          "cloud_accepted": false,
+          "problem": null
+        }
+      ],
+      "logs": [
+        "2026-10-24T11:21:16Z [REDACTED-ID-ee5abc667601] TRANSFER_ATTEMPT id=REDACTED-ID-0ac5b204e3a8 peer=REDACTED-ID-3fa5296dc94b hops=1 pending_retry=false",
+        "2026-10-24T11:21:16Z [REDACTED-ID-ee5abc667601] STORAGE_ACK_RECEIVED id=REDACTED-ID-0ac5b204e3a8 kind=RELAY_STORED peer=REDACTED-ID-3fa5296dc94b ack_latency_ms=40"
+      ]
+    },
+    "B": {
+      "device_id": "REDACTED-ID-3fa5296dc94b",
+      "messages": [
+        {
+          "id": "REDACTED-ID-0ac5b204e3a8",
+          "type": "RESOURCE_REQUEST",
+          "origin": "REDACTED-ID-ee5abc667601",
+          "destination": "REDACTED-ID-337a93bc8deb",
+          "hop_count": 1,
+          "final_receipt": null
+        },
+        {
+          "id": "REDACTED-ID-0b5f91e4b72a",
+          "type": "DELIVERY_RECEIPT",
+          "origin": "REDACTED-ID-337a93bc8deb",
+          "destination": "REDACTED-ID-ee5abc667601",
+          "hop_count": 1,
+          "final_receipt": null
+        }
+      ],
+      "cloud_records": [],
+      "logs": [
+        "2026-10-24T11:21:16Z [REDACTED-ID-3fa5296dc94b] PERSISTED id=REDACTED-ID-0ac5b204e3a8 peer=REDACTED-ID-ee5abc667601 hops=1",
+        "2026-10-24T11:21:16Z [REDACTED-ID-3fa5296dc94b] STORAGE_ACK_SENT id=REDACTED-ID-0ac5b204e3a8 kind=RELAY_STORED",
+        "2026-10-24T11:21:55Z [REDACTED-ID-3fa5296dc94b] TRANSFER_ATTEMPT id=REDACTED-ID-0ac5b204e3a8 peer=REDACTED-ID-337a93bc8deb hops=2 pending_retry=false",
+        "2026-10-24T11:21:55Z [REDACTED-ID-3fa5296dc94b] STORAGE_ACK_RECEIVED id=REDACTED-ID-0ac5b204e3a8 kind=DESTINATION_STORED peer=REDACTED-ID-337a93bc8deb ack_latency_ms=13"
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "mode": "aws",
+  "storage": "dynamodb",
+  "runtime_dir": "/private/runtime/relay",
+  "public_base_url": "http://127.0.0.1:8787",
+  "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_f7wyKUgiY",
+  "client_id": "REPLACE_WITH_NEW_PUBLIC_CLIENT_ID",
+  "aws_region": "us-east-1",
+  "expected_account": "928489693154",
+  "aws_profile": "relay-workshop",
+  "table_name": "relay-messages",
+  "bucket_name": "relay-artifacts-928489693154-use1",
+  "object_prefix": "cloud-mvp-v1/",
+  "model_id": "amazon.nova-lite-v1:0",
+  "allow_aws_writes_and_ai": false,
+  "max_requests": 30,
+  "max_transcriptions": 5,
+  "memberships": {
+    "REPLACE_WITH_VERIFIED_COGNITO_SUB": {
+      "role": "requester",
+      "incident_id": "synthetic-demo-01",
+      "shelter_ids": ["shelter-a"]
+    }
+  },
+  "shelters": [
+    {"shelter_id": "shelter-a", "incident_id": "synthetic-demo-01", "display_name": "Shelter A"},
+    {"shelter_id": "shelter-b", "incident_id": "synthetic-demo-01", "display_name": "Shelter B"}
+  ]
+}

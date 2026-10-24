@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "build": "7",
+  "bundle_id": "com.nikilthalapaneni.relay",
+  "team_id": "U4G9LV39GM",
+  "app_id": "6826458231",
+  "apple_build_id": "REDACTED-ID-68f05e8de4ac",
+  "upload_completed": "2026-10-23T23:12:02-07:00",
+  "upload": "PASS",
+  "archive": "PASS",
+  "processing": "Complete",
+  "internal_distribution": "RELAY Development: Testing",
+  "what_to_test": "Saved in App Store Connect; Saved confirmation observed",
+  "external_submission": "Build 2 remains Waiting for Review; not replaced",
+  "physical_wireless_acceptance": "NOT VERIFIED",
+  "status_checked_at": "2026-10-23T23:28:24.177290-07:00",
+  "internal_testers": 1,
+  "tester_install_observed": "Existing tester has build 6 installed on iPhone 15 Pro Max; build 7 update availability verified, installation not checked"
+}

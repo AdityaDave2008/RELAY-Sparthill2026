@@ -1,0 +1,276 @@
+{
+  "observed_at": "2026-10-24T05:40:38.643950+00:00",
+  "account": "928489693154",
+  "sts_request_id": "REDACTED-ID-9c739f559ea0",
+  "requests": [
+    {
+      "request_id": "REDACTED-ID-487097f259be",
+      "status": "PASS",
+      "strongly_consistent_read": true,
+      "ddb_request_id": "BK7OPEHQQ6G1KE5Q0DT6JETHP7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "analysis_state": "ready_for_review"
+    },
+    {
+      "request_id": "REDACTED-ID-a24c2a887956",
+      "status": "PASS",
+      "strongly_consistent_read": true,
+      "ddb_request_id": "JMQV2A34M8PHL018OT17VI19UBVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "analysis_state": "needs_review"
+    },
+    {
+      "request_id": "REDACTED-ID-1b7871016836",
+      "status": "PASS",
+      "strongly_consistent_read": true,
+      "ddb_request_id": "RGO1CP3S4HP3DGM27E5FSQ42Q7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "analysis_state": "needs_review"
+    },
+    {
+      "request_id": "REDACTED-ID-9101e81c7eb1",
+      "status": "PASS",
+      "strongly_consistent_read": true,
+      "ddb_request_id": "1BSL8O05PJ56TRJUL4GNH2UJIVVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "analysis_state": "ready_for_review"
+    },
+    {
+      "request_id": "REDACTED-ID-17d6b0083baf",
+      "status": "PASS",
+      "strongly_consistent_read": true,
+      "ddb_request_id": "HF5OI5Q0JVPFTAVR8RD0QC8VHNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "analysis_state": "ready_for_review"
+    },
+    {
+      "request_id": "REDACTED-ID-0659055efa73",
+      "status": "PASS",
+      "strongly_consistent_read": true,
+      "ddb_request_id": "D8FL1QCP926M7N1VOP5SB3DTIFVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "analysis_state": "ready_for_review"
+    }
+  ],
+  "transcriptions": [
+    {
+      "transcription_id": "REDACTED-ID-bae40cd8379c",
+      "status": "PASS",
+      "ddb_request_id": "GFO9DVKO6AOP146JU31SGEQ4G3VV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "job_name": "relay-mvp-REDACTED-ID-bae40cd8379c",
+      "job_request_id": "REDACTED-ID-babb0c5c25e0",
+      "transcript_matches_s3": true,
+      "objects": [
+        {
+          "key": "cloud-mvp-v1/uploads/REDACTED-ID-bae40cd8379c.wav",
+          "bytes": 62464,
+          "encryption": "AES256",
+          "request_id": "KDJ04842QKNGK1Y8"
+        },
+        {
+          "key": "cloud-mvp-v1/sealed/REDACTED-ID-bae40cd8379c.wav",
+          "bytes": 62464,
+          "encryption": "AES256",
+          "request_id": "KDJE8Z3VZSNBXNPK"
+        },
+        {
+          "key": "cloud-mvp-v1/transcripts/REDACTED-ID-bae40cd8379c.json",
+          "bytes": 1052,
+          "encryption": "AES256",
+          "request_id": "KDJ0QPDZG60KW9ES"
+        }
+      ]
+    }
+  ],
+  "all_synthetic_request_results": [
+    {
+      "request_id": "REDACTED-ID-09a72a179b7e",
+      "analysis_state": "needs_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-4876aae14289",
+        "usage": {
+          "inputTokens": 273,
+          "outputTokens": 75,
+          "totalTokens": 348
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-09058c2bba42",
+      "analysis_state": "needs_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-f2887745a9b6",
+        "usage": {
+          "inputTokens": 347,
+          "outputTokens": 213,
+          "totalTokens": 560
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-c850b383f080",
+      "analysis_state": "ready_for_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-f0f0184eece2",
+        "usage": {
+          "inputTokens": 445,
+          "outputTokens": 50,
+          "totalTokens": 495
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-5722d499e11a",
+      "analysis_state": "needs_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-25ce00a7039e",
+        "usage": {
+          "inputTokens": 438,
+          "outputTokens": 47,
+          "totalTokens": 485
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-71a7f030fbf5",
+      "analysis_state": "ready_for_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-d3dcaf4d33e2",
+        "usage": {
+          "inputTokens": 491,
+          "outputTokens": 50,
+          "totalTokens": 541
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-8e02c2eeb9ad",
+      "analysis_state": "needs_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-4dcdb2dd771b",
+        "usage": {
+          "inputTokens": 484,
+          "outputTokens": 55,
+          "totalTokens": 539
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-487097f259be",
+      "analysis_state": "ready_for_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-7c84489d73bf",
+        "usage": {
+          "inputTokens": 491,
+          "outputTokens": 50,
+          "totalTokens": 541
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-a24c2a887956",
+      "analysis_state": "needs_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-d72b39abe4ca",
+        "usage": {
+          "inputTokens": 484,
+          "outputTokens": 55,
+          "totalTokens": 539
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-1b7871016836",
+      "analysis_state": "needs_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-ad68aa3030c1",
+        "usage": {
+          "inputTokens": 489,
+          "outputTokens": 53,
+          "totalTokens": 542
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-9101e81c7eb1",
+      "analysis_state": "ready_for_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-b4492e943b7f",
+        "usage": {
+          "inputTokens": 486,
+          "outputTokens": 47,
+          "totalTokens": 533
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-17d6b0083baf",
+      "analysis_state": "ready_for_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-3cf9478856b9",
+        "usage": {
+          "inputTokens": 486,
+          "outputTokens": 48,
+          "totalTokens": 534
+        },
+        "stop_reason": "end_turn"
+      }
+    },
+    {
+      "request_id": "REDACTED-ID-0659055efa73",
+      "analysis_state": "ready_for_review",
+      "analysis_attempts": 1,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-cf5a8948bdc0",
+        "usage": {
+          "inputTokens": 485,
+          "outputTokens": 45,
+          "totalTokens": 530
+        },
+        "stop_reason": "end_turn"
+      }
+    }
+  ],
+  "accepted_request_count": 12,
+  "work_queue_empty": true,
+  "status": "PASS"
+}

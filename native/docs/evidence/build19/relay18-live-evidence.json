@@ -1,0 +1,109 @@
+{
+  "scope": "Real AWS Bedrock via public API; synthetic text only. No physical wireless or microphone test.",
+  "previews": [
+    {
+      "case": "narrative",
+      "interpretation_id": "REDACTED-ID-27ac1d2a10ec",
+      "elapsed_seconds": 3.498,
+      "result": {
+        "interpretation_id": "REDACTED-ID-27ac1d2a10ec",
+        "status": "ready_for_review",
+        "result": {
+          "status": "ready_for_review",
+          "proposal": {
+            "item_id": "water_packs",
+            "quantity": 2,
+            "unit": "pack",
+            "shelter_id": "shelter-a",
+            "negated": false,
+            "missing_fields": [],
+            "summary": "Two water packs urgently needed for four people in room 12.",
+            "people": 4,
+            "landmark": "room 12",
+            "medicine_details": null,
+            "urgency": "urgent",
+            "urgency_evidence": "urgently"
+          },
+          "review_reasons": [],
+          "allocation_authorized": false
+        },
+        "error": null
+      },
+      "matched_expected": true,
+      "request_id": "REDACTED-ID-ecaae1f133b3",
+      "reply_post_and_read_seconds": 1.171,
+      "snapshot_preserved_fields": true
+    },
+    {
+      "case": "medicine",
+      "interpretation_id": "REDACTED-ID-86c5591aa47c",
+      "elapsed_seconds": 3.203,
+      "result": {
+        "interpretation_id": "REDACTED-ID-86c5591aa47c",
+        "status": "needs_review",
+        "result": {
+          "status": "needs_review",
+          "proposal": {
+            "item_id": "medicines",
+            "quantity": 2,
+            "unit": "item",
+            "shelter_id": "shelter-a",
+            "negated": false,
+            "missing_fields": [],
+            "summary": "Request for two inhalers for three people at the north entrance, urgent.",
+            "people": 3,
+            "landmark": "north entrance",
+            "medicine_details": "inhalers",
+            "urgency": "immediate",
+            "urgency_evidence": "right now."
+          },
+          "review_reasons": [
+            "medicine_staff_review"
+          ],
+          "allocation_authorized": false
+        },
+        "error": null
+      },
+      "matched_expected": true,
+      "request_id": "REDACTED-ID-b07d6f0a414a",
+      "reply_post_and_read_seconds": 1.211,
+      "snapshot_preserved_fields": true
+    },
+    {
+      "case": "unknown",
+      "interpretation_id": "REDACTED-ID-a4b5b78cbda9",
+      "elapsed_seconds": 2.265,
+      "result": {
+        "interpretation_id": "REDACTED-ID-a4b5b78cbda9",
+        "status": "needs_review",
+        "result": {
+          "status": "needs_review",
+          "proposal": {
+            "item_id": "water_packs",
+            "quantity": null,
+            "unit": "pack",
+            "shelter_id": "shelter-a",
+            "negated": false,
+            "missing_fields": [
+              "quantity"
+            ],
+            "summary": "Need water packs for four people.",
+            "people": 4,
+            "landmark": null,
+            "medicine_details": null,
+            "urgency": null,
+            "urgency_evidence": null
+          },
+          "review_reasons": [
+            "missing_quantity",
+            "quantity_not_grounded"
+          ],
+          "allocation_authorized": false
+        },
+        "error": null
+      },
+      "matched_expected": true
+    }
+  ],
+  "status": "PASS"
+}

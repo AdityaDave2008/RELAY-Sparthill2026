@@ -1,0 +1,253 @@
+{
+  "started_at": "2026-10-24T05:36:49.128804+00:00",
+  "base_url": "http://127.0.0.1:8787",
+  "checks": {
+    "authentication_and_directory": "PASS",
+    "idempotency_and_authorization": "PASS",
+    "text_pipeline": "PASS",
+    "missing_quantity_negation_invalid_shelter": "PASS",
+    "audio_to_reviewed_request": "PASS",
+    "real_bedrock": "PASS",
+    "real_transcribe": "PASS"
+  },
+  "requests": [
+    {
+      "request_id": "REDACTED-ID-487097f259be",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-340b34333d08",
+        "request_id": "REDACTED-ID-487097f259be",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-0d36b49611ea",
+        "original_text": "SYNTHETIC: Shelter A needs 20 water packs.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:36:49.174956Z",
+        "expires_at": "2026-10-24T06:36:49.174956Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:36:49.480269Z",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 20,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs 20 water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-7c84489d73bf",
+        "usage": {
+          "inputTokens": 491,
+          "outputTokens": 50,
+          "totalTokens": 541
+        },
+        "stop_reason": "end_turn"
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    },
+    {
+      "request_id": "REDACTED-ID-a24c2a887956",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-907f4749c204",
+        "request_id": "REDACTED-ID-a24c2a887956",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-67fcee3c053a",
+        "original_text": "Shelter A needs water packs.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:36:51.478549Z",
+        "expires_at": "2026-10-24T06:36:51.478549Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:36:51.568246Z",
+      "cloud_state": "accepted",
+      "analysis_state": "needs_review",
+      "result": {
+        "status": "needs_review",
+        "proposal": null,
+        "review_reasons": [
+          "invalid_model_output",
+          "missing_quantity"
+        ],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-d72b39abe4ca",
+        "usage": {
+          "inputTokens": 484,
+          "outputTokens": 55,
+          "totalTokens": 539
+        },
+        "stop_reason": "end_turn"
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    },
+    {
+      "request_id": "REDACTED-ID-1b7871016836",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-938d5406b05b",
+        "request_id": "REDACTED-ID-1b7871016836",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-d3e5753692fe",
+        "original_text": "Do not send 20 water packs to Shelter A.",
+        "input_mode": "text",
+        "transcription_id": null,
+        "created_at": "2026-10-24T05:36:54.087374Z",
+        "expires_at": "2026-10-24T06:36:54.087374Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:36:54.174781Z",
+      "cloud_state": "accepted",
+      "analysis_state": "needs_review",
+      "result": {
+        "status": "needs_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 20,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": true,
+          "missing_fields": [],
+          "summary": "Shelter A requests not to send 20 water packs."
+        },
+        "review_reasons": [
+          "negation_requires_review"
+        ],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-ad68aa3030c1",
+        "usage": {
+          "inputTokens": 489,
+          "outputTokens": 53,
+          "totalTokens": 542
+        },
+        "stop_reason": "end_turn"
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    },
+    {
+      "request_id": "REDACTED-ID-9101e81c7eb1",
+      "schema_version": 1,
+      "revision": 1,
+      "submission": {
+        "schema_version": 1,
+        "operation_id": "REDACTED-ID-32d0f96be6f3",
+        "request_id": "REDACTED-ID-9101e81c7eb1",
+        "incident_id": "synthetic-demo-01",
+        "destination_shelter_id": "shelter-a",
+        "origin_device_id": "REDACTED-ID-79291f1fb2ea",
+        "original_text": "Sheltering needs 2 water packs.",
+        "input_mode": "reviewed_transcript",
+        "transcription_id": "REDACTED-ID-bae40cd8379c",
+        "created_at": "2026-10-24T05:37:11.951968Z",
+        "expires_at": "2026-10-24T06:37:11.951968Z",
+        "revision": 1
+      },
+      "accepted_at": "2026-10-24T05:37:12.041690Z",
+      "cloud_state": "accepted",
+      "analysis_state": "ready_for_review",
+      "result": {
+        "status": "ready_for_review",
+        "proposal": {
+          "item_id": "water_packs",
+          "quantity": 2,
+          "unit": "pack",
+          "shelter_id": "shelter-a",
+          "negated": false,
+          "missing_fields": [],
+          "summary": "Shelter A needs two water packs."
+        },
+        "review_reasons": [],
+        "allocation_authorized": false
+      },
+      "analysis_attempts": 1,
+      "manual_retry_count": 0,
+      "error": null,
+      "provider_evidence": {
+        "provider": "aws",
+        "model_id": "amazon.nova-lite-v1:0",
+        "request_id": "REDACTED-ID-b4492e943b7f",
+        "usage": {
+          "inputTokens": 486,
+          "outputTokens": 47,
+          "totalTokens": 533
+        },
+        "stop_reason": "end_turn"
+      },
+      "assignment_state": "not_implemented",
+      "fulfillment_state": "not_implemented"
+    }
+  ],
+  "transcriptions": [
+    {
+      "schema_version": 1,
+      "transcription_id": "REDACTED-ID-bae40cd8379c",
+      "incident_id": "synthetic-demo-01",
+      "content_type": "audio/wav",
+      "byte_length": 62464,
+      "sha256": "9d5ceb99bb4ab2f3375cf0d2bdcf3286f42fa1155bc3c87bcf3b94475b6f2271",
+      "language_code": "en-US",
+      "status": "completed",
+      "created_at": 1792820216.8066728,
+      "upload_expires_at": 1792820516.8066728,
+      "transcript": "Sheltering needs 2 water packs.",
+      "error": null,
+      "provider_evidence": {
+        "provider": "aws",
+        "job_name": "relay-mvp-REDACTED-ID-bae40cd8379c",
+        "request_id": "REDACTED-ID-f1a9b5b208bf",
+        "poll_request_id": "REDACTED-ID-0ccd99475f3f"
+      },
+      "start_count": 1,
+      "started_at": 1792820218.907525,
+      "duration_seconds": 1.824,
+      "sample_rate": 16000,
+      "upload": null
+    }
+  ],
+  "native_app_integration": "NOT TESTED",
+  "mode": "aws",
+  "storage": "dynamodb",
+  "audio_source": "Caller-provided fixture; label synthetic/TTS when applicable. Not a noisy-speech benchmark.",
+  "status": "PASS",
+  "finished_at": "2026-10-24T05:37:14.548931+00:00"
+}

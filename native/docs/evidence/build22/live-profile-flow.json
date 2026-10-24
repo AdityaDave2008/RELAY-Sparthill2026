@@ -1,0 +1,47 @@
+{
+  "request_id": "REDACTED-ID-428038d0b0e7",
+  "data": "Synthetic profile/landmark only",
+  "network": "Internet available; no physical isolation",
+  "ui_shelter_receipt_verified": true,
+  "ui_cloud_accepted": true,
+  "devices": {
+    "Simulator requester": {
+      "one_logical_request": true,
+      "selected_profile_fields_persisted": true,
+      "photo_absent": true,
+      "profile_fields": [
+        "accessibility_needs",
+        "age",
+        "allergies",
+        "blood_group",
+        "display_name",
+        "health_conditions",
+        "height_cm",
+        "medications",
+        "preferred_language",
+        "weight_kg"
+      ],
+      "sqlite_integrity": "ok"
+    },
+    "Mac coordinator": {
+      "one_logical_request": true,
+      "selected_profile_fields_persisted": true,
+      "photo_absent": true,
+      "profile_fields": [
+        "accessibility_needs",
+        "age",
+        "allergies",
+        "blood_group",
+        "display_name",
+        "health_conditions",
+        "height_cm",
+        "medications",
+        "preferred_language",
+        "weight_kg"
+      ],
+      "sqlite_integrity": "ok"
+    }
+  },
+  "requester_session_import_consumed": true,
+  "mac_session_import_consumed": true
+}

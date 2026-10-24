@@ -1,0 +1,44 @@
+{
+  "observed_at": "2026-10-24T08:11:32.469109+00:00",
+  "public_base_url": "https://resumes-investigated-striking-mba.trycloudflare.com",
+  "health": {
+    "status": "ok",
+    "api_version": "1.0.0",
+    "schema_version": 1,
+    "mode": "aws",
+    "storage": "dynamodb",
+    "performs_ai_check": false,
+    "note": "Liveness only; this route never invokes AI and does not certify AWS runtime."
+  },
+  "new_routes_present": [
+    "/v1/interpretations",
+    "/v1/interpretations/{interpretation_id}",
+    "/v1/inventory",
+    "/v1/inventory/{shelter_id}/adjust",
+    "/v1/requests/{request_id}/inventory"
+  ],
+  "listener_pids": {
+    "8787": [],
+    "8788": [
+      54243
+    ]
+  },
+  "worker_pids": [
+    53866,
+    54245
+  ],
+  "verification": "Read-only HTTPS health/OpenAPI and process IDs; not a paid workflow test",
+  "workers": [
+    {
+      "pid": 53866,
+      "mode": "local-test",
+      "config": "isolated fixture runtime"
+    },
+    {
+      "pid": 54245,
+      "mode": "aws",
+      "config": "existing private tunnel runtime"
+    }
+  ],
+  "old_aws_worker_absent": true
+}

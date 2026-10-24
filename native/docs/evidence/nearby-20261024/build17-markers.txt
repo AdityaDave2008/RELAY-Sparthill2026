@@ -1,0 +1,15 @@
+relay-final17-mac-build.txt
+** BUILD SUCCEEDED **
+
+relay-final17-sim-build.txt
+** BUILD SUCCEEDED **
+
+relay-original17-device-build.txt
+** BUILD SUCCEEDED **
+
+relay-build17-release.txt
+Build artifacts and logs: /tmp/RELAY-testflight.tyvDOM
+** ARCHIVE SUCCEEDED **
+2026-10-24 05:25:17.181 xcodebuild[88568:8241576] Progress 100%: Uploaded package is processing.
+2026-10-24 05:25:17.183 xcodebuild[88568:8241576] Progress 100%: Upload succeeded.
+** EXPORT SUCCEEDED **

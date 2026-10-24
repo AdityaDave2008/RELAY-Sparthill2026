@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-24T05:33:04.072125+00:00",
+  "purpose": "Verify explicit flat output schema with separate input data",
+  "raw_output": "{\"item_id\":\"water_packs\",\"quantity\":20,\"unit\":\"pack\",\"shelter_id\":\"shelter-a\",\"negated\":false,\"missing_fields\":[],\"summary\":\"Shelter A needs 20 water packs.\"}",
+  "provider_evidence": {
+    "provider": "aws",
+    "model_id": "amazon.nova-lite-v1:0",
+    "request_id": "REDACTED-ID-939507d4e117",
+    "usage": {
+      "inputTokens": 445,
+      "outputTokens": 50,
+      "totalTokens": 495
+    },
+    "stop_reason": "end_turn"
+  },
+  "validation": {
+    "status": "ready_for_review",
+    "proposal": {
+      "item_id": "water_packs",
+      "quantity": 20,
+      "unit": "pack",
+      "shelter_id": "shelter-a",
+      "negated": false,
+      "missing_fields": [],
+      "summary": "Shelter A needs 20 water packs."
+    },
+    "review_reasons": [],
+    "allocation_authorized": false
+  }
+}

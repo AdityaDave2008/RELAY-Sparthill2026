@@ -1,0 +1,7 @@
+Build 6 adds Help, Requests, Shelters and Messages. Create a synthetic shelter on its receiving device, then share its shelter code and import it on the sender. Choose Request help here, fill in synthetic details, quantity/unit and a location, and review before saving. Leave people blank to test Unknown.
+
+Check that an unsent Help draft survives app restart. After saving, Requests should show the queued item and Help should offer a new form. The receiving device should show the request in Requests > Device inbox. A relay must not show carried requests in its personal chat or request inbox. Return receipts confirm device storage, not staff action or resource fulfillment.
+
+Nearby controls are in Help > Nearby devices; settings and diagnostic tools are under Help's gear. Keep RELAY foreground. Allow Local Network access. For offline trials, turn off cellular and detach ordinary Wi-Fi networks/hotspots and USB while keeping Wi-Fi/Bluetooth radios enabled. Test separate A-B, B-C and B-A encounters with a restart on B.
+
+Use synthetic data only. Directory entries and identities are unverified and messages remain plaintext. This build has no cloud, ASR, AI, staff authorization or resource assignment. Physical router-independent delivery remains unverified. Existing store identities, messages and receipts are preserved within the same app installation.

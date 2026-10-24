@@ -1,0 +1,54 @@
+[
+  {
+    "message": {
+      "created_at": "2026-10-23T22:28:40Z",
+      "destination_id": "REDACTED-ID-2834148914b1",
+      "expires_at": "2026-10-24T22:28:40Z",
+      "hop_count": 1,
+      "max_hops": 5,
+      "message_id": "REDACTED-ID-bce9eb27c954",
+      "message_type": "RESOURCE_REQUEST",
+      "origin_id": "REDACTED-ID-337a93bc8deb",
+      "payload": {
+        "text": "SYNTHETIC native Mac UI persistence smoke"
+      },
+      "protocol_version": 1
+    },
+    "final_receipt": null
+  },
+  {
+    "message": {
+      "created_at": "2026-10-23T22:29:43Z",
+      "destination_id": "REDACTED-ID-9db6fe6380c4",
+      "expires_at": "2026-10-24T22:29:43Z",
+      "hop_count": 1,
+      "max_hops": 5,
+      "message_id": "REDACTED-ID-27fe08e83198",
+      "message_type": "RESOURCE_REQUEST",
+      "origin_id": "REDACTED-ID-337a93bc8deb",
+      "payload": {
+        "text": "SYNTHETIC native Mac to iOS simulator Bonjour control \u2014 not wireless evidence"
+      },
+      "protocol_version": 1
+    },
+    "final_receipt": null
+  },
+  {
+    "message": {
+      "created_at": "2026-10-23T22:29:43Z",
+      "destination_id": "REDACTED-ID-337a93bc8deb",
+      "expires_at": "2026-10-24T22:29:43Z",
+      "hop_count": 0,
+      "max_hops": 5,
+      "message_id": "REDACTED-ID-1fd2e3f54b5b",
+      "message_type": "DELIVERY_RECEIPT",
+      "origin_id": "REDACTED-ID-9db6fe6380c4",
+      "payload": {
+        "original_message_id": "REDACTED-ID-27fe08e83198",
+        "text": "Final destination persisted request"
+      },
+      "protocol_version": 1
+    },
+    "final_receipt": null
+  }
+]

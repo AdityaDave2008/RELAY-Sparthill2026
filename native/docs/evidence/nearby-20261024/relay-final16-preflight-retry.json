@@ -1,0 +1,8 @@
+{
+  "scope": "Read-only account/endpoint/budget checks; no AI or physical wireless check",
+  "stage": "authorized_directory",
+  "status": "FAIL",
+  "error_type": "HTTPError",
+  "http_status": 503,
+  "api_error_code": "storage_unavailable"
+}

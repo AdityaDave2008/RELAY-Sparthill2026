@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-10-24T02:25:41.616867+00:00",
+  "version": "0.1.0",
+  "build": "4",
+  "app_id": "6826458231",
+  "bundle_id": "com.nikilthalapaneni.relay",
+  "team_id": "U4G9LV39GM",
+  "archive_succeeded": true,
+  "upload_succeeded": true,
+  "upload_completion_local": "2026-10-23 19:18:26 PDT",
+  "internal_status": "Testing",
+  "build_id": "REDACTED-ID-23ca0322d4be",
+  "what_to_test_saved": true,
+  "external_review_submitted_for_this_build": false
+}

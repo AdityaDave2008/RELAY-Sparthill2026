@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "build": "9",
+  "bundle": "com.nikilthalapaneni.relay",
+  "archive": "PASS",
+  "upload": "PASS",
+  "upload_time": "2026-10-24 00:32:50 PDT",
+  "bundled_api": "https://resumes-investigated-striking-mba.trycloudflare.com",
+  "apple_processing": "Complete; RELAY Development build9 explicitly Testing",
+  "external_approval": "Build2 still Waiting for Review; build9 not submitted externally",
+  "native_cloud_ui": "NOT TESTED",
+  "test_notes": "Saved"
+}

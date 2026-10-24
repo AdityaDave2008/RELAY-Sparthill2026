@@ -1,0 +1,288 @@
+{
+  "a": {
+    "device_id": "REDACTED-ID-85ca2bd297a6",
+    "stored_items": 15,
+    "messages": [
+      {
+        "id": "REDACTED-ID-1acd38cdb02c",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-85ca2bd297a6",
+        "scope": "received",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-6083035f3f04",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-85ca2bd297a6",
+        "destination": "REDACTED-ID-1684768e4451",
+        "scope": "sent",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-91fb8882ca21",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-85ca2bd297a6",
+        "scope": "received",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-84a1ff564a85",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-85ca2bd297a6",
+        "destination": "REDACTED-ID-1684768e4451",
+        "scope": "sent",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-bce9eb27c954",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-2834148914b1",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-27fe08e83198",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-9db6fe6380c4",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-436549feb3b8",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-ee5abc667601",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-ab80117362bc",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-ee5abc667601",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-bda7df911b78",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-4243100fd0a1",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-cf230a8adc78",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-f7469dd7cd44",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-19e103d04ad2",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-795a2f70455c",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-1684768e4451",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-ecd65e111787",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-ee5abc667601",
+        "scope": "carried",
+        "final_receipt": null
+      }
+    ],
+    "known_peers": [
+      {
+        "id": "REDACTED-ID-1684768e4451",
+        "role": "Relay B"
+      },
+      {
+        "id": "REDACTED-ID-ee5abc667601",
+        "role": "Relay B"
+      }
+    ]
+  },
+  "b": {
+    "device_id": "REDACTED-ID-1684768e4451",
+    "stored_items": 16,
+    "messages": [
+      {
+        "id": "REDACTED-ID-1acd38cdb02c",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-85ca2bd297a6",
+        "scope": "sent",
+        "final_receipt": "REDACTED-ID-6083035f3f04"
+      },
+      {
+        "id": "REDACTED-ID-6083035f3f04",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-85ca2bd297a6",
+        "destination": "REDACTED-ID-1684768e4451",
+        "scope": "received",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-91fb8882ca21",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-85ca2bd297a6",
+        "scope": "sent",
+        "final_receipt": "REDACTED-ID-84a1ff564a85"
+      },
+      {
+        "id": "REDACTED-ID-84a1ff564a85",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-85ca2bd297a6",
+        "destination": "REDACTED-ID-1684768e4451",
+        "scope": "received",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-bce9eb27c954",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-2834148914b1",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-27fe08e83198",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-9db6fe6380c4",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-436549feb3b8",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-ee5abc667601",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-ab80117362bc",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-ee5abc667601",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-bda7df911b78",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "sent",
+        "final_receipt": "REDACTED-ID-dac1b1ee6f9a"
+      },
+      {
+        "id": "REDACTED-ID-dac1b1ee6f9a",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-337a93bc8deb",
+        "destination": "REDACTED-ID-1684768e4451",
+        "scope": "received",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-4243100fd0a1",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-cf230a8adc78",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-f7469dd7cd44",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-19e103d04ad2",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-337a93bc8deb",
+        "scope": "carried",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-795a2f70455c",
+        "type": "RESOURCE_REQUEST",
+        "origin": "REDACTED-ID-ee5abc667601",
+        "destination": "REDACTED-ID-1684768e4451",
+        "scope": "received",
+        "final_receipt": null
+      },
+      {
+        "id": "REDACTED-ID-ecd65e111787",
+        "type": "DELIVERY_RECEIPT",
+        "origin": "REDACTED-ID-1684768e4451",
+        "destination": "REDACTED-ID-ee5abc667601",
+        "scope": "sent",
+        "final_receipt": null
+      }
+    ],
+    "known_peers": [
+      {
+        "id": "REDACTED-ID-85ca2bd297a6",
+        "role": "Sender A"
+      },
+      {
+        "id": "REDACTED-ID-337a93bc8deb",
+        "role": "Receiver C"
+      },
+      {
+        "id": "REDACTED-ID-ee5abc667601",
+        "role": "Relay B"
+      }
+    ]
+  },
+  "interpretation": "Copies for nonlocal destinations exist in the relay stores. Personal chat projection uses UUID origin/destination, not test roles. Two observed peers used the same Relay B role label. No controlled network-isolation evidence was collected.",
+  "payloads_included": false
+}

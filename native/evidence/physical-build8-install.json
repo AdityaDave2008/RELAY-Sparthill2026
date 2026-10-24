@@ -1,0 +1,43 @@
+{
+  "build": "0.1.0 (8)",
+  "devices": [
+    {
+      "device": "A",
+      "bundle": "org.relay.prototype.ios",
+      "build": "8",
+      "install": "PASS",
+      "launch": "PASS after operator unlocked",
+      "integrity": "ok",
+      "identity_preserved": true,
+      "messages_before": 28,
+      "messages_after": 28,
+      "prior_final_receipts": 5,
+      "all_old_messages_and_receipts_preserved": true,
+      "shelters_preserved": true,
+      "network_conditions": "Uncontrolled install session; no no-router claim",
+      "physical_wireless": "NOT TESTED"
+    },
+    {
+      "device": "B",
+      "bundle": "org.relay.prototype.ios",
+      "build": "8",
+      "install": "PASS",
+      "launch": "PASS after operator unlocked",
+      "integrity": "ok",
+      "identity_preserved": true,
+      "messages_before": 27,
+      "messages_after": 27,
+      "prior_final_receipts": 4,
+      "all_old_messages_and_receipts_preserved": true,
+      "shelters_preserved": true,
+      "network_conditions": "Uncontrolled install session; no no-router claim",
+      "physical_wireless": "NOT TESTED"
+    }
+  ],
+  "initial_launch": "A timed out; B explicitly locked. Both launches passed after operator unlocked.",
+  "hardware": {
+    "A": "iPhone 15 Pro Max, iOS 27.0.1 / 24A446",
+    "B": "iPhone 16, iOS 26.2 / 23C55"
+  },
+  "native_cloud_flow": "NOT TESTED; no public HTTPS endpoint"
+}

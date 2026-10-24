@@ -1,0 +1,17 @@
+{
+  "device": "iphone16",
+  "bundle": "org.relay.prototype.ios",
+  "build": "14",
+  "install": "PASS",
+  "launch": "PASS",
+  "integrity": "ok",
+  "identity_preserved": true,
+  "messages_before": 33,
+  "messages_after": 33,
+  "all_old_messages_and_receipts_preserved": true,
+  "shelters_preserved": true,
+  "network_conditions": "Not isolated: installation only",
+  "physical_wireless": "NOT TESTED",
+  "prior_cloud_requests": 20,
+  "all_prior_cloud_submissions_preserved": true
+}

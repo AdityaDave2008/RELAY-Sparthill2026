@@ -1,0 +1,26 @@
+{
+  "runs": [
+    {
+      "run": 1,
+      "pass": true,
+      "elapsed_seconds": 1.36,
+      "scope": "Loopback TCP: truncated frame, retry, duplicate, two carrier process crashes and reverse receipt",
+      "request_id": "REDACTED-ID-c322d467ebb2"
+    },
+    {
+      "run": 2,
+      "pass": true,
+      "elapsed_seconds": 0.979,
+      "scope": "Loopback TCP: truncated frame, retry, duplicate, two carrier process crashes and reverse receipt",
+      "request_id": "REDACTED-ID-38755411418d"
+    },
+    {
+      "run": 3,
+      "pass": true,
+      "elapsed_seconds": 0.932,
+      "scope": "Loopback TCP: truncated frame, retry, duplicate, two carrier process crashes and reverse receipt",
+      "request_id": "REDACTED-ID-586e01858d5e"
+    }
+  ],
+  "physical_radio_reliability_measured": false
+}

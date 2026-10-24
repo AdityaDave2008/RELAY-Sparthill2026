@@ -1,0 +1,107 @@
+{
+  "account": "928489693154",
+  "region": "us-east-1",
+  "status": "real five-service pipeline verified; API hosted locally only",
+  "authorized_test_ceiling_usd": 2,
+  "created_aws_resources": [
+    {
+      "type": "cognito_public_client",
+      "id": "dfulb5lau8283nlgil7ddu36i",
+      "name": "RELAY-Cloud-MVP-Native"
+    },
+    {
+      "type": "cognito_domain",
+      "name": "relay-mvp-928489693154"
+    },
+    {
+      "type": "synthetic_cognito_user",
+      "actor": "test-requester-a",
+      "username": "relay-mvp-test-requester-a@example.invalid",
+      "subject": "REDACTED-ID-ed0e7ea25b51"
+    },
+    {
+      "type": "synthetic_cognito_user",
+      "actor": "test-requester-b",
+      "username": "relay-mvp-test-requester-b@example.invalid",
+      "subject": "REDACTED-ID-f9289942562c"
+    },
+    {
+      "type": "synthetic_cognito_user",
+      "actor": "test-dispatcher-a",
+      "username": "relay-mvp-test-dispatcher-a@example.invalid",
+      "subject": "REDACTED-ID-e98e711fa8bf"
+    },
+    {
+      "type": "synthetic_cognito_user",
+      "actor": "test-dispatcher-b",
+      "username": "relay-mvp-test-dispatcher-b@example.invalid",
+      "subject": "REDACTED-ID-1faa4953d7d7"
+    },
+    {
+      "type": "transcribe_job",
+      "name": "relay-mvp-REDACTED-ID-bae40cd8379c",
+      "transcription_id": "REDACTED-ID-bae40cd8379c"
+    },
+    {
+      "type": "s3_object",
+      "bucket": "relay-artifacts-928489693154-use1",
+      "key": "cloud-mvp-v1/uploads/REDACTED-ID-bae40cd8379c.wav",
+      "bytes": 62464,
+      "encryption": "AES256",
+      "request_id": "KDJ04842QKNGK1Y8"
+    },
+    {
+      "type": "s3_object",
+      "bucket": "relay-artifacts-928489693154-use1",
+      "key": "cloud-mvp-v1/sealed/REDACTED-ID-bae40cd8379c.wav",
+      "bytes": 62464,
+      "encryption": "AES256",
+      "request_id": "KDJE8Z3VZSNBXNPK"
+    },
+    {
+      "type": "s3_object",
+      "bucket": "relay-artifacts-928489693154-use1",
+      "key": "cloud-mvp-v1/transcripts/REDACTED-ID-bae40cd8379c.json",
+      "bytes": 1052,
+      "encryption": "AES256",
+      "request_id": "KDJ0QPDZG60KW9ES"
+    }
+  ],
+  "existing_resources_reused": {
+    "table": "relay-messages",
+    "table_partition_prefix": "RELAY_MVP_V1#",
+    "pool": "us-east-1_f7wyKUgiY",
+    "bucket": "relay-artifacts-928489693154-use1",
+    "bucket_prefix": "cloud-mvp-v1/"
+  },
+  "existing_configuration_changes": [
+    "Attached the new domain/client to the existing pool; pool MFA and original client/group unchanged."
+  ],
+  "synthetic_request_ids": [
+    "REDACTED-ID-09a72a179b7e",
+    "REDACTED-ID-09058c2bba42",
+    "REDACTED-ID-c850b383f080",
+    "REDACTED-ID-5722d499e11a",
+    "REDACTED-ID-71a7f030fbf5",
+    "REDACTED-ID-8e02c2eeb9ad",
+    "REDACTED-ID-487097f259be",
+    "REDACTED-ID-a24c2a887956",
+    "REDACTED-ID-1b7871016836",
+    "REDACTED-ID-9101e81c7eb1",
+    "REDACTED-ID-17d6b0083baf",
+    "REDACTED-ID-0659055efa73"
+  ],
+  "accepted_requests": 12,
+  "bedrock_invocations_with_evidence": 16,
+  "diagnostic_invocations": 4,
+  "transcription_jobs": 1,
+  "remaining_record_capacity": {
+    "requests": 18,
+    "transcriptions": 4
+  },
+  "hosted_stack": null,
+  "public_api_url": null,
+  "cleanup_performed": false,
+  "actual_billed_charges": "not reconciled",
+  "private_runtime_manifest": "created-resources.json outside Git; credentials/TOTP/tokens remain private"
+}

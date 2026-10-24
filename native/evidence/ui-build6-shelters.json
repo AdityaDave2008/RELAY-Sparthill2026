@@ -1,0 +1,18 @@
+{
+  "kind": "same-host software UI control; NOT physical wireless evidence",
+  "app_build": 6,
+  "request_id": "REDACTED-ID-835c3efc515e",
+  "shelter_id": "REDACTED-ID-13bbcb690629",
+  "origin_id": "REDACTED-ID-ee5abc667601",
+  "destination_id": "REDACTED-ID-337a93bc8deb",
+  "receipt_id": "REDACTED-ID-6bf9121671b7",
+  "draft_recovered_after_app_restart": true,
+  "submitted_draft_cleared_and_new_form_visible": true,
+  "receiver_inbox_observed": true,
+  "receipt_observed_in_sender_ui": true,
+  "mac_preexisting_envelopes_preserved": 18,
+  "mac_identity_preserved": true,
+  "network_isolation": "Not attempted. Both endpoints run on the same Mac. Internet/router state unchanged.",
+  "cloud_calls": false,
+  "physical_phone_installation": false
+}
