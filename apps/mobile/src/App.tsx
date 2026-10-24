@@ -9,8 +9,11 @@ import { isHealthComplete, summarizeHealth, useHealthProfile } from './relay/hea
 import { HealthScreen } from './screens/HealthScreen';
 import { ResidentScreen } from './screens/ResidentScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
+import { TextSizeScreen } from './screens/TextSizeScreen';
 import { SettingsProvider, useSettings, useThemedStyles } from './ui/theme';
 import { FadeIn, TabScene } from './ui/transitions';
+import { HealthReminderBanner } from './ui/HealthReminderBanner';
+import { useHealthReminder } from './relay/healthReminder';
 
 type Tab = 'help' | 'health' | 'settings';
 
@@ -85,12 +88,25 @@ function Tabs(): JSX.Element {
   const { theme } = settings;
   const healthSummary = useMemo(() => summarizeHealth(health.profile), [health.profile]);
   const complete = useMemo(() => isHealthComplete(health.profile), [health.profile]);
+  const reminder = useHealthReminder(health.profile.updatedAt, settings.settings.healthReminder);
 
   // Wait for saved settings too, so the first screen doesn't flash at the wrong size.
   if (!health.ready || !settings.ready) {
     return (
       <View style={[styles.root, styles.center]}>
         <ActivityIndicator />
+      </View>
+    );
+  }
+
+  // First run: choose a readable text size before the health form. Residents
+  // who already finished the health form are not sent back here.
+  if (!complete && !settings.settings.textSizeChosen) {
+    return (
+      <View style={styles.root}>
+        <FadeIn key="text-size">
+          <TextSizeScreen onContinue={() => settings.update({ textSizeChosen: true })} />
+        </FadeIn>
       </View>
     );
   }
@@ -119,6 +135,13 @@ function Tabs(): JSX.Element {
   return (
     <View style={styles.root}>
       <FadeIn key="main">
+        {reminder.due && (
+          <HealthReminderBanner
+            daysSinceUpdate={reminder.daysSinceUpdate}
+            onReview={tab === 'health' ? undefined : () => setTab('health')}
+            onClose={reminder.dismiss}
+          />
+        )}
         <View style={styles.screen}>
           <TabScene active={tab === 'help'} direction={direction}>
             <ResidentScreen healthSummary={healthSummary} />
@@ -131,6 +154,7 @@ function Tabs(): JSX.Element {
               loadError={health.error}
               onSave={health.save}
               onClear={health.clear}
+              reminderDue={reminder.due}
             />
           </TabScene>
           <TabScene active={tab === 'settings'} direction={direction}>

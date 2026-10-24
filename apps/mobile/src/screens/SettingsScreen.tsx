@@ -10,7 +10,7 @@ const SIZES: { id: TextSize; label: string }[] = [
 ];
 
 export function SettingsScreen(): JSX.Element {
-  const { settings, update, error, theme } = useSettings();
+  const { settings, update, error } = useSettings();
   const styles = useThemedStyles(baseStyles);
 
   return (
@@ -24,47 +24,89 @@ export function SettingsScreen(): JSX.Element {
       )}
 
       <Text style={styles.sectionTitle}>Text size</Text>
-      <View style={styles.sizes} accessibilityRole="radiogroup">
-        {SIZES.map((size) => {
-          const selected = settings.textSize === size.id;
-          return (
-            <Pressable
-              key={size.id}
-              style={[styles.sizeCard, selected && styles.sizeCardSelected]}
-              onPress={() => update({ textSize: size.id })}
-              accessibilityRole="radio"
-              accessibilityState={{ checked: selected }}
-              accessibilityLabel={`${size.label} text`}
-            >
-              {/* The sample shows each size relative to the current one, so it is not double-scaled. */}
-              <Text style={[styles.sample, { fontSize: Math.round(26 * TEXT_SCALE[size.id]) }]}>Aa</Text>
-              <Text style={styles.sizeLabel}>{size.label}</Text>
-            </Pressable>
-          );
-        })}
-      </View>
+      <TextSizePicker />
 
-      <Pressable
-        style={styles.toggleCard}
-        onPress={() => update({ highContrast: !settings.highContrast })}
-        accessibilityRole="switch"
-        accessibilityState={{ checked: settings.highContrast }}
-      >
-        <View style={styles.toggleText}>
-          <Text style={styles.toggleTitle}>High contrast</Text>
-          <Text style={styles.toggleSubtitle}>Black text on white, thicker lines</Text>
-        </View>
-        <Switch
-          value={settings.highContrast}
-          onValueChange={(highContrast) => update({ highContrast })}
-          trackColor={{ false: '#9ca3af', true: theme.highContrast ? '#000000' : '#0f172a' }}
-          thumbColor="#ffffff"
-          ios_backgroundColor="#9ca3af"
-          accessibilityElementsHidden
-          importantForAccessibility="no"
-        />
-      </Pressable>
+      <ToggleCard
+        title="High contrast"
+        subtitle="Black text on white, thicker lines"
+        value={settings.highContrast}
+        onChange={(highContrast) => update({ highContrast })}
+      />
+
+      <Text style={styles.sectionTitle}>Reminders</Text>
+      <ToggleCard
+        title="Health info reminder"
+        subtitle="Every 2 weeks, show a yellow banner asking you to check your health info"
+        value={settings.healthReminder}
+        onChange={(healthReminder) => update({ healthReminder })}
+      />
     </ScrollView>
+  );
+}
+
+/** Normal / Large / Largest cards. Also used on the first-run text size page. */
+export function TextSizePicker(): JSX.Element {
+  const { settings, update } = useSettings();
+  const styles = useThemedStyles(baseStyles);
+  return (
+    <View style={styles.sizes} accessibilityRole="radiogroup">
+      {SIZES.map((size) => {
+        const selected = settings.textSize === size.id;
+        return (
+          <Pressable
+            key={size.id}
+            style={[styles.sizeCard, selected && styles.sizeCardSelected]}
+            onPress={() => update({ textSize: size.id })}
+            accessibilityRole="radio"
+            accessibilityState={{ checked: selected }}
+            accessibilityLabel={`${size.label} text`}
+          >
+            {/* The sample shows each size relative to the current one, so it is not double-scaled. */}
+            <Text style={[styles.sample, { fontSize: Math.round(26 * TEXT_SCALE[size.id]) }]}>Aa</Text>
+            <Text style={styles.sizeLabel}>{size.label}</Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+}
+
+function ToggleCard({
+  title,
+  subtitle,
+  value,
+  onChange,
+}: {
+  title: string;
+  subtitle: string;
+  value: boolean;
+  onChange: (value: boolean) => void;
+}): JSX.Element {
+  const { theme } = useSettings();
+  const styles = useThemedStyles(baseStyles);
+  return (
+    <Pressable
+      style={styles.toggleCard}
+      onPress={() => onChange(!value)}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: value }}
+      accessibilityLabel={title}
+      accessibilityHint={subtitle}
+    >
+      <View style={styles.toggleText}>
+        <Text style={styles.toggleTitle}>{title}</Text>
+        <Text style={styles.toggleSubtitle}>{subtitle}</Text>
+      </View>
+      <Switch
+        value={value}
+        onValueChange={onChange}
+        trackColor={{ false: '#9ca3af', true: theme.highContrast ? '#000000' : '#0f172a' }}
+        thumbColor="#ffffff"
+        ios_backgroundColor="#9ca3af"
+        accessibilityElementsHidden
+        importantForAccessibility="no"
+      />
+    </Pressable>
   );
 }
 

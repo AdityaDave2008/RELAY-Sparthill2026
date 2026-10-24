@@ -17,9 +17,18 @@ export const TEXT_SCALE: Record<TextSize, number> = { normal: 1, large: 1.25, la
 export interface Settings {
   textSize: TextSize;
   highContrast: boolean;
+  /** Show a banner every two weeks asking the resident to check their health info. */
+  healthReminder: boolean;
+  /** Set once the first-run text size page has been completed. */
+  textSizeChosen: boolean;
 }
 
-const DEFAULT_SETTINGS: Settings = { textSize: 'normal', highContrast: false };
+const DEFAULT_SETTINGS: Settings = {
+  textSize: 'normal',
+  highContrast: false,
+  healthReminder: true,
+  textSizeChosen: false,
+};
 const SETTINGS_KEY = 'relay:settings:v1';
 
 export interface Theme {
@@ -55,6 +64,8 @@ export function SettingsProvider({ children }: { children: ReactNode }): JSX.Ele
         setSettings({
           textSize: v.textSize === 'large' || v.textSize === 'largest' ? v.textSize : 'normal',
           highContrast: v.highContrast === true,
+          healthReminder: v.healthReminder !== false,
+          textSizeChosen: v.textSizeChosen === true,
         });
       })
       .catch(() => {

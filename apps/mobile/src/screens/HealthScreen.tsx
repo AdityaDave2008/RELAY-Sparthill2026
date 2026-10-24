@@ -25,9 +25,11 @@ interface Props {
   loadError: string | null;
   onSave: (next: HealthProfile) => Promise<void>;
   onClear?: () => Promise<void>;
+  /** A check-in reminder is showing: allow saving unchanged info to confirm it. */
+  reminderDue?: boolean;
 }
 
-export function HealthScreen({ mode, ready, profile, loadError, onSave, onClear }: Props): JSX.Element {
+export function HealthScreen({ mode, ready, profile, loadError, onSave, onClear, reminderDue = false }: Props): JSX.Element {
   const onboarding = mode === 'onboarding';
   const theme = useTheme();
   const styles = useThemedStyles(baseStyles);
@@ -346,13 +348,21 @@ export function HealthScreen({ mode, ready, profile, loadError, onSave, onClear 
       )}
 
       <Pressable
-        style={[styles.saveBtn, (!ready || saving || (!onboarding && !dirty)) && styles.disabled]}
-        disabled={!ready || saving || (!onboarding && !dirty)}
+        style={[styles.saveBtn, (!ready || saving || (!onboarding && !dirty && !reminderDue)) && styles.disabled]}
+        disabled={!ready || saving || (!onboarding && !dirty && !reminderDue)}
         onPress={() => void save()}
         accessibilityRole="button"
       >
         <Text style={styles.saveText}>
-          {saving ? 'Saving…' : onboarding ? 'Continue' : dirty ? 'Save health info' : 'Saved'}
+          {saving
+            ? 'Saving…'
+            : onboarding
+              ? 'Continue'
+              : dirty
+                ? 'Save health info'
+                : reminderDue
+                  ? 'Mark as up to date'
+                  : 'Saved'}
         </Text>
       </Pressable>
 
