@@ -44,6 +44,8 @@ export interface HealthProfile {
   contactPhone: string;
   /** The only optional field. */
   notes: string;
+  /** When the resident last saved this profile (epoch ms); null if unknown. */
+  updatedAt: number | null;
 }
 
 /** Per-field input limits; also enforced when reading saved data. */
@@ -79,6 +81,7 @@ export const EMPTY_HEALTH: HealthProfile = {
   contactName: '',
   contactPhone: '',
   notes: '',
+  updatedAt: null,
 };
 
 export type HealthField =
@@ -136,6 +139,10 @@ function sanitize(value: unknown): HealthProfile {
     contactName: text(v.contactName, HEALTH_LIMITS.contactName),
     contactPhone: text(v.contactPhone, HEALTH_LIMITS.contactPhone),
     notes: text(v.notes, HEALTH_LIMITS.notes),
+    updatedAt:
+      typeof v.updatedAt === 'number' && Number.isSafeInteger(v.updatedAt) && v.updatedAt > 0
+        ? v.updatedAt
+        : null,
   };
 }
 
@@ -290,7 +297,7 @@ export function useHealthProfile(): {
   }, []);
 
   const save = useCallback(async (next: HealthProfile) => {
-    const clean = sanitize(next);
+    const clean = { ...sanitize(next), updatedAt: Date.now() };
     await AsyncStorage.setItem(HEALTH_KEY, JSON.stringify(clean));
     setProfile(clean);
     setError(null);

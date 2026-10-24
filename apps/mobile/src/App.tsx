@@ -1,5 +1,5 @@
 import { type JSX, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Keyboard, Pressable, StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -9,7 +9,11 @@ import { isHealthComplete, summarizeHealth, useHealthProfile } from './relay/hea
 import { HealthScreen } from './screens/HealthScreen';
 import { ResidentScreen } from './screens/ResidentScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
+import { TextSizeScreen } from './screens/TextSizeScreen';
 import { SettingsProvider, useSettings, useThemedStyles } from './ui/theme';
+import { FadeIn, TabScene } from './ui/transitions';
+import { HealthReminderBanner } from './ui/HealthReminderBanner';
+import { useHealthReminder } from './relay/healthReminder';
 
 type Tab = 'help' | 'health' | 'settings';
 
@@ -68,13 +72,23 @@ export default function App(): JSX.Element {
  * sync keeps running while the resident uses another tab.
  */
 function Tabs(): JSX.Element {
-  const [tab, setTab] = useState<Tab>('help');
+  const [{ tab, direction }, setNav] = useState<{ tab: Tab; direction: number }>({
+    tab: 'help',
+    direction: 1,
+  });
+  const index = (id: Tab) => TABS.findIndex((t) => t.id === id);
+  const setTab = (next: Tab) => {
+    if (next === tab) return;
+    Keyboard.dismiss();
+    setNav({ tab: next, direction: Math.sign(index(next) - index(tab)) || 1 });
+  };
   const health = useHealthProfile();
   const settings = useSettings();
   const styles = useThemedStyles(baseStyles);
   const { theme } = settings;
   const healthSummary = useMemo(() => summarizeHealth(health.profile), [health.profile]);
   const complete = useMemo(() => isHealthComplete(health.profile), [health.profile]);
+  const reminder = useHealthReminder(health.profile.updatedAt, settings.settings.healthReminder);
 
   // Wait for saved settings too, so the first screen doesn't flash at the wrong size.
   if (!health.ready || !settings.ready) {
@@ -85,69 +99,96 @@ function Tabs(): JSX.Element {
     );
   }
 
+  // First run: choose a readable text size before the health form. Residents
+  // who already finished the health form are not sent back here.
+  if (!complete && !settings.settings.textSizeChosen) {
+    return (
+      <View style={styles.root}>
+        <FadeIn key="text-size">
+          <TextSizeScreen onContinue={() => settings.update({ textSizeChosen: true })} />
+        </FadeIn>
+      </View>
+    );
+  }
+
   // Health info must be complete before the main screen; clearing it returns here.
   if (!complete) {
     return (
       <View style={styles.root}>
-        <HealthScreen
-          mode="onboarding"
-          ready={health.ready}
-          profile={health.profile}
-          loadError={health.error}
-          onSave={async (next) => {
-            await health.save(next);
-            setTab('help');
-          }}
-        />
+        <FadeIn key="onboarding">
+          <HealthScreen
+            mode="onboarding"
+            ready={health.ready}
+            profile={health.profile}
+            loadError={health.error}
+            onSave={async (next) => {
+              Keyboard.dismiss();
+              await health.save(next);
+              setNav({ tab: 'help', direction: 1 });
+            }}
+          />
+        </FadeIn>
       </View>
     );
   }
 
   return (
     <View style={styles.root}>
-      <View style={[styles.screen, tab !== 'help' && styles.hidden]}>
-        <ResidentScreen healthSummary={healthSummary} />
-      </View>
-      <View style={[styles.screen, tab !== 'health' && styles.hidden]}>
-        <HealthScreen
-          mode="edit"
-          ready={health.ready}
-          profile={health.profile}
-          loadError={health.error}
-          onSave={health.save}
-          onClear={health.clear}
-        />
-      </View>
-      <View style={[styles.screen, tab !== 'settings' && styles.hidden]}>
-        <SettingsScreen />
-      </View>
-      <View style={styles.tabBar} accessibilityRole="tablist">
-        {TABS.map((t) => {
-          const selected = tab === t.id;
-          return (
-            <Pressable
-              key={t.id}
-              style={[styles.tab, selected && styles.tabSelected]}
-              onPress={() => setTab(t.id)}
-              accessibilityRole="tab"
-              accessibilityState={{ selected }}
-              accessibilityLabel={t.label}
-            >
-              <MaterialCommunityIcons
-                name={t.icon}
-                size={Math.round(24 * theme.scale)}
-                color={theme.color(selected ? '#ea580c' : '#64748b')}
-              />
-              <Text
-                style={[styles.tabLabel, selected ? styles.tabLabelActive : styles.tabInactive]}
-                numberOfLines={2}
+      <FadeIn key="main">
+        {reminder.due && (
+          <HealthReminderBanner
+            daysSinceUpdate={reminder.daysSinceUpdate}
+            onReview={tab === 'health' ? undefined : () => setTab('health')}
+            onClose={reminder.dismiss}
+          />
+        )}
+        <View style={styles.screen}>
+          <TabScene active={tab === 'help'} direction={direction}>
+            <ResidentScreen healthSummary={healthSummary} />
+          </TabScene>
+          <TabScene active={tab === 'health'} direction={direction}>
+            <HealthScreen
+              mode="edit"
+              ready={health.ready}
+              profile={health.profile}
+              loadError={health.error}
+              onSave={health.save}
+              onClear={health.clear}
+              reminderDue={reminder.due}
+            />
+          </TabScene>
+          <TabScene active={tab === 'settings'} direction={direction}>
+            <SettingsScreen />
+          </TabScene>
+        </View>
+        <View style={styles.tabBar} accessibilityRole="tablist">
+          {TABS.map((t) => {
+            const selected = tab === t.id;
+            return (
+              <Pressable
+                key={t.id}
+                style={[styles.tab, selected && styles.tabSelected]}
+                onPress={() => setTab(t.id)}
+                accessibilityRole="tab"
+                accessibilityState={{ selected }}
+                accessibilityLabel={t.label}
               >
-                {t.label}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+                <MaterialCommunityIcons
+                  name={t.icon}
+                  size={Math.round(24 * theme.scale)}
+                  color={theme.color(selected ? '#ea580c' : '#64748b')}
+                />
+                <Text
+                  style={[styles.tabLabel, selected ? styles.tabLabelActive : styles.tabInactive]}
+                  numberOfLines={2}
+                >
+                  {t.label}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      </FadeIn>
     </View>
   );
 }
@@ -169,8 +210,8 @@ function AuthenticatedApp({ children }: { children: JSX.Element }): JSX.Element 
 const baseStyles = StyleSheet.create({
   root: { flex: 1, backgroundColor: '#f8fafc' },
   center: { alignItems: 'center', justifyContent: 'center' },
-  screen: { flex: 1 },
-  hidden: { display: 'none' },
+  // Scenes are layered inside this box; clip them so slides don't overlap the tab bar.
+  screen: { flex: 1, overflow: 'hidden' },
   tabBar: {
     flexDirection: 'row',
     borderTopWidth: 1,
