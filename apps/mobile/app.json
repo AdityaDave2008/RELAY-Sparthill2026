@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "RELAY",
+    "slug": "relay",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "relay",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "org.sparthill.relay",
+      "infoPlist": {
+        "NSCameraUsageDescription": "RELAY uses the camera to scan QR codes that carry messages between nearby devices when the network is down.",
+        "NSLocationWhenInUseUsageDescription": "RELAY can attach your approximate location to a help request so responders can find you."
+      }
+    },
+    "android": {
+      "package": "org.sparthill.relay",
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "CAMERA",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "plugins": [
+      "expo-status-bar"
+    ],
+    "extra": {
+      "apiUrl": "http://127.0.0.1:8787"
+    }
+  }
+}
