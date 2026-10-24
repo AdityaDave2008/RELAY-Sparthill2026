@@ -20,3 +20,11 @@ playwright-report/
 # Local API state
 services/api/data/
 .aws-sam/
+
+# Expo / React Native (apps/mobile)
+.expo/
+apps/*/ios/
+apps/*/android/
+apps/*/.expo/
+*.orig.*
+web-build/
