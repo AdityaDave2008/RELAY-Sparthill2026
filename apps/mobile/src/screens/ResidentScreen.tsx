@@ -8,24 +8,20 @@ import {
   View,
 } from 'react-native';
 import * as Location from 'expo-location';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createMessage, type GeoPoint, type RelayMessage } from '@relay/core';
 
 import { getDispatcherLocation, type DispatcherLocation } from '../config/env';
-import { useTheme, useThemedStyles } from '../ui/theme';
 import { useRelay } from '../relay/useRelay';
 import { NEED_LABEL, NEEDS, type Need } from '../relay/contract';
 import { composeRequestBody } from '../relay/health';
 
-type IconName = keyof typeof MaterialCommunityIcons.glyphMap;
-
-const NEED_ICON: Record<Need, { name: IconName; color: string }> = {
-  water: { name: 'water', color: '#2563eb' },
-  food: { name: 'food', color: '#b45309' },
-  medical: { name: 'medical-bag', color: '#dc2626' },
-  shelter: { name: 'home', color: '#15803d' },
-  evacuation: { name: 'walk', color: '#15803d' },
-  power: { name: 'lightning-bolt', color: '#ca8a04' },
+const NEED_ICON: Record<Need, { glyph: string; color: string }> = {
+  water: { glyph: '💧', color: '#2563eb' },
+  food: { glyph: '🍲', color: '#b45309' },
+  medical: { glyph: '✚', color: '#dc2626' },
+  shelter: { glyph: '🏠', color: '#15803d' },
+  evacuation: { glyph: '🚶', color: '#15803d' },
+  power: { glyph: '⚡', color: '#ca8a04' },
 };
 
 const REJECTION_LABEL: Record<string, string> = {
@@ -118,9 +114,11 @@ function requestSummary(message: RelayMessage): string {
 
 export function ResidentScreen({
   healthSummary,
+  onEditHealth,
 }: {
-  /** Health summary from the Health tab, always attached when filled in. */
+  /** One-line health summary from the Health tab, or null if not filled in. */
   healthSummary: string | null;
+  onEditHealth: () => void;
 }): JSX.Element {
   const {
     ready,
@@ -142,9 +140,8 @@ export function ResidentScreen({
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [submittedId, setSubmittedId] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
+  const [attachHealth, setAttachHealth] = useState(true);
   const dispatcher = useMemo(getDispatcherLocation, []);
-  const theme = useTheme();
-  const styles = useThemedStyles(baseStyles);
 
   useEffect(() => locate(), [locate]);
 
@@ -195,7 +192,7 @@ export function ResidentScreen({
       const message = createMessage({
         kind: 'help_request',
         originDeviceId: deviceId,
-        body: composeRequestBody(needs, people, notes, healthSummary),
+        body: composeRequestBody(needs, people, notes, attachHealth ? healthSummary : null),
         ...(gps.status === 'fixed' ? { location: gps.point } : {}),
       });
       const result = await addMessage(message);
@@ -217,7 +214,7 @@ export function ResidentScreen({
     } finally {
       setSending(false);
     }
-  }, [addMessage, deviceId, gps, healthSummary, needs, notes, people, sending, sync]);
+  }, [addMessage, attachHealth, deviceId, gps, healthSummary, needs, notes, people, sending, sync]);
 
   const submittedReply = submittedId ? repliesByRequest.get(submittedId) : undefined;
   const submittedRejection = submittedId ? rejectedById[submittedId] : undefined;
@@ -287,7 +284,7 @@ export function ResidentScreen({
               accessibilityRole="button"
               accessibilityState={{ selected }}
             >
-              <MaterialCommunityIcons name={icon.name} size={Math.round(20 * theme.scale)} color={theme.color(icon.color)} />
+              <Text style={[styles.chipIcon, { color: icon.color }]}>{icon.glyph}</Text>
               <Text style={styles.chipLabel}>{NEED_LABEL[need]}</Text>
             </Pressable>
           );
@@ -309,7 +306,7 @@ export function ResidentScreen({
             keyboardType="number-pad"
             value={people === null ? '' : String(people)}
             placeholder="?"
-            placeholderTextColor={theme.placeholder}
+            placeholderTextColor="#9ca3af"
             onChangeText={(text) => {
               const value = Number.parseInt(text, 10);
               setPeople(Number.isFinite(value) ? Math.max(1, value) : null);
@@ -334,11 +331,36 @@ export function ResidentScreen({
         maxLength={700}
         multiline
         placeholder="e.g. 25 people at the church on Elm St. Running out of drinking water. One person needs insulin."
-        placeholderTextColor={theme.placeholder}
+        placeholderTextColor="#6b7280"
       />
 
       <Text style={styles.sectionTitle}>Distance from dispatch</Text>
       <LocationBlock gps={gps} dispatcher={dispatcher} onRetry={locate} />
+
+      <Text style={styles.sectionTitle}>Health info</Text>
+      {healthSummary ? (
+        <Pressable
+          style={styles.healthRow}
+          onPress={() => setAttachHealth((v) => !v)}
+          accessibilityRole="checkbox"
+          accessibilityState={{ checked: attachHealth }}
+        >
+          <Text style={styles.checkbox}>{attachHealth ? '☑' : '☐'}</Text>
+          <View style={styles.gpsBody}>
+            <Text style={styles.gpsLabel}>Attach my health info to this request</Text>
+            <Text style={styles.gpsAccuracy} numberOfLines={3}>
+              {healthSummary.replace('HEALTH (shared by resident): ', '')}
+            </Text>
+          </View>
+        </Pressable>
+      ) : (
+        <Pressable style={styles.healthRow} onPress={onEditHealth} accessibilityRole="button">
+          <Text style={styles.checkbox}>✚</Text>
+          <Text style={[styles.gpsPending, styles.link]}>
+            No health info saved. Add it in the Health tab so dispatch knows about medical needs.
+          </Text>
+        </Pressable>
+      )}
 
       <Pressable
         style={[styles.sendBtn, !canSend && styles.buttonDisabled]}
@@ -388,7 +410,6 @@ function DispatcherUpdates({
   warnings: RelayMessage[];
   replies: RelayMessage[];
 }): JSX.Element | null {
-  const styles = useThemedStyles(baseStyles);
   if (warnings.length === 0 && replies.length === 0) return null;
 
   return (
@@ -424,12 +445,10 @@ function LocationBlock({
   dispatcher: DispatcherLocation | null;
   onRetry: () => void;
 }): JSX.Element {
-  const theme = useTheme();
-  const styles = useThemedStyles(baseStyles);
   if (gps.status !== 'fixed') {
     return (
       <View style={styles.gps}>
-        <MaterialCommunityIcons name="map-marker" size={Math.round(24 * theme.scale)} color={theme.color("#dc2626")} />
+        <Text style={styles.gpsPin}>📍</Text>
         <Text style={styles.gpsPending}>
           {gps.status === 'error'
             ? `${gps.message} Describe where you are in the message instead.`
@@ -448,7 +467,7 @@ function LocationBlock({
   const rough = accuracy > 100;
   return (
     <View style={styles.gps}>
-      <MaterialCommunityIcons name="map-marker" size={Math.round(24 * theme.scale)} color={theme.color("#dc2626")} />
+      <Text style={styles.gpsPin}>📍</Text>
       <View style={styles.gpsBody}>
         {dispatcher ? (
           <Text style={styles.distance}>{formatDistance(distanceMeters(dispatcher, gps.point))}</Text>
@@ -467,12 +486,12 @@ function LocationBlock({
   );
 }
 
-const baseStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f8fafc' },
   content: { padding: 20, gap: 16, paddingBottom: 40 },
   statusRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   updated: { color: '#6b7280', fontSize: 14, flex: 1 },
-  refreshBtn: { paddingVertical: 7, paddingHorizontal: 12, borderRadius: 8, borderWidth: 1, borderColor: '#cbd5e1', backgroundColor: '#e2e8f0' },
+  refreshBtn: { paddingVertical: 7, paddingHorizontal: 12, borderRadius: 8, backgroundColor: '#e2e8f0' },
   refreshText: { color: '#0f172a', fontSize: 14, fontWeight: '700' },
   buttonDisabled: { opacity: 0.5 },
   errorBanner: { borderRadius: 10, backgroundColor: '#fef2f2', borderWidth: 1, borderColor: '#fecaca', padding: 12 },
@@ -485,6 +504,7 @@ const baseStyles = StyleSheet.create({
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   chip: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 12, paddingHorizontal: 18, borderRadius: 999, borderWidth: 1, borderColor: '#e2e8f0', backgroundColor: 'white' },
   chipSelected: { borderColor: '#0f172a', borderWidth: 2 },
+  chipIcon: { fontSize: 18 },
   chipLabel: { fontSize: 16, fontWeight: '600', color: '#0f172a' },
   counter: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   counterBtn: { width: 56, height: 56, borderRadius: 12, borderWidth: 1, borderColor: '#e2e8f0', backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' },
@@ -494,11 +514,15 @@ const baseStyles = StyleSheet.create({
   fieldLabel: { fontSize: 16, fontWeight: '600', color: '#0f172a' },
   textarea: { borderWidth: 1, borderColor: '#cbd5e1', borderRadius: 10, padding: 14, minHeight: 110, fontSize: 16, color: '#0f172a', backgroundColor: 'white', textAlignVertical: 'top' },
   gps: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 12, backgroundColor: '#eef2f6' },
+  gpsPin: { fontSize: 22 },
   gpsBody: { flex: 1, gap: 4 },
   gpsPending: { flex: 1, fontSize: 14, color: '#475569' },
   gpsLabel: { fontSize: 16, fontWeight: '700', color: '#0f172a' },
   distance: { fontSize: 24, fontWeight: '800', color: '#0f172a' },
   gpsAccuracy: { fontSize: 14, color: '#6b7280' },
+  healthRow: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 12, backgroundColor: '#eef2f6' },
+  checkbox: { fontSize: 22, color: '#0f172a' },
+  link: { color: '#1d4ed8' },
   retryBtn: { paddingVertical: 8, paddingHorizontal: 14, borderRadius: 8, borderWidth: 1, borderColor: '#cbd5e1', backgroundColor: 'white' },
   retryText: { fontSize: 14, fontWeight: '600', color: '#0f172a' },
   sendBtn: { backgroundColor: '#ef7d5a', paddingVertical: 18, borderRadius: 12, alignItems: 'center', marginTop: 4 },
