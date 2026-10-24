@@ -22,13 +22,15 @@ export const CRITICAL_NEEDS = [
 ] as const;
 export type CriticalNeed = (typeof CRITICAL_NEEDS)[number];
 
-export type UnitSystem = 'metric' | 'imperial';
+export type HeightUnit = 'ftin' | 'cm';
+export type WeightUnit = 'lb' | 'kg';
 
 export interface HealthProfile {
   fullName: string;
   age: string;
-  /** metric: height in cm, weight in kg. imperial: height in ft + in, weight in lb. */
-  units: UnitSystem;
+  /** Height is entered in ft + in or in cm; weight in lb or kg. Chosen separately. */
+  heightUnit: HeightUnit;
+  weightUnit: WeightUnit;
   heightCm: string;
   heightFt: string;
   heightIn: string;
@@ -63,7 +65,8 @@ export const HEALTH_LIMITS = {
 export const EMPTY_HEALTH: HealthProfile = {
   fullName: '',
   age: '',
-  units: 'imperial',
+  heightUnit: 'ftin',
+  weightUnit: 'lb',
   heightCm: '',
   heightFt: '',
   heightIn: '',
@@ -118,7 +121,9 @@ function sanitize(value: unknown): HealthProfile {
   return {
     fullName: text(v.fullName, HEALTH_LIMITS.fullName),
     age: digits(v.age, HEALTH_LIMITS.age),
-    units: v.units === 'metric' ? 'metric' : 'imperial',
+    // Profiles saved before the split stored one shared `units` value.
+    heightUnit: v.heightUnit === 'cm' || (v.heightUnit === undefined && v.units === 'metric') ? 'cm' : 'ftin',
+    weightUnit: v.weightUnit === 'kg' || (v.weightUnit === undefined && v.units === 'metric') ? 'kg' : 'lb',
     heightCm: digits(v.heightCm, HEALTH_LIMITS.heightCm),
     heightFt: digits(v.heightFt, HEALTH_LIMITS.heightFt),
     heightIn: digits(v.heightIn, HEALTH_LIMITS.heightIn),
@@ -143,12 +148,9 @@ export function validateHealth(p: HealthProfile): Partial<Record<HealthField, st
   if (!p.fullName.trim()) errors.fullName = required;
   if (intIn(p.age, 0, 120) === null) errors.age = p.age ? 'Enter an age from 0 to 120' : required;
 
-  if (p.units === 'metric') {
+  if (p.heightUnit === 'cm') {
     if (intIn(p.heightCm, 30, 250) === null) {
       errors.height = p.heightCm ? 'Enter a height from 30 to 250 cm' : required;
-    }
-    if (intIn(p.weight, 1, 350) === null) {
-      errors.weight = p.weight ? 'Enter a weight from 1 to 350 kg' : required;
     }
   } else {
     const ft = intIn(p.heightFt, 1, 8);
@@ -156,9 +158,13 @@ export function validateHealth(p: HealthProfile): Partial<Record<HealthField, st
     if (ft === null || inches === null) {
       errors.height = p.heightFt ? 'Enter feet from 1 to 8 and inches from 0 to 11' : required;
     }
-    if (intIn(p.weight, 2, 770) === null) {
-      errors.weight = p.weight ? 'Enter a weight from 2 to 770 lb' : required;
+  }
+  if (p.weightUnit === 'kg') {
+    if (intIn(p.weight, 1, 350) === null) {
+      errors.weight = p.weight ? 'Enter a weight from 1 to 350 kg' : required;
     }
+  } else if (intIn(p.weight, 2, 770) === null) {
+    errors.weight = p.weight ? 'Enter a weight from 2 to 770 lb' : required;
   }
 
   if (!p.bloodType) errors.bloodType = 'Required. Choose "Unknown" if you are not sure.';
@@ -173,12 +179,36 @@ export function validateHealth(p: HealthProfile): Partial<Record<HealthField, st
   return errors;
 }
 
+/** Height fields converted to the other unit; blank stays blank. */
+export function convertHeight(
+  p: Pick<HealthProfile, 'heightCm' | 'heightFt' | 'heightIn'>,
+  to: HeightUnit,
+): Pick<HealthProfile, 'heightCm' | 'heightFt' | 'heightIn'> {
+  if (to === 'cm') {
+    if (!p.heightFt && !p.heightIn) return { heightCm: '', heightFt: '', heightIn: '' };
+    const inches = Number(p.heightFt || 0) * 12 + Number(p.heightIn || 0);
+    return { heightCm: String(Math.round(inches * 2.54)), heightFt: '', heightIn: '' };
+  }
+  if (!p.heightCm) return { heightCm: '', heightFt: '', heightIn: '' };
+  let ft = Math.floor(Number(p.heightCm) / 2.54 / 12);
+  let inches = Math.round(Number(p.heightCm) / 2.54 - ft * 12);
+  if (inches === 12) { ft += 1; inches = 0; }
+  return { heightCm: '', heightFt: String(ft), heightIn: String(inches) };
+}
+
+/** Weight converted to the other unit; blank stays blank. */
+export function convertWeight(weight: string, to: WeightUnit): string {
+  if (!weight) return '';
+  const n = Number(weight);
+  return String(Math.round(to === 'kg' ? n * 0.45359237 : n / 0.45359237));
+}
+
 export function isHealthComplete(profile: HealthProfile): boolean {
   return Object.keys(validateHealth(profile)).length === 0;
 }
 
 function formatHeight(p: HealthProfile): string | null {
-  if (p.units === 'metric') return p.heightCm ? `${p.heightCm} cm` : null;
+  if (p.heightUnit === 'cm') return p.heightCm ? `${p.heightCm} cm` : null;
   if (!p.heightFt) return null;
   return `${p.heightFt} ft ${p.heightIn || '0'} in`;
 }
@@ -190,7 +220,7 @@ export function summarizeHealth(profile: HealthProfile): string | null {
     profile.fullName.trim() && `Name: ${profile.fullName.trim()}`,
     profile.age && `Age: ${profile.age}`,
     height && `Height: ${height}`,
-    profile.weight && `Weight: ${profile.weight} ${profile.units === 'metric' ? 'kg' : 'lb'}`,
+    profile.weight && `Weight: ${profile.weight} ${profile.weightUnit}`,
     profile.bloodType && `Blood: ${profile.bloodType}`,
     profile.criticalNeeds.length > 0 && `Critical: ${profile.criticalNeeds.join(', ')}`,
     profile.conditions.trim() && `Conditions: ${profile.conditions.trim()}`,

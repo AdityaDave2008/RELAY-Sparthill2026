@@ -10,7 +10,10 @@ import {
   type CriticalNeed,
   type HealthField,
   type HealthProfile,
-  type UnitSystem,
+  type HeightUnit,
+  type WeightUnit,
+  convertHeight,
+  convertWeight,
 } from '../relay/health';
 import { useTheme, useThemedStyles } from '../ui/theme';
 
@@ -57,10 +60,15 @@ export function HealthScreen({ mode, ready, profile, loadError, onSave, onClear 
     set('criticalNeeds', selected ? others.filter((n) => n !== need) : [...others, need]);
   };
 
-  const setUnits = (units: UnitSystem) => {
-    if (units === draft.units) return;
-    // Values do not carry over between unit systems; clear them to avoid mix-ups.
-    setDraft((current) => ({ ...current, units, heightCm: '', heightFt: '', heightIn: '', weight: '' }));
+  // Switching units converts what was already typed rather than clearing it.
+  const setHeightUnit = (heightUnit: HeightUnit) => {
+    if (heightUnit === draft.heightUnit) return;
+    setDraft((current) => ({ ...current, heightUnit, ...convertHeight(current, heightUnit) }));
+    setMessage(null);
+  };
+  const setWeightUnit = (weightUnit: WeightUnit) => {
+    if (weightUnit === draft.weightUnit) return;
+    setDraft((current) => ({ ...current, weightUnit, weight: convertWeight(current.weight, weightUnit) }));
     setMessage(null);
   };
 
@@ -103,7 +111,6 @@ export function HealthScreen({ mode, ready, profile, loadError, onSave, onClear 
     );
 
   const input = (field: HealthField) => [styles.input, errorFor(field) && styles.inputError];
-  const metric = draft.units === 'metric';
 
   return (
     <ScrollView
@@ -154,66 +161,72 @@ export function HealthScreen({ mode, ready, profile, loadError, onSave, onClear 
         />
       </Field>
 
-      <View style={styles.field}>
-        <Text style={styles.label}>Units</Text>
-        <View style={styles.segment}>
-          {(['imperial', 'metric'] as const).map((units) => (
-            <Pressable
-              key={units}
-              style={[styles.segmentItem, draft.units === units && styles.segmentSelected]}
-              onPress={() => setUnits(units)}
-              accessibilityRole="radio"
-              accessibilityState={{ checked: draft.units === units }}
-            >
-              <Text style={[styles.segmentText, draft.units === units && styles.segmentTextSelected]}>
-                {units === 'imperial' ? 'ft / lb' : 'cm / kg'}
-              </Text>
-            </Pressable>
-          ))}
-        </View>
-      </View>
-
       <Field label="Height" error={errorFor('height')}>
-        {metric ? (
-          <UnitInput
-            value={draft.heightCm}
-            onChange={(v) => set('heightCm', v)}
-            maxLength={HEALTH_LIMITS.heightCm}
-            unit="cm"
-            invalid={!!errorFor('height')}
-            editable={ready}
+        <View style={styles.measureRow}>
+          {draft.heightUnit === 'cm' ? (
+            <UnitInput
+              value={draft.heightCm}
+              onChange={(v) => set('heightCm', v)}
+              maxLength={HEALTH_LIMITS.heightCm}
+              unit="cm"
+              invalid={!!errorFor('height')}
+              editable={ready}
+            />
+          ) : (
+            <>
+              <UnitInput
+                value={draft.heightFt}
+                onChange={(v) => set('heightFt', v)}
+                maxLength={HEALTH_LIMITS.heightFt}
+                unit="ft"
+                invalid={!!errorFor('height')}
+                editable={ready}
+              />
+              <UnitInput
+                value={draft.heightIn}
+                onChange={(v) => set('heightIn', v)}
+                maxLength={HEALTH_LIMITS.heightIn}
+                unit="in"
+                invalid={!!errorFor('height')}
+                editable={ready}
+              />
+            </>
+          )}
+        </View>
+        {/* Always on its own line, so it stays in place when ft/in and cm change the number of inputs. */}
+        <View style={styles.switchLine}>
+          <UnitSwitch
+            label="Height unit"
+            options={[
+              { id: 'ftin', label: 'ft/in' },
+              { id: 'cm', label: 'cm' },
+            ]}
+            value={draft.heightUnit}
+            onChange={setHeightUnit}
           />
-        ) : (
-          <View style={styles.row}>
-            <UnitInput
-              value={draft.heightFt}
-              onChange={(v) => set('heightFt', v)}
-              maxLength={HEALTH_LIMITS.heightFt}
-              unit="ft"
-              invalid={!!errorFor('height')}
-              editable={ready}
-            />
-            <UnitInput
-              value={draft.heightIn}
-              onChange={(v) => set('heightIn', v)}
-              maxLength={HEALTH_LIMITS.heightIn}
-              unit="in"
-              invalid={!!errorFor('height')}
-              editable={ready}
-            />
-          </View>
-        )}
+        </View>
       </Field>
 
       <Field label="Weight" error={errorFor('weight')}>
-        <UnitInput
-          value={draft.weight}
-          onChange={(v) => set('weight', v)}
-          maxLength={HEALTH_LIMITS.weight}
-          unit={metric ? 'kg' : 'lb'}
-          invalid={!!errorFor('weight')}
-          editable={ready}
-        />
+        <View style={styles.measureRow}>
+          <UnitInput
+            value={draft.weight}
+            onChange={(v) => set('weight', v)}
+            maxLength={HEALTH_LIMITS.weight}
+            unit={draft.weightUnit}
+            invalid={!!errorFor('weight')}
+            editable={ready}
+          />
+          <UnitSwitch
+            label="Weight unit"
+            options={[
+              { id: 'lb', label: 'lb' },
+              { id: 'kg', label: 'kg' },
+            ]}
+            value={draft.weightUnit}
+            onChange={setWeightUnit}
+          />
+        </View>
       </Field>
 
       <Field label="Blood type" error={errorFor('bloodType')}>
@@ -363,6 +376,39 @@ function Field({ label, error, children }: { label: string; error?: string; chil
   );
 }
 
+function UnitSwitch<T extends string>({
+  label,
+  options,
+  value,
+  onChange,
+}: {
+  label: string;
+  options: { id: T; label: string }[];
+  value: T;
+  onChange: (value: T) => void;
+}): JSX.Element {
+  const styles = useThemedStyles(baseStyles);
+  return (
+    <View style={styles.segment} accessibilityRole="radiogroup" accessibilityLabel={label}>
+      {options.map((option) => {
+        const selected = option.id === value;
+        return (
+          <Pressable
+            key={option.id}
+            style={[styles.segmentItem, selected && styles.segmentSelected]}
+            onPress={() => onChange(option.id)}
+            accessibilityRole="radio"
+            accessibilityState={{ checked: selected }}
+            accessibilityLabel={`${label}: ${option.label}`}
+          >
+            <Text style={[styles.segmentText, selected && styles.segmentTextSelected]}>{option.label}</Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+}
+
 function UnitInput({
   value,
   onChange,
@@ -405,7 +451,6 @@ const baseStyles = StyleSheet.create({
   field: { gap: 8 },
   label: { fontSize: 16, fontWeight: '700', color: '#0f172a' },
   fieldError: { color: '#b91c1c', fontSize: 13 },
-  row: { flexDirection: 'row', gap: 16 },
   input: { borderWidth: 1, borderColor: '#cbd5e1', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, fontSize: 16, color: '#0f172a', backgroundColor: 'white' },
   inputError: { borderColor: '#dc2626', borderWidth: 2 },
   short: { width: 100 },
@@ -413,8 +458,11 @@ const baseStyles = StyleSheet.create({
   unitWrap: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   unitInput: { width: 90 },
   unitLabel: { fontSize: 16, color: '#475569', fontWeight: '600' },
-  segment: { flexDirection: 'row', alignSelf: 'flex-start', borderRadius: 10, borderWidth: 1, borderColor: '#cbd5e1', overflow: 'hidden' },
-  segmentItem: { paddingVertical: 10, paddingHorizontal: 18, backgroundColor: 'white' },
+  // Inputs and the unit switch share a line, wrapping onto the next one at large text sizes.
+  measureRow: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 12 },
+  switchLine: { flexDirection: 'row' },
+  segment: { flexDirection: 'row', borderRadius: 10, borderWidth: 1, borderColor: '#cbd5e1', overflow: 'hidden' },
+  segmentItem: { paddingVertical: 12, paddingHorizontal: 14, backgroundColor: 'white' },
   segmentSelected: { backgroundColor: '#0f172a' },
   segmentText: { fontSize: 15, fontWeight: '600', color: '#0f172a' },
   segmentTextSelected: { color: 'white' },
